@@ -1,15 +1,36 @@
 const postsReducerDefaultState = [];
 
 const postsReducer = (state = postsReducerDefaultState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'ADD_POST':
-      return [
-        ...state,
-        action.post
-      ]; 
+      return [...state, action.post];
+    case 'REMOVE_POST':
+      return state.filter(post => post.id !== action.id);
+    case 'EDIT_POST':
+      return state.map((post) => {
+        if (post.id === action.id) {
+          return {
+            ...post,
+            ...action.updates
+          };
+        }
+        return post;
+      });
+    case 'SET_POSTS':
+      return action.posts;
+    case 'ADD_STAR':
+      return state.map((post) => {
+        if (post.id === action.id) {
+          return {
+            ...post,
+            stars: post.stars + 1
+          };
+        }
+        return post;
+      });
     default:
       return state;
   }
-}; 
+};
 
 export default postsReducer;

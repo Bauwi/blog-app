@@ -1,10 +1,13 @@
-import React from "react";
-import { Router, Route, Switch, Link, NavLink } from "react-router-dom";
+import React from 'react';
+import { Router, Route, Switch, Link, NavLink } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import LoginPage from '../components/LoginPage';
-import DashboardPage from "../components/DashboardPage";
-import NotFoundPage from "../components/NotFoundPage";
-import AddPost from "../components/AddPost";
+import DashboardPage from '../components/DashboardPage';
+import NotFoundPage from '../components/NotFoundPage';
+import AddPost from '../components/AddPost';
+import EditPost from '../components/EditPost';
+import ReadPostPage from '../components/ReadPostPage';
+import ReadPost from '../components/ReadPost';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -18,9 +21,12 @@ const AppRouter = () => (
   <Router history={history}>
     <div>
       <Switch>
-        <PublicRoute path="/" component={LoginPage} exact={true} />    
+        <PublicRoute path="/" component={LoginPage} exact />
+        <PublicRoute exact path="/:id/read/" component={ReadPostPage} />
+        <PublicRoute path="/:id/read/:id" component={ReadPost} />
         <PrivateRoute path="/dashboard" component={DashboardPage} />
         <PrivateRoute path="/create" component={AddPost} />
+        <PrivateRoute path="/edit/:id" component={EditPost} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

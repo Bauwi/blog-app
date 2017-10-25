@@ -1,8 +1,10 @@
-import React from "react";
+import React from 'react';
+
+import PostsList from './PostsList';
 
 export const DashboardPage = () => (
   <div>
-    Dashboard page content
+    <PostsList />
   </div>
 );
 
