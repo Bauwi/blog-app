@@ -12,7 +12,7 @@ export class AddPost extends Component {
   render() {
     return (
       <div>
-        <h1>Create Post Page</h1>
+        <h1>New Post</h1>
         <PostForm onSubmit={this.onSubmit} />
       </div>
     );

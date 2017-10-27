@@ -21,12 +21,18 @@ export default class PostForm extends Component {
     this.setState(() => ({ title }));
   };
 
-  onBodyChange = html => {
+  onBodyChange = body => {
     if (this.refs.quill) {
-      const plainBody = this.refs.quill.editor.getText();
-      const shortBody = plainBody.length > 250 ? plainBody.slice(0, 250).concat('...') : plainBody;
+      const body = this.refs.quill.editor.editor.delta;
+      const shortBody =
+        this.refs.quill.editor.getText().length > 250
+          ? this.refs.quill.editor
+              .getText()
+              .slice(0, 250)
+              .concat('...')
+          : this.refs.quill.editor.getText();
 
-      this.setState(() => ({ body: html, shortBody }));
+      this.setState(() => ({ body, shortBody }));
     }
   };
 
@@ -59,7 +65,7 @@ export default class PostForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
+      <form className="content-container" onSubmit={this.onSubmit}>
         <input
           autoFocus
           placeholder="title"
@@ -80,17 +86,19 @@ export default class PostForm extends Component {
           value={this.state.keywords}
           onChange={this.onKeywordsChange}
         />
+        <div>
+          <ReactQuill
+            ref="quill"
+            theme="snow"
+            defaultValue={this.state.body}
+            modules={PostForm.modules}
+            formats={PostForm.formats}
+            bounds={'.app'}
+            placeholder="Add a post to your blog"
+            onChange={this.onBodyChange}
+          />
+        </div>
 
-        <ReactQuill
-          ref="quill"
-          theme="snow"
-          value={this.state.body}
-          modules={PostForm.modules}
-          formats={PostForm.formats}
-          bounds={'.app'}
-          placeholder="Add a post to your blog"
-          onChange={this.onBodyChange}
-        />
         <button>Save Post</button>
       </form>
     );
@@ -101,9 +109,13 @@ PostForm.modules = {
   toolbar: [
     [{ header: '1' }, { header: '2' }],
 
-    ['bold', 'italic', 'underline', 'blockquote'],
+    ['bold', 'italic', 'underline', 'blockquote', 'code-block'],
+    [{ size: ['small', false, 'large', 'huge'] }],
+
+    [{ color: [] }, { background: [] }],
+
     [{ list: 'ordered' }],
-    ['link', 'video'],
+    ['link', 'image', 'video'],
     [{ align: [] }],
     ['clean']
   ]
@@ -112,11 +124,16 @@ PostForm.modules = {
 PostForm.formats = [
   'header',
   'bold',
+  'size',
+  'color',
+  'background',
   'italic',
   'underline',
   'blockquote',
+  'code-block',
   'list',
   'link',
+  'image',
   'video',
   'align'
 ];
