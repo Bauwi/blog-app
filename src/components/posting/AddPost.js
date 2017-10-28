@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import PostForm from './PostForm';
 import { connect } from 'react-redux';
-import { startAddPost, startAddStar } from '../actions/posts';
+import { Link } from 'react-router-dom';
+import PostForm from './PostForm';
+import { startAddPost, startAddStar } from '../../actions/posts';
 
 export class AddPost extends Component {
   onSubmit = post => {
@@ -12,6 +13,7 @@ export class AddPost extends Component {
   render() {
     return (
       <div>
+        <Link to="/dashboard">Back to dashboard</Link>
         <h1>New Post</h1>
         <PostForm onSubmit={this.onSubmit} />
       </div>

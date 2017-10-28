@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import 'firebase/firestore';
 import moment from 'moment';
 
 const config = {
@@ -13,7 +14,7 @@ const config = {
 firebase.initializeApp(config);
 
 const database = firebase.database();
+const db = firebase.firestore();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, googleAuthProvider, database as default };
-
+export { firebase, googleAuthProvider, db, database as default };

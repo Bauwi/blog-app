@@ -32,7 +32,7 @@ export default class PostForm extends Component {
               .concat('...')
           : this.refs.quill.editor.getText();
 
-      this.setState(() => ({ body, shortBody }));
+      this.setState(() => ({ body: body.ops, shortBody }));
     }
   };
 

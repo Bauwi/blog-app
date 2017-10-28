@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import PostsList from './PostsList';
-
 import Header from './Header';
 
 export class ReadPostPage extends Component {
@@ -11,14 +9,10 @@ export class ReadPostPage extends Component {
     return (
       <div>
         <Header />
-        <PostsList />
+        <p>Read Post Page</p>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  posts: state.posts
-});
-
-export default connect(mapStateToProps)(ReadPostPage);
+export default connect()(ReadPostPage);

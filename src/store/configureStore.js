@@ -5,23 +5,21 @@ import authReducer from '../reducers/auth';
 import postsReducer from '../reducers/posts';
 import filtersReducer from '../reducers/filters';
 
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // STORE CREATION
-// The combineReducers function turns an object whose values are 
+// The combineReducers function turns an object whose values are
 // different reducing functioins into a single reducing function you
-// can pass to createStore 
+// can pass to createStore
 
 export default () => {
   const store = createStore(
     combineReducers({
       auth: authReducer,
       posts: postsReducer,
-      filters : filtersReducer
+      filters: filtersReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
   );
   return store;
 };
-

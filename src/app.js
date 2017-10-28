@@ -5,7 +5,7 @@ import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { firebase } from './firebase/firebase';
 
-import { startSetPosts, startSetAllPosts } from './actions/posts';
+import { startSetPosts } from './actions/posts';
 import { login, logout } from './actions/auth';
 import LoadingPage from './components/LoadingPage';
 
@@ -34,12 +34,6 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 // manage redirecting when user is authenticated
 firebase.auth().onAuthStateChanged((user) => {
-  // if (history.location.pathname !== '/read') {
-  //   store.dispatch(startSetAllPosts()).then(() => {
-  //     renderApp();
-  //     console.log('read page fired');
-  //     history.push('/read');
-  //   });
   if (user) {
     store.dispatch(login(user.uid));
 
@@ -50,17 +44,12 @@ firebase.auth().onAuthStateChanged((user) => {
         history.push('/dashboard');
       }
     });
-  } else if (!history.location.pathname.includes('/read')) {
+  } else if (
+    !history.location.pathname.includes('/read') &&
+    history.location.pathname !== '/home'
+  ) {
     store.dispatch(logout());
     renderApp();
     history.push('/');
-  } else {
-    store.dispatch(logout());
-
-    const userId = history.location.pathname.slice(1, 29);
-    store.dispatch(startSetPosts(userId)).then(() => {
-      renderApp();
-      console.log(' userId from app.js: ', userId);
-    });
   }
 });
