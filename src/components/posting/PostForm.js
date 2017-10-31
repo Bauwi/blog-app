@@ -5,13 +5,19 @@ import ReactQuill from 'react-quill';
 export default class PostForm extends Component {
   constructor(props) {
     super(props);
+    // bodyToEditor is a tweak as db does not handle delta format from quill Editor
+    // body is the part sent to db and bodyToEditor the data used as the correct format
+    // to display content ==> delta standard format: delta {ops: [array of data]}
     this.state = {
       title: props.post ? props.post.title : '',
       body: props.post ? props.post.body : '',
+      bodyToEditor: props.post ? { ops: [...this.props.post.body] } : '',
       shortBody: props.post ? props.post.shortBody : '',
       keywords: props.post ? props.post.keywords : '',
       createdAt: props.post ? moment(props.post.createdAt) : moment(),
       author: props.post ? props.post.author : '',
+      readingTime: props.post ? props.post.readingTime : 0,
+      cover: props.post ? props.post.cover : '',
       error: ''
     };
   }
@@ -24,6 +30,8 @@ export default class PostForm extends Component {
   onBodyChange = body => {
     if (this.refs.quill) {
       const body = this.refs.quill.editor.editor.delta;
+      const bodyToEditor = { ops: [...body] };
+
       const shortBody =
         this.refs.quill.editor.getText().length > 250
           ? this.refs.quill.editor
@@ -31,8 +39,14 @@ export default class PostForm extends Component {
               .slice(0, 250)
               .concat('...')
           : this.refs.quill.editor.getText();
+      const readingTime = this.readingTime(this.refs.quill.editor.getText());
 
-      this.setState(() => ({ body: body.ops, shortBody }));
+      this.setState(() => ({
+        body: body.ops,
+        shortBody,
+        bodyToEditor,
+        readingTime
+      }));
     }
   };
 
@@ -44,6 +58,14 @@ export default class PostForm extends Component {
   onKeywordsChange = e => {
     const keywords = e.target.value;
     this.setState(() => ({ keywords }));
+  };
+  onCoverChange = e => {
+    const cover = e.target.value;
+    this.setState(() => ({ cover }));
+  };
+
+  readingTime = str => {
+    return Math.floor(str.split(' ').length / 250);
   };
 
   onSubmit = e => {
@@ -58,7 +80,9 @@ export default class PostForm extends Component {
         shortBody: this.state.shortBody,
         keywords: this.state.keywords,
         createdAt: this.state.createdAt.valueOf(),
-        author: this.state.author
+        author: this.state.author,
+        readingTime: this.state.readingTime,
+        cover: this.state.cover
       });
     }
   };
@@ -86,11 +110,17 @@ export default class PostForm extends Component {
           value={this.state.keywords}
           onChange={this.onKeywordsChange}
         />
+        <input
+          type="text"
+          placeholder="cover"
+          value={this.state.cover}
+          onChange={this.onCoverChange}
+        />
         <div>
           <ReactQuill
             ref="quill"
             theme="snow"
-            defaultValue={this.state.body}
+            defaultValue={this.state.bodyToEditor}
             modules={PostForm.modules}
             formats={PostForm.formats}
             bounds={'.app'}

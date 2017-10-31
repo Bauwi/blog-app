@@ -1,5 +1,6 @@
 @import "./base/settings";
 @import "./base/base";
+@import "./base/mixins";
 @import "./components/box-layout";
 @import "./components/button";
 @import "./components/header";
@@ -12,5 +13,6 @@
 @import "./components/list";
 @import "./components/loader";
 @import "./components/editor";
+@import "./components/image";
 
 @import "../../node_modules/react-quill/dist/quill.snow";

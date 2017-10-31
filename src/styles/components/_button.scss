@@ -5,7 +5,7 @@
   color: white;
   display: inline-block;
   font-size: $font-size-large;
-  font-weight: 300;  
+  font-weight: 300;
   line-height: 1;
   outline: none;
   padding: $s-size $m-size;
@@ -18,4 +18,9 @@
 
 .button--secondary {
   background: #888888;
+}
+
+.button--more {
+  background: lighten($dark-blue, 50%);
+  width: 100%;
 }

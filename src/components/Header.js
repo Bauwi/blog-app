@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 
-export const Header = ({ isAuthenticated, startLogout }) => (
-  <header className="header">
+export const Header = ({ isAuthenticated, startLogout, context }) => (
+  <header className={context === 'write-mode' ? 'header--write-mode' : 'header'}>
     <div className="content-container">
       <div className="header__content">
         <Link className="header__title" to="/dashboard">

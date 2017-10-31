@@ -37,7 +37,7 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
 
-    store.dispatch(startSetPosts(user.uid)).then(() => {
+    store.dispatch(startSetPosts(user.uid, 10)).then(() => {
       renderApp();
       // only redirect when user is at the root of the app
       if (history.location.pathname === '/') {
@@ -51,5 +51,7 @@ firebase.auth().onAuthStateChanged((user) => {
     store.dispatch(logout());
     renderApp();
     history.push('/');
+  } else {
+    renderApp();
   }
 });

@@ -17,7 +17,9 @@ export const startAddPost = (postData = {}) => (dispatch, getState) => {
     createdAt = 0,
     stars = 0,
     author,
-    authorId = uid
+    authorId = uid,
+    readingTime,
+    cover
   } = postData;
   const post = {
     title,
@@ -27,7 +29,9 @@ export const startAddPost = (postData = {}) => (dispatch, getState) => {
     createdAt,
     stars,
     author,
-    authorId
+    authorId,
+    readingTime,
+    cover
   };
   return db
     .collection('posts')
@@ -74,22 +78,24 @@ export const setPosts = posts => ({
   posts
 });
 
-export const startSetPosts = id => (dispatch, getState) => {
-  const { uid } = getState().auth;
+export const startSetPosts = (id, rangeMax) => (dispatch, getState) => {
+  const uid = id || getState().auth.uid;
   return db
     .collection('posts')
     .where('authorId', '==', `${uid}`)
     .get()
     .then((querySnapshot) => {
-      const posts = [];
+      const allPosts = [];
       querySnapshot.forEach((doc) => {
-        posts.push({
+        allPosts.push({
           id: doc.id,
           ...doc.data()
         });
-        console.log(doc.id, ' => ', doc.data());
-        console.log(posts);
       });
+      const posts = allPosts
+        .sort((a, b) => a.createdAt - b.createdAt)
+        .reverse()
+        .slice(0, rangeMax);
       dispatch(setPosts(posts));
     });
 };
@@ -115,4 +121,38 @@ export const startSetPostsSample = sampleSize => dispatch =>
         });
       });
       dispatch(setPostsSample(posts));
+    });
+
+// manage reading specific user posts
+
+export const startSetUserPosts = id => (dispatch) => {
+  db
+    .collection('posts')
+    .where('authorId', '==', id)
+    .get()
+    .then((querySnapshot) => {
+      const posts = [];
+      querySnapshot.forEach((doc) => {
+        posts.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+      posts.sort((a, b) => a.createdAt - b.createdAt);
+      dispatch(setPosts(posts));
+    });
+};
+
+export const startSetOnePost = id => dispatch =>
+  db
+    .collection('posts')
+    .doc(id)
+    .get()
+    .then((doc) => {
+      const posts = [];
+      posts.push({
+        id: doc.id,
+        ...doc.data()
+      });
+      dispatch(setPosts(posts));
     });

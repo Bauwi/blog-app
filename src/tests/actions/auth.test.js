@@ -5,12 +5,12 @@ test('should setup login action object', () => {
   expect(action).toEqual({
     type: 'LOGIN',
     uid: '123abc'
-  })
+  });
 });
 
 test('should setup logout action object', () => {
   const action = logout();
   expect(action).toEqual({
     type: 'LOGOUT'
-  })
+  });
 });

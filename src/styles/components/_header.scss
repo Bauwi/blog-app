@@ -1,4 +1,8 @@
 .header {
+  background: $gold;
+}
+
+.header--write-mode {
   background: $dark-blue;
 }
 
@@ -14,6 +18,6 @@
   text-decoration: none;
 
   h1 {
-    margin: 0
+    margin: 0;
   }
 }

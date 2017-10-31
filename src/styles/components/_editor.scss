@@ -1,6 +1,8 @@
 // Remove the editor thin default border
+// Set editor min-height
 .ql-container.ql-snow {
   border: none !important;
+  min-height: 15rem;
 }
 
 // Remove toolbar on readOnly mode

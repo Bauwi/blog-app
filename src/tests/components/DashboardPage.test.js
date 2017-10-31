@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import DashboardPage from '../../components/DashboardPage';
+import DashboardPage from '../../components/posting/DashboardPage';
 
 test('should render DashboardPage component', () => {
-  const wrapper = shallow(<DashboardPage />)
-  expect(wrapper).toMatchSnapshot(); 
+  const wrapper = shallow(<DashboardPage />);
+  expect(wrapper).toMatchSnapshot();
 });

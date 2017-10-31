@@ -1,3 +1,17 @@
+@import "./base/mixins";
+.grid-dashboard {
+  @include grid(4);
+  border-bottom: 1px solid $off-white;
+  margin-bottom: $m-size;
+  & > * {
+    text-decoration: none;
+  }
+}
+
+.grid-dashboard > a:nth-child(1) {
+  @extend .flexitem-double;
+}
+
 .list-header {
   background: $off-white;
   border: 1px solid darken($off-white, 7%);
@@ -5,6 +19,7 @@
   display: flex;
   justify-content: space-between;
   padding: $s-size $m-size;
+  width: 100%;
 }
 
 .list-body {
@@ -16,13 +31,22 @@
 
 .list-item {
   border: 1px solid darken($off-white, 7%);
-  border-top: none;
   color: $dark-grey;
   display: flex;
   flex-direction: column;
-  padding: $s-size;
+  height: 32rem;
+  justify-content: space-between;
+  margin: $s-size 0;
   text-decoration: none;
-  transition: background .3s ease;
+  transition: background 0.3s ease;
+
+  * {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: $m-size;
+  }
 
   &:hover {
     background: $off-white;
@@ -30,37 +54,43 @@
 
   @media (min-width: $desktop-breakpoint) {
     align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: $m-size;
+    flex-direction: column;
+    margin: $m-size 0;
+    // padding: $m-size;
   }
 }
 
 .list-item__title {
-  margin: 0;
-  word-break: break-all;
+  font-size: $m-size !important;
 }
 
-.list-item__subtitle {
-  color: $grey;
-  font-size: $font-size-small;
+.list-item__img {
+  // max-width: 100%;
+  // max-height: 15rem;
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
 }
 
-.list-item__data {
-  margin-top: $s-size;
+.list-item__infos {
+  padding: 0 $s-size;
   @media (min-width: $desktop-breakpoint) {
-    margin: 0;
-    padding-left: $s-size;
+    padding: 0 $m-size;
+  }
+  ul {
+    @extend .block-with-text-2;
+    margin: $m-size 0 0 0;
+    padding: 0 $m-size 0 0;
+    li {
+      display: inline;
+      font-size: $s-size;
+      font-style: italic;
+    }
   }
 }
 
-.list-item--message {
-  align-items: center;
-  color: $grey;
-  justify-content: center;
-  padding: $m-size;
-
-  &:hover {
-    background: none;
-  }
+.list-item__footer {
+  border-top: 1px solid $off-white;
+  width: 100%;
+  padding: $s-size;
 }

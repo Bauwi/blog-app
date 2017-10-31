@@ -13,8 +13,12 @@ export class AddPost extends Component {
   render() {
     return (
       <div>
-        <Link to="/dashboard">Back to dashboard</Link>
-        <h1>New Post</h1>
+        <div className="page-header">
+          <header className="content-container">
+            <Link to="/dashboard">Back to dashboard</Link>
+            <h1>New Post</h1>
+          </header>
+        </div>
         <PostForm onSubmit={this.onSubmit} />
       </div>
     );
