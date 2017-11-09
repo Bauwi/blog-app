@@ -42,13 +42,13 @@
   line-height: $lineHeight;
   max-height: $lineHeight * $lineCount;
   text-align: justify;
-  margin-right: -1em;
-  padding-right: 1em;
-  &:hover {
-    background: $off-white;
-  }
+  margin-right: -1.8em !important;
+  padding-right: 1.8em !important;
+  margin-left: 1em;
+
   &:before {
     content: "...";
+    color: $light-grey;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -57,16 +57,17 @@
     content: "";
     position: absolute;
     right: 0;
-    width: 1em;
+    width: 2em;
     height: 1em;
     margin-top: 0.2em;
     background: $bgColor;
+    transition: background 0.3s ease;
   }
 }
 
 .block-with-text-3 {
-  @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3, $bgColor: white);
+  @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3, $bgColor: #222);
 }
 .block-with-text-2 {
-  @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 2, $bgColor: white);
+  @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 2, $bgColor: #222);
 }

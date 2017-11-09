@@ -17,7 +17,7 @@ export class EditPost extends Component {
   render() {
     return (
       <div>
-        <PostForm onSubmit={this.onSubmit} post={this.props.post} />
+        <PostForm onSubmit={this.onSubmit} post={this.props.post} context="edit" />
         <button onClick={this.onRemovePost}>Remove Post</button>
       </div>
     );

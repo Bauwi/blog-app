@@ -1,10 +1,10 @@
 .button {
-  background-color: $blue;
-  border: none;
-  border-radius: 0;
+  background-color: black;
+  border: 2px solid $off-white;
+  border-radius: 5%;
   color: white;
   display: inline-block;
-  font-size: $font-size-large;
+  font-size: $font-size-medium;
   font-weight: 300;
   line-height: 1;
   outline: none;
@@ -23,4 +23,22 @@
 .button--more {
   background: lighten($dark-blue, 50%);
   width: 100%;
+}
+
+.button--star {
+  border: none;
+}
+
+.button--simple {
+  border: none;
+  color: grey;
+}
+
+.button--navbar {
+  border: none;
+  padding: 0 $s-size 0 0;
+}
+
+.is-selected {
+  color: white;
 }

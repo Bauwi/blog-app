@@ -6,6 +6,9 @@
   & > * {
     text-decoration: none;
   }
+  @media (min-width: $desktop-breakpoint) {
+    margin: 0.5rem;
+  }
 }
 
 .grid-dashboard > a:nth-child(1) {
@@ -15,7 +18,7 @@
 .list-header {
   background: $off-white;
   border: 1px solid darken($off-white, 7%);
-  color: $grey;
+  color: $off-white;
   display: flex;
   justify-content: space-between;
   padding: $s-size $m-size;
@@ -30,8 +33,9 @@
 }
 
 .list-item {
-  border: 1px solid darken($off-white, 7%);
-  color: $dark-grey;
+  background: #222222;
+  border: 1px solid darken($off-white, 80%);
+  color: $off-white;
   display: flex;
   flex-direction: column;
   height: 32rem;
@@ -41,15 +45,19 @@
   transition: background 0.3s ease;
 
   * {
+    background: none;
     margin: 0;
-  }
-
-  h3 {
-    font-size: $m-size;
   }
 
   &:hover {
     background: $off-white;
+    * {
+      color: black;
+    }
+    div > div > *:after {
+      background: $off-white;
+      transition: background 0.3s ease;
+    }
   }
 
   @media (min-width: $desktop-breakpoint) {
@@ -61,6 +69,7 @@
 }
 
 .list-item__title {
+  color: $off-white;
   font-size: $m-size !important;
 }
 
@@ -73,12 +82,14 @@
 }
 
 .list-item__infos {
-  padding: 0 $s-size;
-  @media (min-width: $desktop-breakpoint) {
-    padding: 0 $m-size;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // height: 100%;
+  margin: 1rem 3rem 1rem 1rem;
   ul {
     @extend .block-with-text-2;
+
     margin: $m-size 0 0 0;
     padding: 0 $m-size 0 0;
     li {
@@ -91,6 +102,13 @@
 
 .list-item__footer {
   border-top: 1px solid $off-white;
+
+  display: flex;
+  font-size: $s-size;
+  justify-content: space-between;
   width: 100%;
   padding: $s-size;
+  p {
+    color: $grey;
+  }
 }

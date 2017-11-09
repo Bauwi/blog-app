@@ -19,12 +19,16 @@ export class PostListFilters extends Component {
   render() {
     return (
       <div>
-        <select value={this.props.filters.searchBy} onChange={this.onSearchByChange}>
+        <select
+          className="select"
+          value={this.props.filters.searchBy}
+          onChange={this.onSearchByChange}
+        >
           <option value="title">Title</option>
           <option value="keyword">Keyword</option>
           <option value="author">Author</option>
         </select>
-        <input type="text" onChange={this.onTextChange} />
+        <input className="text-input" type="text" onChange={this.onTextChange} />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 const filtersReducerDefaultState = {
   text: '',
-  searchBy: 'title'
+  searchBy: 'title',
+  sortBy: 'stars'
 };
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
@@ -24,6 +25,16 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
       return {
         ...state,
         searchBy: 'author'
+      };
+    case 'SORT_BY_STARS':
+      return {
+        ...state,
+        sortBy: 'stars'
+      };
+    case 'SORT_BY_DATE':
+      return {
+        ...state,
+        sortBy: 'date'
       };
     default:
       return state;

@@ -1,16 +1,21 @@
 .header {
-  background: $gold;
+  // border-bottom: 2px solid $gold;
+  border-bottom: 2px solid $grey;
 }
 
 .header--write-mode {
-  background: $dark-blue;
+  background: black;
 }
 
 .header__content {
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding: $s-size 0;
+  padding: 0;
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+  }
 }
 
 .header__title {
@@ -20,4 +25,32 @@
   h1 {
     margin: 0;
   }
+}
+
+.header__navbar {
+  padding: $s-size 0;
+  a,
+  button,
+  nav {
+    @extend .button, .button--navbar;
+    margin-left: 1rem;
+  }
+  button {
+    margin-left: 1rem;
+    @media (min-width: $desktop-breakpoint) {
+      margin-left: 3rem;
+    }
+  }
+  nav {
+    margin-right: 0;
+    @media (min-width: $desktop-breakpoint) {
+      margin-right: 3rem;
+    }
+  }
+  // a:hover {
+  //   background: $off-white;
+  //   * {
+  //     background: $off-white;
+  //   }
+  // }
 }

@@ -18,8 +18,16 @@ const postsReducer = (state = postsReducerDefaultState, action) => {
       });
     case 'SET_POSTS':
       return action.posts;
-    case 'SET_POSTS_SAMPLE':
-      return action.posts;
+    case 'ADD_POST_STAR':
+      return state.map((post) => {
+        if (post.id === action.id) {
+          return {
+            ...post,
+            stars: action.stars
+          };
+        }
+        return post;
+      });
     default:
       return state;
   }

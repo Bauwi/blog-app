@@ -15,7 +15,7 @@ export const PrivateRoute = ({
     component={props =>
       (isAuthenticated ? (
         <div>
-          <Header context="write-mode" />
+          <Header />
           <Component {...props} />
         </div>
       ) : (

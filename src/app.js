@@ -7,6 +7,7 @@ import { firebase } from './firebase/firebase';
 
 import { startSetPosts } from './actions/posts';
 import { login, logout } from './actions/auth';
+import { startSetUserPreferences } from './actions/users';
 import LoadingPage from './components/LoadingPage';
 
 import 'normalize-css/normalize.css';
@@ -36,6 +37,7 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
+    store.dispatch(startSetUserPreferences());
 
     store.dispatch(startSetPosts(user.uid, 10)).then(() => {
       renderApp();
@@ -52,6 +54,7 @@ firebase.auth().onAuthStateChanged((user) => {
     renderApp();
     history.push('/');
   } else {
+    store.dispatch(logout());
     renderApp();
   }
 });

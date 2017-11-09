@@ -1,47 +1,71 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import ReactQuill from 'react-quill';
-import moment from 'moment';
 
 import Header from './Header';
+import UserCard from './UserCard';
 import LoadingPage from './LoadingPage';
 
-import { startSetOnePost } from '../actions/posts';
+import { startSetOnePost, startSetPostsSample } from '../actions/readings';
+import { startSetAuthor, startAddUserStar } from '../actions/users';
+import { startUpPostStar } from '../actions/posts';
+import { startFetchCoverJSON } from '../actions/posts';
 
 export class ReadPost extends Component {
   state = { loading: true };
 
   componentWillMount() {
-    const { pathname } = this.props.history.location;
-    const id = pathname.slice(35, pathname.length);
-    this.props.startSetOnePost(id).then(() => {
-      this.setState(() => ({ loading: false }));
-    });
+    const { id } = this.props.match.params;
+    this.props
+      .startSetPostsSample()
+      .then(() => this.props.startSetOnePost(id))
+      .then(ref => this.props.startSetAuthor(ref.post.authorId))
+      .then(() => {
+        this.setState(() => ({ loading: false }));
+      });
   }
+
+  onAddStar = () => {
+    this.props.startAddUserStar(this.props.post.authorId, this.props.author.stars);
+    this.props.startUpPostStar(this.props.match.params.id);
+  };
 
   render() {
     if (this.state.loading) {
       return <LoadingPage />;
     }
-    const { id, author, title, body, createdAt, keywords, authorId, cover } = this.props.post;
-    const regEx = new RegExp(id, 'g');
-    const goBackPath = this.props.history.location.pathname.replace(regEx, '');
+    const {
+      id,
+      author,
+      title,
+      body,
+      createdAt,
+      keywords,
+      authorId,
+      stars,
+      cover
+    } = this.props.post;
+
+    // parse the delta as expected by editor (necessary because Cloud Firestore is broken when it comes
+    // to nested arrays)
     const delta = { ops: [...body] };
     return (
       <div>
         <Header />
-        <img className="image" src={cover} />
-        <header className="page-header">
+        <header className="page-header page-header--read">
           <div className="content-container">
-            <button onClick={() => this.props.history.push(goBackPath)}>Back</button>
-            <p>{moment(createdAt).format('MMM Do, YYYY')}</p>
-            <Link to={`/${authorId}/read/`}>
-              <p>{author}</p>
-            </Link>
-            <h2>{title}</h2>
+            <UserCard post={this.props.post} author={this.props.author} />
+            <div className="read-header__stars">
+              <button className="button button--star" onClick={this.onAddStar}>
+                <i className="fa fa-star-o" />
+              </button>
+              <p>{this.props.postStars}</p>
+            </div>
           </div>
         </header>
+        <h2 className="read-header__title">{title}</h2>
+        <img className="image" src={cover} />
         <div className="content-container read-only">
           <ReactQuill
             theme="snow"
@@ -61,11 +85,16 @@ export class ReadPost extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  startSetOnePost: id => dispatch(startSetOnePost(id))
+  startSetOnePost: id => dispatch(startSetOnePost(id)),
+  startSetPostsSample: () => dispatch(startSetPostsSample()),
+  startSetAuthor: id => dispatch(startSetAuthor(id)),
+  startAddUserStar: (id, prevStars) => dispatch(startAddUserStar(id, prevStars)),
+  startUpPostStar: id => dispatch(startUpPostStar(id))
 });
 
 const mapStateToProps = (state, props) => ({
-  post: state.posts.find(post => post.id === props.match.params.id)
+  post: state.readings.current,
+  author: state.users.author
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReadPost));

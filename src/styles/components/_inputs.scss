@@ -1,5 +1,6 @@
 .text-input {
   border: 1px solid #cacccd;
+  color: $light-grey;
   font-size: $font-size-large;
   font-weight: 300;
   height: 50px;
@@ -12,5 +13,5 @@
 
 .textarea {
   @extend .text-input;
-  height: 10rem; 
+  height: 10rem;
 }

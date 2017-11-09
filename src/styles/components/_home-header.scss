@@ -1,0 +1,16 @@
+.home-header {
+}
+
+.home-header__filterBar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-header__title {
+  color: #111;
+  font-size: $font-size-huge;
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+}
