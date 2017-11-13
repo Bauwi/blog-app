@@ -1,19 +1,19 @@
-.read-header__container {
+.usercard__container {
   align-items: center;
-  // border: 1px solid $light-grey;
   display: flex;
   font-family: Space Mono, Helvetica, Arial, sans-serif;
+  padding: $l-size 0;
 }
 
-.read-header {
+.usercard {
   display: flex;
 }
 
-.read-header__top {
+.usercard__top {
   display: flex;
 }
 
-.read-header__avatar {
+.usercard__avatar {
   align-items: center;
   border: 1px solid red;
   border-radius: 50%;
@@ -26,14 +26,14 @@
   }
 }
 
-.read-header__infos--data {
+.usercard__infos--data {
   display: flex;
   justify-content: space-between;
   * {
     margin: 0;
   }
 }
-.read-header__infos--description {
+.usercard__infos--description {
   p {
     font-size: $s-size;
     font-style: italic;
@@ -42,7 +42,7 @@
   }
 }
 
-.read-header__infos--footer {
+.usercard__infos--footer {
   display: flex;
   justify-content: space-between;
   p {
@@ -50,11 +50,11 @@
   }
 }
 
-.read-header__infos--data--author {
+.usercard__infos--data--author {
   margin: 0;
 }
 
-.read-header__stars {
+.usercard__stars {
   display: flex;
   font-size: $l-size;
   justify-content: flex-end;
@@ -64,7 +64,7 @@
   }
 }
 
-.read-header__title {
+.usercard__title {
   color: white;
   font-size: $xl-size;
   text-align: center;

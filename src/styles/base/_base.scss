@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  background: black;
+  // background: #111111;
 }
 
 html {
@@ -26,4 +26,24 @@ button:disabled {
 
 .is-active {
   font-weight: bold;
+}
+
+label {
+  p {
+    margin-top: 0;
+    margin-bottom: 0.2rem;
+  }
+  p:nth-child(1) {
+    border-bottom: 1px solid grey;
+    display: inline-block;
+  }
+  p:nth-child(2) {
+    font-style: italic;
+    font-size: 1rem;
+    margin-left: $m-size;
+  }
+}
+
+.no-decoration {
+  text-decoration: none;
 }

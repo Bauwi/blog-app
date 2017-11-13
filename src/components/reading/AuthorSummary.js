@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import Header from './Header';
-import PublicPostsLists from './PublicPostsList';
+import Header from '../header/Header';
+import InlineList from '../InlineList';
 
-import PostSListFilters from './PostListFilters';
-import selectPosts from '../selectors/posts';
-import LoadingPage from './LoadingPage';
+import PostSListFilters from '../PostListFilters';
+import selectPosts from '../../selectors/posts';
+import LoadingPage from '../LoadingPage';
 
-import { startSetSpecificUserPosts } from '../actions/readings';
+import { startSetSpecificUserPosts } from '../../actions/readings';
 
-export class ReadPostPage extends Component {
+export class AuthorSummary extends Component {
   state = {
     loading: true
   };
@@ -30,7 +30,7 @@ export class ReadPostPage extends Component {
     return (
       <div>
         <Header />
-        <PublicPostsLists posts={this.props.posts} />
+        <InlineList posts={this.props.posts} />
         <p>Read Post Page</p>
       </div>
     );
@@ -46,4 +46,4 @@ const mapStateToProps = state => ({
   test: state.readings
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReadPostPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthorSummary);

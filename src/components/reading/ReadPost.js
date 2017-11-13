@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 
-import Header from './Header';
-import UserCard from './UserCard';
-import LoadingPage from './LoadingPage';
+import Header from '../header/Header';
+import UserCard from '../UserCard';
+import LoadingPage from '../LoadingPage';
 
-import { startSetOnePost, startSetPostsSample } from '../actions/readings';
-import { startSetAuthor, startAddUserStar } from '../actions/users';
-import { startUpPostStar } from '../actions/posts';
-import { startFetchCoverJSON } from '../actions/posts';
+import { startSetOnePost, startSetPostsSample } from '../../actions/readings';
+import { startSetAuthor, startAddUserStar } from '../../actions/users';
+import { startUpPostStar } from '../../actions/posts';
 
 export class ReadPost extends Component {
   state = { loading: true };
@@ -35,18 +34,7 @@ export class ReadPost extends Component {
     if (this.state.loading) {
       return <LoadingPage />;
     }
-    const {
-      id,
-      author,
-      title,
-      body,
-      createdAt,
-      keywords,
-      authorId,
-      stars,
-      cover
-    } = this.props.post;
-
+    const { title, body, keywords, cover } = this.props.post;
     // parse the delta as expected by editor (necessary because Cloud Firestore is broken when it comes
     // to nested arrays)
     const delta = { ops: [...body] };
@@ -78,7 +66,6 @@ export class ReadPost extends Component {
         </div>
 
         <footer>keywords: {keywords}</footer>
-        <p>Read unique Post</p>
       </div>
     );
   }

@@ -17,7 +17,12 @@ export class EditPost extends Component {
   render() {
     return (
       <div>
-        <PostForm onSubmit={this.onSubmit} post={this.props.post} context="edit" />
+        <PostForm
+          onSubmit={this.onSubmit}
+          post={this.props.post}
+          author={this.props.user}
+          context="edit"
+        />
         <button onClick={this.onRemovePost}>Remove Post</button>
       </div>
     );
@@ -28,7 +33,8 @@ const mapStateToProps = (state, props) => {
   return {
     post: state.posts.find(post => {
       return post.id === props.match.params.id;
-    })
+    }),
+    user: state.users.preferences
   };
 };
 

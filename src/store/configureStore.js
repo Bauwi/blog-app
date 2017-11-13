@@ -6,6 +6,7 @@ import postsReducer from '../reducers/posts';
 import filtersReducer from '../reducers/filters';
 import readingsReducer from '../reducers/readings';
 import usersReducer from '../reducers/users';
+import runReducer from '../reducers/run';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -21,7 +22,8 @@ export default () => {
       posts: postsReducer,
       filters: filtersReducer,
       readings: readingsReducer,
-      users: usersReducer
+      users: usersReducer,
+      run: runReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
   );

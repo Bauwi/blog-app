@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { sortByDate, sortByStars } from '../actions/filters';
+import { sortByDate, sortByStars } from '../../actions/filters';
 
 export class PostListFilters extends Component {
   render() {

@@ -33,7 +33,7 @@ export class PostsList extends Component {
       );
     }
     return (
-      <div className="content-container">
+      <div>
         <PostListFilters />
         <div className="grid-dashboard">{this.renderPosts()}</div>
         <button className="button button--more" onClick={this.handleMorePosts}>

@@ -3,12 +3,15 @@ import { Router, Route, Switch, Link, NavLink } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import LoginPage from '../components/LoginPage';
 import DashboardPage from '../components/posting/DashboardPage';
+import CategorizedReads from '../components/CategorizedReads';
+import Preferences from '../components/posting/preferences';
+import Run from '../components/run/Run';
 import NotFoundPage from '../components/NotFoundPage';
 import AddPost from '../components/posting/AddPost';
 import EditPost from '../components/posting/EditPost';
-import HomeRead from '../components/HomeRead';
-import ReadPostPage from '../components/ReadPostPage';
-import ReadPost from '../components/ReadPost';
+import HomeRead from '../components/home/HomeRead';
+import AuthorSummary from '../components/reading/AuthorSummary';
+import ReadPost from '../components/reading/ReadPost';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -24,9 +27,12 @@ const AppRouter = () => (
       <Switch>
         <PublicRoute path="/" component={LoginPage} exact />
         <Route path="/home" component={HomeRead} />
-        <Route exact path="/:id/read/" component={ReadPostPage} />
+        <Route path="/category/:id" component={CategorizedReads} />
+        <Route exact path="/:id/read/" component={AuthorSummary} />
         <Route path="/:id/read/:id" component={ReadPost} />
         <PrivateRoute path="/dashboard" component={DashboardPage} />
+        <PrivateRoute path="/run" component={Run} />
+        <PrivateRoute path="/preferences" component={Preferences} />
         <PrivateRoute path="/create" component={AddPost} />
         <PrivateRoute path="/edit/:id" component={EditPost} />
         <Route component={NotFoundPage} />

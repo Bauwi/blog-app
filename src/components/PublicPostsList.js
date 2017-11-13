@@ -9,7 +9,7 @@ import selectPosts from '../selectors/posts';
 export class PublicPostsList extends Component {
   renderListItem = () => {
     return this.props.posts.map(post => {
-      return <PublicPostsListItem key={post.id} {...post} />;
+      return <PublicPostsListItem key={post.id} post={post} />;
     });
   };
   capitalized = str => {

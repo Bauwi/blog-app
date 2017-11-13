@@ -18,10 +18,9 @@ export class AddPost extends Component {
         <div className="page-header">
           <header className="content-container">
             <Link to="/dashboard">Back to dashboard</Link>
-            <h1>New Post</h1>
           </header>
         </div>
-        <PostForm onSubmit={this.onSubmit} context="add" />
+        <PostForm onSubmit={this.onSubmit} context="add" author={this.props.user} />
       </div>
     );
   }
@@ -32,4 +31,7 @@ const mapDispatchToProps = dispatch => ({
   startUpdateUser: (id, updates) => dispatch(startUpdateUser(id, updates))
 });
 
-export default connect(undefined, mapDispatchToProps)(AddPost);
+const mapStateToProps = state => ({
+  user: state.users.preferences
+});
+export default connect(mapStateToProps, mapDispatchToProps)(AddPost);

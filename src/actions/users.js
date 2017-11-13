@@ -48,6 +48,7 @@ export const startAddUserStar = (id, prevStars) => dispatch =>
     .update({ stars: prevStars + 1 })
     .then(() => dispatch(addUserStar(prevStars + 1)));
 
+// used to display UserCard
 export const setAuthor = author => ({
   type: 'SET_AUTHOR',
   author
@@ -67,7 +68,7 @@ export const setUserPreferences = preferences => ({
   preferences
 });
 
-export const startSetUserPreferences = preferences => (dispatch, getState) =>
+export const startSetUserPreferences = () => (dispatch, getState) =>
   db
     .collection('users')
     .doc(getState().auth.uid)

@@ -66,29 +66,3 @@ export const startSetOnePost = id => (dispatch, getState) =>
         id: doc.id,
         ...doc.data()
       })));
-
-export const fetchMiniCoverJSON = (id, miniCover) => ({
-  type: 'FETCH_MINICOVER',
-  id,
-  miniCover
-});
-
-export const startFetchMiniCoverJSON = id => (dispatch) => {
-  const ROOT_URL = 'https://firebasestorage.googleapis.com/v0/b/blog-app-1de4a.appspot.com/o';
-  const url = `${ROOT_URL}/${id}%2Fmini`;
-
-  return axios.get(url).then(res => dispatch(fetchMiniCoverJSON(id, res)));
-};
-
-export const fetchCoverJSON = (id, cover) => ({
-  type: 'FETCH_COVER',
-  id,
-  cover
-});
-
-export const startFetchCoverJSON = id => (dispatch) => {
-  const ROOT_URL = 'https://firebasestorage.googleapis.com/v0/b/blog-app-1de4a.appspot.com/o';
-  const url = `${ROOT_URL}/${id}%2Fcover`;
-
-  return axios.get(url).then(res => dispatch(fetchCoverJSON(id, res)));
-};

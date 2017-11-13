@@ -30,8 +30,13 @@
 }
 
 .button--simple {
+  background: none;
   border: none;
   color: grey;
+  font-weight: 300;
+  padding: 0;
+  padding-bottom: $s-size/2;
+  margin-left: $s-size;
 }
 
 .button--navbar {
@@ -40,5 +45,6 @@
 }
 
 .is-selected {
-  color: white;
+  border-bottom: 1px solid grey;
+  font-weight: 900;
 }

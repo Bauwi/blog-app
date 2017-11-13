@@ -26,29 +26,27 @@ export class PostsListItem extends Component {
       readingTime,
       cover,
       stars,
-      miniCover,
-      category = 'miscellaneous'
+      miniCover
     } = this.props;
 
     return (
       <Link to={`/edit/${id}`}>
-        <div className="list-item">
-          <div>
-            <header>
-              <img src={miniCover} className="list-item__img" />
-            </header>
-            <div className="list-item__infos">
-              <h3 className="list-item__title block-with-text-3">{title}</h3>
-              <ul>{this.renderKeywordsList()}</ul>
-              <h5>{category.toUpperCase()}</h5>
+        <div className="homelist-item">
+          <header>
+            <img src={miniCover} className="list-item__img" alt="post cover" />
+          </header>
+          <section className="homelist-item__header">
+            <div>
+              <i className="fa fa-star" /> {stars}
+            </div>
+            <p className="homelist-item__date">{moment(createdAt).format('MMM Do, YYYY')}</p>
+          </section>
+          <div className="homelist-item__infos">
+            <h3 className="homelist-item__title">{title}</h3>
+            <div className="homelist-item__subtitle">
+              <p className="homelist-item__author">{author}</p>
             </div>
           </div>
-          <footer className="list-item__footer">
-            <p>{author.toUpperCase()}</p>
-            <p>
-              <i className="fa fa-star" /> {stars}
-            </p>
-          </footer>
         </div>
       </Link>
     );

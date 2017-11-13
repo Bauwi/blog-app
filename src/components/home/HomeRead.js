@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Header from './Header';
-import Footer from './Footer';
-import PublicPostsList from './PublicPostsList';
-import LoadingPage from './LoadingPage';
+import Header from '../header/Header';
+import HeaderSub from '../header/HeaderSub';
+import Footer from '../Footer';
+import PublicPostsList from '../PublicPostsList';
+import LoadingPage from '../LoadingPage';
 import HomeReadHeader from './HomeReadHeader';
 
-import { startSetPostsSample } from '../actions/readings';
+import { startSetPostsSample } from '../../actions/readings';
+import { startSetRunPosts } from '../../actions/run';
 
 export class HomeRead extends Component {
   state = {
@@ -18,6 +20,7 @@ export class HomeRead extends Component {
     this.props.startSetPostsSample(20).then(() => {
       this.setState(() => ({ loading: false }));
     });
+    this.props.startSetRunPosts();
   }
 
   renderCustomCategories() {
@@ -43,6 +46,7 @@ export class HomeRead extends Component {
     return (
       <div className="page-container">
         <Header />
+        <HeaderSub />
         <HomeReadHeader />
         <PublicPostsList grid="grid-home-first" category="all" range={14} />
         {this.renderCustomCategories()}
@@ -53,7 +57,8 @@ export class HomeRead extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  startSetPostsSample: sampleSize => dispatch(startSetPostsSample(sampleSize))
+  startSetPostsSample: sampleSize => dispatch(startSetPostsSample(sampleSize)),
+  startSetRunPosts: () => dispatch(startSetRunPosts())
 });
 
 const mapStateToProps = state => ({

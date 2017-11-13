@@ -1,48 +1,14 @@
-@import "./base/mixins";
-.grid-home-first {
-  @include grid(4);
-  border-top: 2px solid $gold;
-  margin: $xl-size 0;
-  & > * {
-    text-decoration: none;
-  }
-  @media (min-width: $desktop-breakpoint) {
-    margin: 0 0 $xl-size*2 0;
-    padding-top: $m-size;
-  }
-}
-
-.grid-home-first > div:nth-child(1),
-.grid-home-first > div:nth-child(5) {
-  @extend .flexitem-double;
-}
-
-.grid-home-second {
-  @include grid(3);
-  border-top: 2px solid $gold;
-  margin: $l-size 0;
-  & > * {
-    text-decoration: none;
-  }
-  @media (min-width: $desktop-breakpoint) {
-    margin: 0 0 $xl-size*2 0;
-    padding-top: $m-size;
-  }
-}
-
-.grid-home-second > a:nth-child(1),
-.grid-home-second > a:nth-child(7) {
-  @extend .flexitem-double;
-}
-
-.homelist__title {
+.inline-list__title {
   color: $light-grey;
   font-size: $font-size-medium;
   margin: 0 auto 0 $s-size;
 }
 
-.homelist-item {
+.inline-list-item {
   border: 1px solid #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: $s-size;
   text-decoration: none;
   // transition: all 0.3s ease;
@@ -54,21 +20,27 @@
       background: $off-white;
       transition: all 0.3s ease;
     }
-    .homelist-item__title {
+    .inline-list-item__title {
       color: black;
     }
   }
 }
+.inline-list-item__left {
+  border: 1px solid black;
+  height: 200px;
+  width: 200px;
+}
 
-.homelist-item__cover {
-  // max-width: 100%;
-  // max-height: 15rem;
+.inline-list-item__right {
+  width: 80%;
+}
+.inline-list-item__cover {
   width: 100%;
-  height: 12rem;
+  height: 100%;
   object-fit: cover;
 }
 
-.homelist-item__header {
+.inline-list-item__header {
   display: flex;
   justify-content: space-between;
   padding: 0 1rem;
@@ -79,7 +51,7 @@
   }
 }
 
-.homelist-item__infos {
+.inline-list-item__infos {
   margin: 0 2rem;
   font-size: $s-size;
   * {
@@ -87,7 +59,7 @@
   }
 }
 
-.homelist-item__title {
+.inline-list-item__title {
   // font-family: Helvetica;
   color: rgb(85, 85, 85);
   border-top: 1px solid rgb(70, 70, 70);
@@ -97,22 +69,22 @@
   font-weight: 900;
 }
 
-.homelist-item__subtitle {
+.inline-list-item__subtitle {
   text-align: right;
   * {
     margin: 0;
   }
 }
-.homelist-item__author {
+.inline-list-item__author {
   border-top: 1px solid rgb(70, 70, 70);
 }
 
-.homelist-item__date {
+.inline-list-item__date {
   color: $grey;
   margin-top: 0;
 }
 
-.homelist-item__keywords-list {
+.inline-list-item__keywords-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -128,7 +100,7 @@
     margin-bottom: 0.2rem;
   }
 }
-.homelist-item__keywords {
+.inline-list-item__keywords {
   color: $grey;
   text-align: right;
 }

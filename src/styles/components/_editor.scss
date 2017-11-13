@@ -1,18 +1,20 @@
 // Remove the editor thin default border
 // Set editor min-height
 .ql-container.ql-snow {
-  border: none !important;
+  // border: none !important;
   min-height: 15rem;
 }
 
 // Remove toolbar on readOnly mode
+.read-only > .quill > .ql-container.ql-snow {
+  border: none !important;
+}
 .read-only > .quill > .ql-toolbar {
   display: none !important;
 }
 
 // Sticky toolbar
 .quill > .ql-toolbar {
-  background: black !important;
   position: sticky !important;
   position: -webkit-sticky !important;
   top: 0px !important;
@@ -24,7 +26,8 @@
 .ql-editor {
   font-family: Space Mono, Helvetica, Arial, sans-serif !important;
 
-  & > p {
+  & > p,
+  li {
     color: $light-grey !important;
   }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import ReactQuill from 'react-quill';
 import ImageTools from '../functions/ImageTools';
+import UserCard from '../UserCard';
 
 import ImageUploader from './ImageUploader';
 
@@ -105,6 +106,30 @@ export default class PostForm extends Component {
     return Math.floor(str.split(' ').length / 250);
   };
 
+  renderCover() {
+    if (this.props.context === 'add' && !this.state.coverSrc) {
+      return (
+        <label className="input__file--container">
+          <div className="input__file">
+            <i className="fa fa-picture-o" />
+            <p>Add a cover...</p>
+          </div>
+
+          <input type="file" onChange={this.onCoverChange} />
+        </label>
+      );
+    } else if (this.state.coverSrc && this.props.context === 'add') {
+      return (
+        <div>
+          <img src={this.state.coverSrc} className="image" />
+          <button>Change</button>
+        </div>
+      );
+    } else if (this.state.cover && this.props.context === 'edit') {
+      <img src={this.state.cover} alt="cover" />;
+    }
+  }
+
   onSubmit = e => {
     e.preventDefault();
     if (!this.state.title || !this.state.body) {
@@ -125,34 +150,42 @@ export default class PostForm extends Component {
   };
 
   render() {
+    const post = {
+      author: this.state.author,
+      authorId: 'todo',
+      readingTime: this.state.readingTime,
+      createdAt: this.state.createdAt
+    };
+    console.log(this.state.cover);
     return (
       <form className="content-container form" onSubmit={this.onSubmit}>
-        <input
-          autoFocus
-          className="text-input"
-          placeholder="title"
-          type="text"
-          value={this.state.title}
-          onChange={this.onTitleChange}
-        />
-        <input
-          className="text-input"
-          type="text"
-          placeholder="author"
-          value={this.state.author}
-          onChange={this.onAuthorChange}
-        />
-        <input
-          className="text-input"
-          type="text"
-          placeholder="keywords"
-          value={this.state.keywords}
-          onChange={this.onKeywordsChange}
-        />
+        <UserCard post={post} author={this.props.author} />
+        <label htmlFor="alias">
+          <p>Alias: </p>
+          <p>What should stand for author name?</p>
+          <input
+            className="text-input"
+            type="text"
+            placeholder="D'Artagnan"
+            value={this.state.author}
+            onChange={this.onAuthorChange}
+          />
+        </label>
+        <label htmlFor="title">
+          <p>Title: </p>
+          <p>What should stand for title?</p>
 
-        {this.props.context === 'add' && <input type="file" onChange={this.onCoverChange} />}
-        {this.state.coverSrc &&
-          this.props.context === 'add' && <img src={this.state.coverSrc} className="image" />}
+          <input
+            autoFocus
+            className="text-input"
+            placeholder="Why is Athos sitting by himself?"
+            type="text"
+            value={this.state.title}
+            onChange={this.onTitleChange}
+          />
+        </label>
+
+        {this.renderCover()}
         <div>
           <ReactQuill
             ref="quill"
@@ -166,7 +199,16 @@ export default class PostForm extends Component {
           />
         </div>
 
-        <button className="button">Save Post</button>
+        <input
+          className="text-input"
+          type="text"
+          placeholder="keywords"
+          value={this.state.keywords}
+          onChange={this.onKeywordsChange}
+        />
+        <div>
+          <button className="button">Save Post</button>
+        </div>
       </form>
     );
   }

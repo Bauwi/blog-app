@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Headroom from 'react-headroom';
 
-import { startLogout } from '../actions/auth';
+import { startLogout } from '../../actions/auth';
 
 const scrollToTop = scrollDuration => {
   const scrollHeight = window.scrollY,
@@ -33,6 +33,10 @@ export class Header extends Component {
         <header className={context === 'write-mode' ? 'header--write-mode' : 'header'}>
           <div className="content-container">
             <div className="header__content">
+              <label className="header__search">
+                <i className="fa fa-search" />
+              </label>
+
               <Link className="header__title" to="/dashboard">
                 <h1>Blog</h1>
               </Link>
@@ -49,7 +53,10 @@ export class Header extends Component {
                   <NavLink to="/dashboard">
                     <i className="fa fa-tachometer" />
                   </NavLink>
-                  <NavLink to="/dashboard">
+                  <NavLink to="/run">
+                    <i className="fa fa-book" />
+                  </NavLink>
+                  <NavLink to="/preferences">
                     <i className="fa fa-cog" />
                   </NavLink>
                   <button className="button button--navbar" onClick={startLogout}>

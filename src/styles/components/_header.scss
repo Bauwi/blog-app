@@ -1,10 +1,7 @@
 .header {
   // border-bottom: 2px solid $gold;
+  background: white;
   border-bottom: 2px solid $grey;
-}
-
-.header--write-mode {
-  background: black;
 }
 
 .header__content {
@@ -19,7 +16,7 @@
 }
 
 .header__title {
-  color: white;
+  color: $dark-grey;
   text-decoration: none;
 
   h1 {
@@ -27,30 +24,47 @@
   }
 }
 
+.header__navbar,
+.header__search {
+  width: 20rem;
+}
+
 .header__navbar {
+  display: flex;
+  justify-content: flex-end;
   padding: $s-size 0;
   a,
   button,
   nav {
     @extend .button, .button--navbar;
+    background: white;
+    color: $dark-grey;
     margin-left: 1rem;
   }
   button {
     margin-left: 1rem;
-    @media (min-width: $desktop-breakpoint) {
-      margin-left: 3rem;
-    }
   }
   nav {
     margin-right: 0;
     @media (min-width: $desktop-breakpoint) {
       margin-right: 3rem;
     }
+    &:hover {
+      cursor: pointer;
+    }
   }
-  // a:hover {
-  //   background: $off-white;
-  //   * {
-  //     background: $off-white;
-  //   }
-  // }
+}
+
+.header__navbarsub {
+  @extend .content-container;
+  border-bottom: 1px solid $grey;
+  display: flex;
+  justify-content: center;
+  * {
+    color: $light-grey;
+    font-size: $font-size-small;
+    margin-left: $s-size;
+    padding: $s-size 0;
+    text-decoration: none;
+  }
 }
