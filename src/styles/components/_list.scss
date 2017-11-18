@@ -1,6 +1,6 @@
 @import "./base/mixins";
 .grid-dashboard {
-  @include grid(4);
+  @include grid(3);
   border-top: 2px solid $gold;
   margin: $xl-size 0;
   & > * {
@@ -12,9 +12,9 @@
   }
 }
 
-.grid-dashboard > a {
-  @extend .flexitem-double;
-}
+// .grid-dashboard > div {
+//   @extend .flexitem-double;
+// }
 
 .list-header {
   background: $off-white;
@@ -112,4 +112,9 @@
   p {
     color: $grey;
   }
+}
+
+//specific to user post list
+.post-list {
+  padding-bottom: 15rem;
 }

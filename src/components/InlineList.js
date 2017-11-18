@@ -12,7 +12,6 @@ export default class InlineList extends Component {
   }
 
   render() {
-    console.log(this.props.posts);
     return (
       <div className="content-container">
         <p>InlineList</p>

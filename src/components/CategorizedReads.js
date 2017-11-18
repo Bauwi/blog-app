@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Header from './header/Header';
 import PublicPostsList from './PublicPostsList';
+import Footer from './Footer';
 
 import { startSetPostsSample } from '../actions/readings';
+import { HomeReadHeader } from './home/HomeReadHeader';
 
 export class CategorizedReads extends Component {
   state = {
@@ -21,14 +24,19 @@ export class CategorizedReads extends Component {
   }
 
   render() {
-    console.log(this.props);
     if (this.state.loading) {
       return <p>loading</p>;
     }
     return (
       <div>
-        <p>Category {this.props.match.params.id}</p>
+        <Header />
+        <div className="category__header">
+          <h1>{this.props.match.params.id.toUpperCase()}</h1>
+        </div>
+
+        <HomeReadHeader />
         <PublicPostsList grid="grid-home-first" category={this.props.match.params.id} range={14} />
+        <Footer position="absolute" />
       </div>
     );
   }

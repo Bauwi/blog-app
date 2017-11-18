@@ -1,0 +1,16 @@
+.read-header__title {
+  @extend .content-container;
+  font-size: $font-size-large;
+  padding: 0 0 $l-size 0;
+  text-align: center;
+  @media (min-width: $desktop-breakpoint) {
+    font-size: $font-size-huge;
+  }
+}
+
+.read-header__stars {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: $xl-size;
+}

@@ -7,12 +7,14 @@ html {
   font-size: 62.5%;
 }
 p {
-  color: $light-grey;
+  // color: $light-grey;
 }
 body {
+  position: relative;
   color: $dark-grey;
   font-family: Space Mono, Arial, sans-serif;
   font-size: $m-size;
+
   line-height: 1.6;
 }
 

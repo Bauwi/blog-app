@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sortByDate, sortByStars } from '../../actions/filters';
 
-export class PostListFilters extends Component {
+export class PopularLasttFilter extends Component {
   render() {
     const popularButtonCLass =
       this.props.filters.sortBy === 'stars'
@@ -13,7 +13,7 @@ export class PostListFilters extends Component {
         ? 'button button--simple is-selected'
         : 'button button--simple';
     return (
-      <div className="home-header__filterBar">
+      <div className="popular-last-filterbar">
         <p>{this.props.category}</p>
         <div>
           <button className={popularButtonCLass} onClick={this.props.sortByStars}>
@@ -35,4 +35,4 @@ const mapDispatchToProps = dispatch => ({
   sortByDate: () => dispatch(sortByDate())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostListFilters);
+export default connect(mapStateToProps, mapDispatchToProps)(PopularLasttFilter);

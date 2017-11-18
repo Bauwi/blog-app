@@ -156,7 +156,6 @@ export default class PostForm extends Component {
       readingTime: this.state.readingTime,
       createdAt: this.state.createdAt
     };
-    console.log(this.state.cover);
     return (
       <form className="content-container form" onSubmit={this.onSubmit}>
         <UserCard post={post} author={this.props.author} />

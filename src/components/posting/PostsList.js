@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { startSetPosts } from '../../actions/posts';
 import selectPosts from '../../selectors/posts';
 
-import PostListFilters from '../PostListFilters';
+import PostListFilters from './PostListFilters';
 import PostsListItem from './PostsListItem';
 
 export class PostsList extends Component {
@@ -26,14 +26,14 @@ export class PostsList extends Component {
   render() {
     if (this.props.posts.length === 0) {
       return (
-        <div className="content-container">
+        <div className="content-container post-list">
           <PostListFilters />
           <p>No posts found here</p>
         </div>
       );
     }
     return (
-      <div>
+      <div className="content-container post-list">
         <PostListFilters />
         <div className="grid-dashboard">{this.renderPosts()}</div>
         <button className="button button--more" onClick={this.handleMorePosts}>

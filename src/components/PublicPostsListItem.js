@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { message } from 'antd';
+
+import KeywordsList from './KeywordsList';
 
 import { startAddPostToRun, startRemovePostToRun } from '../actions/run';
 
@@ -9,50 +12,73 @@ export class PublicPostsListItem extends Component {
   state = {
     error: ''
   };
-  renderKeywords() {
-    const keywordsList = this.props.post.keywords.split(',');
-    return keywordsList.map(keyword => {
-      const keywordFormatted = keyword.trim();
-      return <li key={keyword}>{keywordFormatted}</li>;
-    });
-  }
 
   handleAddPostToRun = () => {
     if (this.props.isInRun) {
       this.props.startRemovePostToRun(this.props.post.id, this.props.DBid);
-      console.log('should be removed');
     } else if (this.props.run.length < 20) {
       this.props.startAddPostToRun({ content: this.props.post, state: 'unread' });
+      this.success();
     } else {
-      this.setState(() => ({ error: 'your read list must not contain more than 20 reads' }));
-      setTimeout(() => this.setState(() => ({ error: '' })), 1000);
+      this.error();
     }
+  };
+
+  success = () => {
+    message.success('Post added to your run.');
+  };
+
+  error = () => {
+    message.error('Your run can not contain more than 20 reads.');
+  };
+
+  warning = () => {
+    message.warning('This is message of warning');
   };
 
   render() {
     const { id, title, createdAt, author, keywords, authorId, miniCover, stars } = this.props.post;
+    const buttonClassName = this.props.isInRun
+      ? 'button--pin button--pin--selected'
+      : 'button--pin';
     return (
       <div className="homelist-item">
-        <header>
-          <img src={miniCover} className="list-item__img" alt="post cover" />
-        </header>
-        <section className="homelist-item__header">
-          <div>
-            <i className="fa fa-star" /> {stars}
+        <Link to={`/${authorId}/read/${id}`} className="no-decoration">
+          <div className="homelist-item__content">
+            <header>
+              <img src={miniCover} className="list-item__img" alt="post cover" />
+            </header>
+            <section className="homelist-item__content__header">
+              <div>
+                <i className="fa fa-star" /> {stars}
+              </div>
+              <p className="homelist-item__content__date">
+                {moment(createdAt).format('MMM Do, YYYY')}
+              </p>
+            </section>
+            <div className="homelist-item__content__infos">
+              <h3 className="homelist-item__content__title">{title}</h3>
+
+              <div className="homelist-item__content__subtitle">
+                <p className="homelist-item__content__author">{author}</p>
+              </div>
+
+              <p>{this.state.error}</p>
+            </div>
           </div>
-          <p className="homelist-item__date">{moment(createdAt).format('MMM Do, YYYY')}</p>
-        </section>
-        <div className="homelist-item__infos">
-          <Link to={`/${authorId}/read/${id}`} className="no-decoration">
-            <h3 className="homelist-item__title">{title}</h3>
-          </Link>
-          <div className="homelist-item__subtitle">
-            <p className="homelist-item__author">{author}</p>
+        </Link>
+
+        <footer className="homelist-item__footer">
+          <KeywordsList keywords={keywords} />
+          <div className="">
+            <div className="button--pin__container">
+              <p className="homelist-item__footer__index">{this.props.index}</p>
+              <button className={buttonClassName} onClick={this.handleAddPostToRun}>
+                <i className="fa fa-book" />
+              </button>
+            </div>
           </div>
-          <ul className="homelist-item__keywords-list">{this.renderKeywords()}</ul>
-          <button onClick={this.handleAddPostToRun}>Add to run</button>
-          <p>{this.state.error}</p>
-        </div>
+        </footer>
       </div>
     );
   }
@@ -63,12 +89,19 @@ const mapDispatchToProps = dispatch => ({
   startRemovePostToRun: (id, DBid) => dispatch(startRemovePostToRun(id, DBid))
 });
 
-const mapStateToProps = (state, props) => ({
-  run: state.run,
-  isInRun: !!state.run.find(post => props.post.id === post.content.id),
-  DBid: state.run.find(post => props.post.id === post.content.id)
-    ? state.run.find(post => props.post.id === post.content.id).DBid
-    : ''
-});
+const mapStateToProps = (state, props) => {
+  const isInRun = state.run.posts
+    ? !!state.run.posts.find(post => props.post.id === post.content.id)
+    : undefined;
+  const DBid = isInRun
+    ? state.run.posts.find(post => props.post.id === post.content.id).DBid
+    : undefined;
+  return {
+    run: state.run.posts,
+    isInRun,
+    index: isInRun ? state.run.posts.findIndex(post => props.post.id === post.content.id) + 1 : '',
+    DBid
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PublicPostsListItem);

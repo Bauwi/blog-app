@@ -27,12 +27,17 @@
 .header__navbar,
 .header__search {
   width: 20rem;
+  padding: $s-size;
 }
 
 .header__navbar {
+  align-items: flex-end;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   padding: $s-size 0;
+  @media (min-width: $desktop-breakpoint) {
+  }
+
   a,
   button,
   nav {
@@ -54,11 +59,26 @@
     }
   }
 }
+.header__navbar__run {
+  height: 100%;
+}
+
+.header__navbar__run__badge {
+  font-size: 0.8rem !important;
+  left: 10px;
+  top: 4px;
+  .ant-badge-count {
+    color: white;
+    background: grey !important;
+    font-size: 0.8rem;
+  }
+}
 
 .header__navbarsub {
   @extend .content-container;
   border-bottom: 1px solid $grey;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   * {
     color: $light-grey;
@@ -67,4 +87,12 @@
     padding: $s-size 0;
     text-decoration: none;
   }
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+  }
 }
+
+// overridding antd styles for badge
+// .ant-message {
+//   margin-top: 7rem;
+// }

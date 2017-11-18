@@ -1,0 +1,28 @@
+.keywords-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 0;
+  li {
+    background: $off-white;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.2rem 0.7rem;
+    margin-left: 0.2rem;
+    margin-bottom: 0.2rem;
+  }
+}
+
+.keywords-list__list-item-container,
+.keywords-list__public-postlist__container {
+  ul {
+    justify-content: flex-end;
+  }
+}
+
+.keywords-list__read-post-container {
+  @extend .content-container;
+  margin-bottom: $l-size;
+}

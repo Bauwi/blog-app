@@ -1,9 +1,9 @@
 import React from 'react';
-import HomeReadFilters from './HomeReadFilters';
+import PopularLasttFilter from '../filters/PopularLastFilter';
 
 export const HomeReadHeader = () => (
   <div className="content-container">
-    <HomeReadFilters />
+    <PopularLasttFilter />
   </div>
 );
 

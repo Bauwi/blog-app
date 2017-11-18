@@ -5,8 +5,13 @@
 .image {
   // max-width: 100%;
   // max-height: 15rem;
+
   width: 100%;
   object-fit: cover;
+}
+
+.image--cover {
+  height: 40rem;
 }
 
 .image--circle {

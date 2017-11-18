@@ -1,7 +1,6 @@
 // Remove the editor thin default border
 // Set editor min-height
 .ql-container.ql-snow {
-  // border: none !important;
   min-height: 15rem;
 }
 
@@ -15,9 +14,10 @@
 
 // Sticky toolbar
 .quill > .ql-toolbar {
+  background: white;
   position: sticky !important;
   position: -webkit-sticky !important;
-  top: 0px !important;
+  top: 6rem !important;
   z-index: 99 !important;
 }
 

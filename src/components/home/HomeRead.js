@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import Header from '../header/Header';
 import HeaderSub from '../header/HeaderSub';
-import Footer from '../Footer';
 import PublicPostsList from '../PublicPostsList';
+import Footer from '../Footer';
 import LoadingPage from '../LoadingPage';
 import HomeReadHeader from './HomeReadHeader';
 

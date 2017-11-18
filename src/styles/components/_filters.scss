@@ -1,0 +1,15 @@
+//the one used in home for example
+.popular-last-filterbar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: $m-size;
+}
+
+//the one used in dashboard for example
+.complete-filterbar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: $l-size 0 $s-size 0;
+}

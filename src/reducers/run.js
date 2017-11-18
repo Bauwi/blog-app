@@ -3,11 +3,59 @@ const runReducerDefaultState = [];
 const runReducer = (state = runReducerDefaultState, action) => {
   switch (action.type) {
     case 'ADD_POST_TO_RUN':
-      return [...state, action.post];
+      return {
+        ...state,
+        posts: [...state.posts, action.post]
+      };
     case 'REMOVE_POST_TO_RUN':
-      return state.filter(post => action.id !== post.content.id);
+      return {
+        ...state,
+        posts: state.posts.filter(post => action.id !== post.content.id)
+      };
     case 'SET_RUN_POSTS':
-      return action.posts;
+      return {
+        ...state,
+        posts: action.posts
+      };
+    case 'SET_CURRENT_POST_RUN':
+      return {
+        ...state,
+        current: state.posts.find(post => post.content.id === action.id)
+      };
+    case 'UPDATE_RUN_POST_TO_ALREADY_READ':
+      return {
+        ...state,
+        current: { ...state.current, state: 'read' },
+        posts: state.posts.map((post) => {
+          if (post.content.id === action.id) {
+            return {
+              ...post,
+              state: 'read'
+            };
+          }
+          return post;
+        })
+      };
+    case 'UPDATE_RUN_POST_TO_NOT_ALREADY_READ':
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          if (post.content.id === action.id) {
+            return {
+              ...post,
+              state: 'unread'
+            };
+          }
+          return post;
+        })
+      };
+    case 'RESET_RUN':
+      return {};
+    case 'CLEAN_RUN':
+      return {
+        ...state,
+        posts: state.posts.filter(post => post.state === 'unread')
+      };
     default:
       return state;
   }

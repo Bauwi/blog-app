@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setTextFilter, searchByAuthor, searchByKeyword, searchByTitle } from '../actions/filters';
+import {
+  setTextFilter,
+  searchByAuthor,
+  searchByKeyword,
+  searchByTitle
+} from '../../actions/filters';
 
-export class PostListFilters extends Component {
+export class ByTermFilter extends Component {
   onTextChange = e => {
     this.props.setTextFilter(e.target.value);
   };
@@ -28,7 +33,13 @@ export class PostListFilters extends Component {
           <option value="keyword">Keyword</option>
           <option value="author">Author</option>
         </select>
-        <input className="text-input" type="text" onChange={this.onTextChange} />
+        <input
+          className="text-input"
+          type="text"
+          value={this.props.filters.text}
+          onChange={this.onTextChange}
+          placeholder="Find a post"
+        />
       </div>
     );
   }
@@ -43,4 +54,4 @@ const mapDispatchToProps = dispatch => ({
   searchByKeyword: () => dispatch(searchByKeyword())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostListFilters);
+export default connect(mapStateToProps, mapDispatchToProps)(ByTermFilter);

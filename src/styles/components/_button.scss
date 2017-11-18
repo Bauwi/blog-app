@@ -26,6 +26,9 @@
 }
 
 .button--star {
+  background: none;
+  color: black;
+  font-size: $font-size-large;
   border: none;
 }
 
@@ -47,4 +50,14 @@
 .is-selected {
   border-bottom: 1px solid grey;
   font-weight: 900;
+}
+
+.button--pin {
+  color: $light-grey;
+  border: none;
+  padding: $m-size 0;
+  text-align: right;
+}
+.button--pin--selected {
+  color: black;
 }

@@ -6,6 +6,8 @@ import ReactQuill from 'react-quill';
 import Header from '../header/Header';
 import UserCard from '../UserCard';
 import LoadingPage from '../LoadingPage';
+import KeywordsList from '../KeywordsList';
+import Footer from '../Footer';
 
 import { startSetOnePost, startSetPostsSample } from '../../actions/readings';
 import { startSetAuthor, startAddUserStar } from '../../actions/users';
@@ -53,7 +55,7 @@ export class ReadPost extends Component {
           </div>
         </header>
         <h2 className="read-header__title">{title}</h2>
-        <img className="image" src={cover} />
+        <img className="image image--cover" src={cover} />
         <div className="content-container read-only">
           <ReactQuill
             theme="snow"
@@ -65,7 +67,10 @@ export class ReadPost extends Component {
           />
         </div>
 
-        <footer>keywords: {keywords}</footer>
+        <footer className="keywords-list__read-post-container ">
+          <KeywordsList keywords={keywords} />
+        </footer>
+        <Footer />
       </div>
     );
   }

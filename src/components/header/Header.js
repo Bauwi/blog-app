@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Headroom from 'react-headroom';
+import { Badge } from 'antd';
 
 import { startLogout } from '../../actions/auth';
 
@@ -53,7 +54,12 @@ export class Header extends Component {
                   <NavLink to="/dashboard">
                     <i className="fa fa-tachometer" />
                   </NavLink>
-                  <NavLink to="/run">
+                  <NavLink className="header__navbar__run" to="/run">
+                    <Badge
+                      className="header__navbar__run__badge"
+                      showZero
+                      count={this.props.runCount}
+                    />
                     <i className="fa fa-book" />
                   </NavLink>
                   <NavLink to="/preferences">
@@ -91,7 +97,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  isAuthenticated: !!state.auth.uid
+  isAuthenticated: !!state.auth.uid,
+  runCount: state.run.posts ? state.run.posts.length : 0
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -51,6 +51,16 @@
   }
 }
 
+.inline-list-item__header--right {
+  display: flex;
+  align-items: center;
+  p > i {
+    color: green;
+    font-size: $font-size-medium;
+    margin-right: $m-size;
+  }
+}
+
 .inline-list-item__infos {
   margin: 0 2rem;
   font-size: $s-size;
@@ -81,7 +91,7 @@
 
 .inline-list-item__date {
   color: $grey;
-  margin-top: 0;
+  margin: 0;
 }
 
 .inline-list-item__keywords-list {

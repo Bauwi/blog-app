@@ -1,0 +1,21 @@
+.run__summary {
+  background: $off-white;
+  height: 30rem;
+}
+.run-list {
+  padding-bottom: 15rem;
+}
+.run__list-item {
+  position: relative;
+  top: 0;
+  z-index: 10;
+}
+.run__list-item--cover {
+  background: red;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: inherit;
+  width: 100%;
+  z-index: 5;
+}

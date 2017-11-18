@@ -30,25 +30,30 @@ export class PostsListItem extends Component {
     } = this.props;
 
     return (
-      <Link to={`/edit/${id}`}>
-        <div className="homelist-item">
-          <header>
-            <img src={miniCover} className="list-item__img" alt="post cover" />
-          </header>
-          <section className="homelist-item__header">
-            <div>
-              <i className="fa fa-star" /> {stars}
-            </div>
-            <p className="homelist-item__date">{moment(createdAt).format('MMM Do, YYYY')}</p>
-          </section>
-          <div className="homelist-item__infos">
-            <h3 className="homelist-item__title">{title}</h3>
-            <div className="homelist-item__subtitle">
-              <p className="homelist-item__author">{author}</p>
+      <div className="homelist-item">
+        <Link to={`/edit/${id}`}>
+          <div className="homelist-item__content">
+            <header>
+              <img src={miniCover} className="list-item__img" alt="post cover" />
+            </header>
+            <section className="homelist-item__content__header">
+              <div>
+                <i className="fa fa-star" /> {stars}
+              </div>
+              <p className="homelist-item__content__date">
+                {moment(createdAt).format('MMM Do, YYYY')}
+              </p>
+            </section>
+            <div className="homelist-item__content__infos">
+              <h3 className="homelist-item__content__title">{title}</h3>
+
+              <div className="homelist-item__content__subtitle">
+                <p className="homelist-item__content__author">{author}</p>
+              </div>
             </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     );
   }
 }

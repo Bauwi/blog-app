@@ -4,8 +4,8 @@ import { Redirect } from 'react-router-dom';
 
 import Header from '../header/Header';
 import InlineList from '../InlineList';
+import Footer from '../Footer';
 
-import PostSListFilters from '../PostListFilters';
 import selectPosts from '../../selectors/posts';
 import LoadingPage from '../LoadingPage';
 
@@ -30,8 +30,9 @@ export class AuthorSummary extends Component {
     return (
       <div>
         <Header />
+        <p>RAuthor Summary</p>
         <InlineList posts={this.props.posts} />
-        <p>Read Post Page</p>
+        <Footer position="absolute" />
       </div>
     );
   }

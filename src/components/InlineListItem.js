@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-export default class InlineList extends Component {
+import KeywordsList from './KeywordsList';
+
+export default class InlineListItem extends Component {
   renderKeywords() {
     const keywordsList = this.props.post.content
       ? this.props.post.content.keywords.split(',')
@@ -37,7 +39,9 @@ export default class InlineList extends Component {
               <div className="inline-list-item__subtitle">
                 <p className="inline-list-item__author">{author}</p>
               </div>
-              <ul className="inline-list-item__keywords-list">{this.renderKeywords()}</ul>
+              <footer className="keywords-list__list-item-container">
+                <KeywordsList keywords={keywords} />
+              </footer>
             </div>
           </div>
         </div>

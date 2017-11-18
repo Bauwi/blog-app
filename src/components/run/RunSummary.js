@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import InlineList from '../InlineList';
+import RunSummaryHeader from './RunSummaryHeader';
+import RunList from './RunList';
 import LoadingPage from '../LoadingPage';
+
 import { startSetRunPosts } from '../../actions/run';
 
-export class Run extends Component {
+export class RunSummary extends Component {
   state = {
     loading: true
   };
@@ -25,8 +27,8 @@ export class Run extends Component {
     }
     return (
       <div>
-        <p>Run</p>
-        <InlineList posts={this.props.run} />
+        <RunSummaryHeader run={this.props.run} />
+        <RunList posts={this.props.run.posts} />
       </div>
     );
   }
@@ -40,4 +42,4 @@ const mapStateToProps = state => ({
   run: state.run
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Run);
+export default connect(mapStateToProps, mapDispatchToProps)(RunSummary);

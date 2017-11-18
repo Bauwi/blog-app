@@ -49,6 +49,11 @@ module.exports = (env) => {
         }
       ]
     },
+    resolve: {
+      alias: {
+        moment$: 'moment/moment.js'
+      }
+    },
     plugins: [
       CSSExtract,
       new webpack.DefinePlugin({

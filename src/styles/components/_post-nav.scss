@@ -1,0 +1,142 @@
+.post-nav {
+  margin-top: $xl-size;
+  margin-bottom: $xl-size;
+  width: 100%;
+  ul {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+    & > li:nth-child(1) > div:last-child {
+      display: none;
+    }
+    & > li:nth-child(1) > div:first-child {
+      margin-right: $s-size;
+    }
+    & > li:nth-child(2) > div:first-child {
+      display: none;
+    }
+  }
+}
+
+.inline-list__title {
+  color: $light-grey;
+  font-size: $font-size-medium;
+  margin: 0 auto 0 $s-size;
+}
+
+.post-nav-item {
+  // border: 1px solid grey;
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  margin: $s-size 0;
+  padding: $s-size 0;
+
+  width: 50%;
+  // transition: all 0.3s ease;
+
+  @media (min-width: $desktop-breakpoint) {
+    align-items: flex-start;
+    flex-direction: row;
+    padding: $s-size 0;
+    width: 42%;
+  }
+
+  &:hover {
+    background: $off-white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    * {
+      background: $off-white;
+      transition: all 0.3s ease;
+    }
+    .post-nav-item__title {
+      color: black;
+    }
+  }
+}
+.post-nav-item__left {
+  height: 90px;
+  width: 90px;
+}
+
+.post-nav-item__right {
+  width: 90%;
+}
+.post-nav-item__arrow {
+  font-size: $font-size-huge;
+}
+
+.post-nav-item__infoscover__container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  @media (min-width: $desktop-breakpoint) {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+}
+.post-nav-item__cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-nav-item__infos {
+  margin: 0 2rem;
+  font-size: $s-size;
+  * {
+    color: $grey;
+  }
+}
+
+.post-nav-item__title {
+  // font-family: Helvetica;
+  color: rgb(85, 85, 85);
+  border-bottom: 1px solid rgb(70, 70, 70);
+  margin: 0;
+  padding: 0 $s-size $s-size $s-size;
+  font-size: $font-size-small;
+  font-weight: 900;
+}
+
+.post-nav-item__subtitle {
+  display: flex;
+  justify-content: space-between;
+  text-align: right;
+  * {
+    margin: 0;
+  }
+}
+.post-nav-item__author {
+}
+
+.post-nav-item__date {
+  color: $grey;
+  margin: 0;
+}
+
+.post-nav-item__keywords-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 0;
+  li {
+    background: $off-white;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.2rem 0.7rem;
+    margin-left: 0.2rem;
+    margin-bottom: 0.2rem;
+  }
+}
+.post-nav-item__keywords {
+  color: $grey;
+  text-align: right;
+}
