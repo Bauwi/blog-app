@@ -1,11 +1,42 @@
 .footer {
-  border-top: 2px solid $off-white;
-  background: $dark-grey;
-  // position: absolute;
-  bottom: 0rem;
-  height: 15rem;
-  width: 100%;
+  align-items: center;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 130px;
+  overflow: hidden;
+  padding: $s-size;
 }
-.footer--absolute {
-  position: absolute;
+
+.footer__top {
+  display: flex;
+  flex-direction: column;
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+  }
+}
+
+.footer__nav {
+  display: flex;
+  flex-direction: column;
+  margin: $s-size;
+  a {
+    color: grey;
+    font-size: 1rem;
+    &:hover {
+      color: lightblue;
+    }
+  }
+}
+
+$elements: 5;
+@for $i from 0 to $elements {
+  .footer__nav > a:nth-child(#{$i}) {
+    padding-left: #{$i*2}rem;
+  }
+}
+
+.footer__license {
+  font-size: 0.8rem;
 }

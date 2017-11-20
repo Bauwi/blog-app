@@ -10,7 +10,7 @@ import KeywordsList from '../KeywordsList';
 import Footer from '../Footer';
 
 import { startSetOnePost, startSetPostsSample } from '../../actions/readings';
-import { startSetAuthor, startAddUserStar } from '../../actions/users';
+import { startSetAuthorFromUserId, startAddUserStar } from '../../actions/users';
 import { startUpPostStar } from '../../actions/posts';
 
 export class ReadPost extends Component {
@@ -21,7 +21,7 @@ export class ReadPost extends Component {
     this.props
       .startSetPostsSample()
       .then(() => this.props.startSetOnePost(id))
-      .then(ref => this.props.startSetAuthor(ref.post.authorId))
+      .then(ref => this.props.startSetAuthorFromUserId(ref.post.authorId))
       .then(() => {
         this.setState(() => ({ loading: false }));
       });
@@ -79,7 +79,7 @@ export class ReadPost extends Component {
 const mapDispatchToProps = dispatch => ({
   startSetOnePost: id => dispatch(startSetOnePost(id)),
   startSetPostsSample: () => dispatch(startSetPostsSample()),
-  startSetAuthor: id => dispatch(startSetAuthor(id)),
+  startSetAuthorFromUserId: id => dispatch(startSetAuthorFromUserId(id)),
   startAddUserStar: (id, prevStars) => dispatch(startAddUserStar(id, prevStars)),
   startUpPostStar: id => dispatch(startUpPostStar(id))
 });

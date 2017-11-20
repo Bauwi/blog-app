@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ByTermFilter from '../filters/ByTermFilter';
-import PopularLasttFilter from '../filters/PopularLastFilter';
+import ByTermFilter from './ByTermFilter';
+import PopularLasttFilter from './PopularLastFilter';
 
 const PostListFilters = () => (
   <div className="complete-filterbar">

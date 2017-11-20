@@ -1,5 +1,6 @@
 .header {
   // border-bottom: 2px solid $gold;
+  position: relative;
   background: white;
   border-bottom: 2px solid $grey;
 }
@@ -45,12 +46,16 @@
     background: white;
     color: $dark-grey;
     margin-left: 1rem;
+    &:hover {
+      color: #108ee9;
+    }
   }
   button {
     margin-left: 1rem;
   }
   nav {
     margin-right: 0;
+    margin-left: 0;
     @media (min-width: $desktop-breakpoint) {
       margin-right: 3rem;
     }
@@ -65,7 +70,7 @@
 
 .header__navbar__run__badge {
   font-size: 0.8rem !important;
-  left: 10px;
+  left: 17px;
   top: 4px;
   .ant-badge-count {
     color: white;
@@ -96,3 +101,18 @@
 // .ant-message {
 //   margin-top: 7rem;
 // }
+
+.header__go-top {
+  border: 10px solid darken($off-white, 3%);
+  border-radius: 50%;
+  font-size: $font-size-huge;
+  line-height: 0;
+  position: fixed;
+  top: 12vh;
+  right: 4vw;
+  padding: $m-size;
+  cursor: pointer;
+  i {
+    color: darken($off-white, 3%);
+  }
+}

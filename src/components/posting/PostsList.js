@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { startSetPosts } from '../../actions/posts';
 import selectPosts from '../../selectors/posts';
 
-import PostListFilters from './PostListFilters';
+import CompleteFiltersBar from '../filters/CompleteFiltersBar';
 import PostsListItem from './PostsListItem';
 
 export class PostsList extends Component {
@@ -17,24 +17,21 @@ export class PostsList extends Component {
   };
 
   renderPosts = () => {
-    return this.props.posts
-      .sort((a, b) => a.createdAt - b.createdAt)
-      .reverse()
-      .map(post => <PostsListItem key={post.id} {...post} />);
+    return this.props.posts.map(post => <PostsListItem key={post.id} {...post} />);
   };
 
   render() {
     if (this.props.posts.length === 0) {
       return (
         <div className="content-container post-list">
-          <PostListFilters />
+          <CompleteFiltersBar />
           <p>No posts found here</p>
         </div>
       );
     }
     return (
       <div className="content-container post-list">
-        <PostListFilters />
+        <CompleteFiltersBar />
         <div className="grid-dashboard">{this.renderPosts()}</div>
         <button className="button button--more" onClick={this.handleMorePosts}>
           Load more

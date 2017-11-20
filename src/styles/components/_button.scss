@@ -61,3 +61,11 @@
 .button--pin--selected {
   color: black;
 }
+
+.button--preferences {
+  width: 20rem;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}

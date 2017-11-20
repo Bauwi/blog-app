@@ -2,6 +2,7 @@
 @import "./base/base";
 @import "./base/mixins";
 @import "./components/page-container";
+@import "./components/app";
 @import "./components/box-layout";
 @import "./components/button";
 @import "./components/header";
@@ -26,6 +27,8 @@
 @import "./components/post-nav";
 @import "./components/keywords";
 @import "./components/filters";
+@import "./components/dropdown";
+@import "./components/preferences";
 
 @import "../../node_modules/react-quill/dist/quill.snow";
 @import url("https://fonts.googleapis.com/css?family=Space+Mono");

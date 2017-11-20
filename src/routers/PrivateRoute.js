@@ -15,10 +15,11 @@ export const PrivateRoute = ({
     {...rest}
     component={props =>
       (isAuthenticated ? (
-        <div className="page-container">
+        <div>
           <Header />
           <Component {...props} />
-          <Footer position="absolute" />
+
+          <Footer />
         </div>
       ) : (
         <Redirect to="/" />

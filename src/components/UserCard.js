@@ -30,10 +30,12 @@ class UserCard extends Component {
               tortor. Nullam congue nisi mi, ut vehicula neque fringilla sed.
             </p>
           </div>
-          <footer className="usercard__infos--footer">
-            <p>{moment(createdAt).format('MMM Do, YYYY')}</p>
-            <p>{readingTime} minutes</p>
-          </footer>
+          {this.props.post && (
+            <footer className="usercard__infos--footer">
+              <p>{moment(createdAt).format('MMM Do, YYYY')}</p>
+              <p>{readingTime} minutes</p>
+            </footer>
+          )}
         </div>
       </div>
     );

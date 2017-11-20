@@ -22,3 +22,7 @@ export const sortByDate = () => ({
 export const sortByStars = () => ({
   type: 'SORT_BY_STARS'
 });
+
+export const resetFilters = () => ({
+  type: 'RESET_FILTERS'
+});

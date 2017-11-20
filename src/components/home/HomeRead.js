@@ -16,11 +16,13 @@ export class HomeRead extends Component {
     loading: true
   };
 
-  componentWillMount() {
-    this.props.startSetPostsSample(20).then(() => {
-      this.setState(() => ({ loading: false }));
-    });
-    this.props.startSetRunPosts();
+  componentDidMount() {
+    return this.props
+      .startSetPostsSample(20)
+      .then(() => this.props.startSetRunPosts())
+      .then(() => {
+        this.setState(() => ({ loading: false }));
+      });
   }
 
   renderCustomCategories() {

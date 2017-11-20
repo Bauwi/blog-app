@@ -2,16 +2,11 @@ const usersReducerDefaultState = [];
 
 const usersReducer = (state = usersReducerDefaultState, action) => {
   switch (action.type) {
-    case 'UPDATE_USER':
-      return state.map((user) => {
-        if (user.id === action.id) {
-          return {
-            ...user,
-            ...action.updates
-          };
-        }
-        return user;
-      });
+    case 'UPDATE_USER_PREFERENCES':
+      return {
+        ...state,
+        preferences: { ...state.preferences, ...action.updates }
+      };
     case 'SET_AUTHOR':
       return {
         ...state,

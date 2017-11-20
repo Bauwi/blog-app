@@ -26,7 +26,7 @@ export class RunSummary extends Component {
       return <LoadingPage />;
     }
     return (
-      <div>
+      <div className="page-container">
         <RunSummaryHeader run={this.props.run} />
         <RunList posts={this.props.run.posts} />
       </div>

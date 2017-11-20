@@ -1,0 +1,25 @@
+.preferences__avatar__container {
+  @extend .content-container;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // button {
+    //   width: 30%;
+    // }
+  }
+}
+.preferences__avatar {
+  height: 350px;
+  width: 350px;
+  img {
+    border: 3px solid grey;
+    margin: $l-size 0;
+  }
+}

@@ -8,7 +8,7 @@ import UserCard from '../UserCard';
 import LoadingPage from '../LoadingPage';
 import RunReadPostEditor from './RunReadPostEditor';
 
-import { startSetAuthor, startAddUserStar } from '../../actions/users';
+import { startSetAuthorFromUserId, startAddUserStar } from '../../actions/users';
 import { startUpPostStar } from '../../actions/posts';
 
 export class RunReadPost extends Component {
@@ -18,7 +18,7 @@ export class RunReadPost extends Component {
 
   componentWillMount() {
     const { id } = this.props.post.content;
-    this.props.startSetAuthor(this.props.post.content.authorId).then(() => {
+    this.props.startSetAuthorFromUserId(this.props.post.content.authorId).then(() => {
       this.setState(() => ({
         loading: false
       }));
@@ -72,7 +72,7 @@ export class RunReadPost extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  startSetAuthor: id => dispatch(startSetAuthor(id)),
+  startSetAuthorFromUserId: id => dispatch(startSetAuthorFromUserId(id)),
   startAddUserStar: (id, prevStars) => dispatch(startAddUserStar(id, prevStars)),
   startUpPostStar: id => dispatch(startUpPostStar(id))
 });

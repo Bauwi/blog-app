@@ -36,6 +36,8 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
         ...state,
         sortBy: 'date'
       };
+    case 'RESET_FILTERS':
+      return filtersReducerDefaultState;
     default:
       return state;
   }

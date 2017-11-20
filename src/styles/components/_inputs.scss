@@ -23,6 +23,9 @@
   height: 10rem;
 }
 
+input[type="file"] {
+  display: none;
+}
 .input__file--container {
   overflow: hidden;
   position: relative;
