@@ -17,4 +17,7 @@ const database = firebase.database();
 const db = firebase.firestore();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
+console.log('NODE_ENV', process.env.NODE_ENV);
+console.log('API_KEY', process.env.APP_KEY);
+
 export { firebase, googleAuthProvider, db, database as default };
