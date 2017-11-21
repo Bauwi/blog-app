@@ -4,7 +4,7 @@ import createHistory from 'history/createBrowserHistory';
 import LoginPage from '../components/LoginPage';
 import DashboardPage from '../components/posting/DashboardPage';
 import CategorizedReads from '../components/CategorizedReads';
-import Preferences from '../components/posting/preferences';
+import Preferences from '../components/posting/Preferences';
 import RunSummary from '../components/run/RunSummary';
 import RunRead from '../components/run/RunRead';
 import NotFoundPage from '../components/NotFoundPage';
