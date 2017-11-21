@@ -9,7 +9,7 @@ import LoadingPage from '../LoadingPage';
 import KeywordsList from '../KeywordsList';
 import Footer from '../Footer';
 
-import { startSetOnePost, startSetPostsSample } from '../../actions/readings';
+import { startSetOnePost } from '../../actions/readings';
 import { startSetAuthorFromUserId, startAddUserStar } from '../../actions/users';
 import { startUpPostStar } from '../../actions/posts';
 
@@ -19,8 +19,7 @@ export class ReadPost extends Component {
   componentWillMount() {
     const { id } = this.props.match.params;
     this.props
-      .startSetPostsSample()
-      .then(() => this.props.startSetOnePost(id))
+      .startSetOnePost(id)
       .then(ref => this.props.startSetAuthorFromUserId(ref.post.authorId))
       .then(() => {
         this.setState(() => ({ loading: false }));
@@ -33,43 +32,42 @@ export class ReadPost extends Component {
   };
 
   render() {
-    if (this.state.loading) {
-      return <LoadingPage />;
-    }
-    const { title, body, keywords, cover } = this.props.post;
-    // parse the delta as expected by editor (necessary because Cloud Firestore is broken when it comes
-    // to nested arrays)
-    const delta = { ops: [...body] };
     return (
       <div>
         <Header />
-        <header className="page-header page-header--read">
-          <div className="content-container">
-            <UserCard post={this.props.post} author={this.props.author} />
-            <div className="read-header__stars">
-              <button className="button button--star" onClick={this.onAddStar}>
-                <i className="fa fa-star-o" />
-              </button>
-              <p>{this.props.postStars}</p>
+        {this.state.loading ? (
+          <LoadingPage />
+        ) : (
+          <div>
+            <header className="page-header page-header--read">
+              <div className="content-container">
+                <UserCard post={this.props.post} author={this.props.author} />
+                <div className="read-header__stars">
+                  <button className="button button--star" onClick={this.onAddStar}>
+                    <i className="fa fa-star-o" />
+                  </button>
+                  <p>{this.props.postStars}</p>
+                </div>
+              </div>
+            </header>
+            <h2 className="read-header__title">{this.props.post.title}</h2>
+            <img className="image image--cover" src={this.props.post.cover} />
+            <div className="content-container read-only">
+              <ReactQuill
+                theme="snow"
+                value={{ ops: [...this.props.post.body] }}
+                readOnly
+                modules={ReadPost.modules}
+                bounds=".app"
+                placeholder="Add a post to your blog"
+              />
             </div>
-          </div>
-        </header>
-        <h2 className="read-header__title">{title}</h2>
-        <img className="image image--cover" src={cover} />
-        <div className="content-container read-only">
-          <ReactQuill
-            theme="snow"
-            value={delta}
-            readOnly
-            modules={ReadPost.modules}
-            bounds=".app"
-            placeholder="Add a post to your blog"
-          />
-        </div>
 
-        <footer className="keywords-list__read-post-container ">
-          <KeywordsList keywords={keywords} />
-        </footer>
+            <footer className="keywords-list__read-post-container ">
+              <KeywordsList keywords={this.props.post.keywords} />
+            </footer>
+          </div>
+        )}
         <Footer />
       </div>
     );
@@ -78,7 +76,6 @@ export class ReadPost extends Component {
 
 const mapDispatchToProps = dispatch => ({
   startSetOnePost: id => dispatch(startSetOnePost(id)),
-  startSetPostsSample: () => dispatch(startSetPostsSample()),
   startSetAuthorFromUserId: id => dispatch(startSetAuthorFromUserId(id)),
   startAddUserStar: (id, prevStars) => dispatch(startAddUserStar(id, prevStars)),
   startUpPostStar: id => dispatch(startUpPostStar(id))

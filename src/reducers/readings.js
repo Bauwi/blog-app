@@ -13,7 +13,9 @@ const readingsReducer = (state = readingsDefaultState, action) => {
         currentUserPosts: action.posts
       };
     case 'SET_POSTS_SAMPLE':
-      return action.posts;
+      return {
+        posts: action.posts
+      };
     default:
       return state;
   }

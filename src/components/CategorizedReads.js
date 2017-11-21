@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import LoadingPage from './LoadingPage';
 import Header from './header/Header';
 import PublicPostsList from './PublicPostsList';
 import Footer from './Footer';
@@ -13,7 +14,7 @@ export class CategorizedReads extends Component {
     loading: true
   };
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.readings.length === 0) {
       this.props.startSetPostsSample(50).then(() => {
         this.setState(() => ({ loading: false }));
@@ -24,18 +25,25 @@ export class CategorizedReads extends Component {
   }
 
   render() {
-    if (this.state.loading) {
-      return <p>loading</p>;
-    }
     return (
       <div>
         <Header />
-        <div className="category__header">
-          <h1>{this.props.match.params.id.toUpperCase()}</h1>
-        </div>
+        {this.state.loading ? (
+          <LoadingPage />
+        ) : (
+          <div>
+            <div className="category__header">
+              <h1>{this.props.match.params.id.toUpperCase()}</h1>
+            </div>
 
-        <HomeReadHeader />
-        <PublicPostsList grid="grid-home-first" category={this.props.match.params.id} range={14} />
+            <HomeReadHeader />
+            <PublicPostsList
+              grid="grid-home-first"
+              category={this.props.match.params.id}
+              range={14}
+            />
+          </div>
+        )}
         <Footer position="absolute" />
       </div>
     );

@@ -1,9 +1,21 @@
 .dropdown-line {
   display: flex;
+  width: 25rem;
   img {
     height: 20px;
     width: 20px;
     object-fit: cover;
     margin-right: $s-size/2;
   }
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.ant-dropdown-menu {
+  top: 10px;
+}
+.ant-dropdown-menu-item:first-child {
+  background: none;
 }

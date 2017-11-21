@@ -1,15 +1,23 @@
 .button {
-  background-color: black;
-  border: 2px solid $off-white;
-  border-radius: 5%;
-  color: white;
+  background-color: $off-white;
+  border: 1px solid lightgrey;
+  border-radius: 6px;
+  color: grey;
   display: inline-block;
-  font-size: $font-size-medium;
+  font-size: 1.1rem;
   font-weight: 300;
   line-height: 1;
   outline: none;
-  padding: $s-size $m-size;
+  padding: $s-size/2;
+  margin-top: $s-size/2;
+  margin-right: 3px;
   text-decoration: none;
+  transition: all 0.3s ease;
+  &:hover {
+    background: grey;
+    color: $off-white;
+    transition: all 0.3s ease;
+  }
 }
 
 .button--link {
@@ -44,15 +52,22 @@
 
 .button--navbar {
   border: none;
+  font-size: $font-size-medium;
   padding: 0 $s-size 0 0;
+  &:hover {
+    background: none;
+    color: grey;
+  }
 }
 
 .is-selected {
   border-bottom: 1px solid grey;
+  border-radius: 0;
   font-weight: 900;
 }
 
 .button--pin {
+  background: none;
   color: $light-grey;
   border: none;
   padding: $m-size 0;
@@ -63,9 +78,14 @@
 }
 
 .button--preferences {
-  width: 20rem;
+  text-align: center;
+  width: 15rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .button:disabled {
+  background: rgb(219, 219, 219);
+  color: grey;
   cursor: not-allowed;
 }

@@ -5,26 +5,8 @@ import RunSummaryHeader from './RunSummaryHeader';
 import RunList from './RunList';
 import LoadingPage from '../LoadingPage';
 
-import { startSetRunPosts } from '../../actions/run';
-
 export class RunSummary extends Component {
-  state = {
-    loading: true
-  };
-  componentWillMount() {
-    if (this.props.run.length === 0) {
-      this.props.startSetRunPosts().then(() => {
-        this.setState(() => ({ loading: false }));
-      });
-    } else {
-      this.setState(() => ({ loading: false }));
-    }
-  }
-
   render() {
-    if (this.state.loading) {
-      return <LoadingPage />;
-    }
     return (
       <div className="page-container">
         <RunSummaryHeader run={this.props.run} />
@@ -34,12 +16,8 @@ export class RunSummary extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  startSetRunPosts: () => dispatch(startSetRunPosts())
-});
-
 const mapStateToProps = state => ({
   run: state.run
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RunSummary);
+export default connect(mapStateToProps)(RunSummary);

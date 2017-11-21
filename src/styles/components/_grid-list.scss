@@ -3,6 +3,7 @@
   @include grid(4);
   border-top: 2px solid $gold;
   margin: $xl-size 0;
+  padding: 0;
   & > * {
     text-decoration: none;
   }
@@ -15,6 +16,13 @@
 .grid-home-first > div:nth-child(1),
 .grid-home-first > div:nth-child(5) {
   @extend .flexitem-double;
+}
+
+.grid-home-first > div:nth-child(even) {
+  background: $off-white;
+  @media (min-width: $desktop-breakpoint) {
+    background: none;
+  }
 }
 
 .grid-home-second {
@@ -40,7 +48,14 @@
   font-size: $font-size-medium;
   margin: 0 auto 0 $s-size;
 }
-
+.homelist-item {
+  margin-top: $m-size;
+  padding-bottom: $m-size;
+  @media (min-width: $desktop-breakpoint) {
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+}
 .homelist-item__content {
   border: 1px solid #fff;
   margin-bottom: $s-size;
@@ -59,6 +74,7 @@
     }
   }
 }
+
 .homelist-item__content__cover {
   // max-width: 100%;
   // max-height: 15rem;
@@ -132,4 +148,5 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  padding: 0.2rem 0.7rem;
 }

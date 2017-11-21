@@ -5,6 +5,7 @@ import Headroom from 'react-headroom';
 import { Badge, Popover } from 'antd';
 
 import { startLogout } from '../../actions/auth';
+import { startSetRunPosts } from '../../actions/run';
 import RunListDropdown from './RunListDropdown';
 
 const scrollToTop = scrollDuration => {
@@ -24,6 +25,12 @@ const scrollToTop = scrollDuration => {
 
 export class Header extends Component {
   state = { goTopIcon: false };
+
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.startSetRunPosts();
+    }
+  }
 
   render() {
     const { isAuthenticated, startLogout, context, goTopIcon } = this.props;
@@ -96,7 +103,8 @@ export class Header extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  startLogout: () => dispatch(startLogout())
+  startLogout: () => dispatch(startLogout()),
+  startSetRunPosts: () => dispatch(startSetRunPosts())
 });
 
 const mapStateToProps = state => ({

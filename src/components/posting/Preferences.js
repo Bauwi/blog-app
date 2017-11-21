@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Upload, Icon, message } from 'antd';
+import { Upload, Icon, message, Input } from 'antd';
 import AvatarEditor from 'react-avatar-editor';
 
-import { startUpdateUser, uploadAvatar, getAvatarBlob } from '../../actions/users';
+import PreferencesAvatar from './PreferencesAvatar';
+
+import { startUpdateUser, uploadAvatar } from '../../actions/users';
+const { TextArea } = Input;
+const success = () => {
+  message.success('Your informations have been successfully updated.');
+};
+
+const error = () => {
+  message.error('Oops, something went wrong.');
+};
 
 export class Preferences extends Component {
   state = {
@@ -19,18 +29,8 @@ export class Preferences extends Component {
     topCategory3: this.props.preferences.topCategories
       ? this.props.preferences.topCategories[2]
       : '',
-    error: ''
-  };
-
-  handleImageChange = e => {
-    const avatar = e.target.files[0];
-    const img = new Image();
-
-    const reader = new FileReader();
-    const url = reader.readAsDataURL(avatar);
-    const objectURL = URL.createObjectURL(avatar);
-
-    this.setState(() => ({ avatarPreview: objectURL }));
+    description: this.props.preferences.description ? this.props.preferences.description : '',
+    proceeding: false
   };
 
   handleUsernameChange = e => {
@@ -50,106 +50,53 @@ export class Preferences extends Component {
     const topCategory3 = e.target.value;
     this.setState(() => ({ topCategory3 }));
   };
+  handleDescriptionChange = e => {
+    const description = e.target.value;
+    this.setState(() => ({ description }));
+  };
 
   onSubmit = e => {
     e.preventDefault();
     if (!this.state.username) {
-      this.setState(() => ({ error: 'Please provide a username.' }));
+      return this.setState(() => ({ error: 'Please provide a username.' }));
     } else {
-      this.setState(() => ({ error: '' }));
+      this.setState(() => ({ error: '', proceeding: true }));
       const topCategories = [
         this.state.topCategory1,
         this.state.topCategory2,
         this.state.topCategory3
       ];
-      return this.editor.getImage().toBlob(blob =>
-        this.setState(
-          () => ({ avatar: blob }),
+      return this.props
+        .startUpdateUser(this.props.userId, {
+          username: this.state.username,
+          topCategories,
+          description: this.state.description
+        })
+        .then(
           () => {
-            this.props.uploadAvatar(this.props.userId, this.state.avatar);
-            this.props.startUpdateUser(this.props.userId, {
-              username: this.state.username,
-              topCategories
-            });
+            this.setState(() => ({ proceeding: false }));
+            success();
+          },
+          () => {
+            this.setState(() => ({ proceeding: false }));
+            error();
           }
-        )
-      );
+        );
     }
   };
-
-  handleSaveAvatar = () => {
-    this.editor.getImage().toBlob(blob =>
-      this.setState(
-        () => ({ avatar: blob }),
-        () => {
-          this.props
-            .uploadAvatar(this.props.userId, this.state.avatar)
-            .then(url => this.setState(() => ({ avatar: url, avatarPreview: '' })));
-        }
-      )
-    );
-  };
-
-  setEditorRef = editor => (this.editor = editor);
 
   render() {
     const avatarPreview = this.state.avatarPreview;
     return (
-      <div>
-        <div className="preferences__avatar__container">
-          {avatarPreview ? (
-            <div>
-              <AvatarEditor
-                crossOrigin="anonymous"
-                ref={this.setEditorRef}
-                image={this.state.avatarPreview}
-                width={250}
-                height={250}
-                border={50}
-                color={[255, 255, 255, 0.6]} // RGBA
-                scale={1.2}
-                rotate={0}
-              />
-              <label htmlFor="file-upload" className="button button--preferences">
-                <i className="fa fa-picture-o" /> New Avatar
-                <input
-                  id="file-upload"
-                  className="button"
-                  type="file"
-                  onChange={this.handleImageChange}
-                />
-              </label>
-              <button className="button button--preferences" onClick={this.handleSaveAvatar}>
-                <i className="fa fa-floppy-o" /> Save
-              </button>
-            </div>
-          ) : (
-            <div>
-              <div className="preferences__avatar">
-                <img src={this.state.avatar} alt="avatar" height="250px" width="250px" />
-              </div>
-              <label htmlFor="file-upload" className="button button--preferences">
-                <i className="fa fa-picture-o" /> New Avatar
-                <input
-                  id="file-upload"
-                  className="button button--preferences"
-                  type="file"
-                  onChange={this.handleImageChange}
-                />
-              </label>
-              <button
-                className="button button--preferences"
-                onClick={this.handleSaveAvatar}
-                disabled
-              >
-                <i className="fa fa-floppy-o" /> Save
-              </button>
-            </div>
-          )}
-        </div>
+      <div className="preferences">
+        <PreferencesAvatar
+          upload={this.props.uploadAvatar}
+          userId={this.props.userId}
+          avatar={this.props.preferences.avatar ? this.props.preferences.avatar : ''}
+        />
 
-        <form className="form" onSubmit={this.onSubmit}>
-          <label htmlFor="title">
+        <form className="form preferences__form" onSubmit={this.onSubmit}>
+          <label htmlFor="title" className="preferences__form__block">
             <p>Username: </p>
             <p>Your username can not exceed 14 characters</p>
 
@@ -162,44 +109,59 @@ export class Preferences extends Component {
               onChange={this.handleUsernameChange}
             />
           </label>
-          <label htmlFor="title">
-            <p>Favorite categories: </p>
+          <label htmlFor="title" className="preferences__form__block">
+            <p>Interests: </p>
             <p>Customize your homepage by setting up your interests</p>
-            <label htmlFor="category 1">
-              <p>1: </p>
-              <input
-                autoFocus
-                className="text-input"
-                placeholder="Sport"
-                type="text"
-                value={this.state.topCategory1}
-                onChange={this.handleCat1Change}
-              />
-            </label>
-            <label htmlFor="category 2">
-              <p>2: </p>
-              <input
-                autoFocus
-                className="text-input"
-                placeholder="Litterature"
-                type="text"
-                value={this.state.topCategory2}
-                onChange={this.handleCat2Change}
-              />
-            </label>
-            <label htmlFor="category 3">
-              <p>3: </p>
-              <input
-                autoFocus
-                className="text-input"
-                placeholder="Third Category"
-                type="text"
-                value={this.state.topCategory3}
-                onChange={this.handleCat3Change}
-              />
-            </label>
+            <div className="preferences__form__block__input-group">
+              <label htmlFor="category 1">
+                <p>1: </p>
+                <input
+                  autoFocus
+                  className="text-input"
+                  placeholder="Sport"
+                  type="text"
+                  value={this.state.topCategory1}
+                  onChange={this.handleCat1Change}
+                />
+              </label>
+              <label htmlFor="category 2">
+                <p>2: </p>
+                <input
+                  autoFocus
+                  className="text-input"
+                  placeholder="Litterature"
+                  type="text"
+                  value={this.state.topCategory2}
+                  onChange={this.handleCat2Change}
+                />
+              </label>
+              <label htmlFor="category 3">
+                <p>3: </p>
+                <input
+                  autoFocus
+                  className="text-input"
+                  placeholder="Third Category"
+                  type="text"
+                  value={this.state.topCategory3}
+                  onChange={this.handleCat3Change}
+                />
+              </label>
+            </div>
           </label>
-          <button className="button">Save</button>
+          <label htmlFor="title" className="preferences__form__block">
+            <p>Description: </p>
+            <p>Your description can not exceed 200 characters</p>
+            <TextArea
+              placeholder="Athos"
+              type="text"
+              value={this.state.description}
+              onChange={this.handleDescriptionChange}
+              autosize={{ minRows: 2, maxRows: 6 }}
+            />
+          </label>
+          <button className="button">
+            {this.state.proceeding ? 'Saving...' : 'Save Preferences'}
+          </button>
         </form>
       </div>
     );
@@ -208,8 +170,7 @@ export class Preferences extends Component {
 
 const mapDispatchToProps = dispatch => ({
   startUpdateUser: (id, updates) => dispatch(startUpdateUser(id, updates)),
-  uploadAvatar: (userId, avatar) => dispatch(uploadAvatar(userId, avatar)),
-  getAvatarBlob: url => dispatch(getAvatarBlob(url))
+  uploadAvatar: (userId, avatar) => dispatch(uploadAvatar(userId, avatar))
 });
 
 const mapStateToProps = state => ({

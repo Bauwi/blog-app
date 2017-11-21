@@ -9,31 +9,19 @@ import LoadingPage from '../LoadingPage';
 import HomeReadHeader from './HomeReadHeader';
 
 import { startSetPostsSample } from '../../actions/readings';
-import { startSetRunPosts } from '../../actions/run';
 
 export class HomeRead extends Component {
   state = {
-    loading: true
+    loading: !this.props.areReadingsAlreadyLoaded
   };
 
   componentDidMount() {
-    return this.props
-      .startSetPostsSample(20)
-      .then(() => this.props.startSetRunPosts())
-      .then(() => {
-        this.setState(() => ({ loading: false }));
-      });
+    return this.props.startSetPostsSample(20).then(() => {
+      this.setState(() => ({ loading: false }));
+    });
   }
 
   renderCustomCategories() {
-    if (this.props.categories.length === 0) {
-      return (
-        <p>
-          No matching post. Please check you spelled correctly the category name in your settings or
-          choose a more generic term
-        </p>
-      );
-    }
     return this.props.categories.map((category, i) => {
       const grid = i === 0 ? 'grid-home-second' : 'grid-home-first';
       const range = i === 0 ? 7 : i === 1 ? 6 : i === 2 ? 3 : 0;
@@ -42,16 +30,19 @@ export class HomeRead extends Component {
   }
 
   render() {
-    if (this.state.loading) {
-      return <LoadingPage />;
-    }
+    console.log(this.props.areReadingsAlreadyLoaded);
     return (
       <div className="page-container">
         <Header />
         <HeaderSub />
         <HomeReadHeader />
-        <PublicPostsList grid="grid-home-first" category="all" range={14} />
-        {this.renderCustomCategories()}
+        {this.state.loading ? (
+          <LoadingPage />
+        ) : (
+          <PublicPostsList grid="grid-home-first" category="all" range={14} />
+        )}
+        {!this.state.loading && this.renderCustomCategories()}
+
         <Footer />
       </div>
     );
@@ -59,14 +50,14 @@ export class HomeRead extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  startSetPostsSample: sampleSize => dispatch(startSetPostsSample(sampleSize)),
-  startSetRunPosts: () => dispatch(startSetRunPosts())
+  startSetPostsSample: sampleSize => dispatch(startSetPostsSample(sampleSize))
 });
 
 const mapStateToProps = state => ({
   categories: state.users.preferences
     ? state.users.preferences.topCategories
-    : ['litterature', 'music', 'life']
+    : ['litterature', 'music', 'life'],
+  areReadingsAlreadyLoaded: state.readings.length !== 0
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeRead);

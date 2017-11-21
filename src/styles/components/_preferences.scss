@@ -1,9 +1,21 @@
+.preferences {
+  // align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+  }
+}
+
 .preferences__avatar__container {
   @extend .content-container;
-  align-items: center;
+  // align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 350px;
+  max-height: 450px;
 
   div {
     align-items: center;
@@ -22,4 +34,26 @@
     border: 3px solid grey;
     margin: $l-size 0;
   }
+}
+
+.preferences__form {
+  padding-right: $s-size;
+  width: 100%;
+  @media (min-width: $desktop-breakpoint) {
+    margin: $l-size $s-size;
+    width: 70%;
+  }
+
+  label > p {
+    margin-right: $s-size;
+  }
+}
+
+.preferences__form__block {
+  margin: $m-size;
+}
+
+.preferences__form__block__input-group {
+  display: flex;
+  flex-direction: column;
 }

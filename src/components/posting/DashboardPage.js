@@ -9,6 +9,7 @@ import UserCard from '../UserCard';
 export class DashboardPage extends Component {
   state = { goTopIcon: false };
   render() {
+    console.log(this.props.user);
     return (
       <div className="content-container">
         <UserCard author={this.props.user} />
