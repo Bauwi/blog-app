@@ -10,3 +10,13 @@
   height: 6rem;
   width: 6rem;
 }
+
+.loader--small {
+  margin: $m-size 0 $xl-size 0;
+  display: flex;
+  justify-content: center;
+  img {
+    height: 3rem;
+    width: 3rem;
+  }
+}

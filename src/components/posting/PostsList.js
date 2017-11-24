@@ -3,14 +3,43 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { startSetPosts } from '../../actions/posts';
+import { sortByDate } from '../../actions/filters';
 import selectPosts from '../../selectors/posts';
 
 import CompleteFiltersBar from '../filters/CompleteFiltersBar';
 import PostsListItem from './PostsListItem';
+import SmallLoader from '../SmallLoader';
 
 export class PostsList extends Component {
-  handleMorePosts = () => {
-    this.props.startSetPosts(undefined, this.props.posts.length + 10);
+  state = {
+    loading: false,
+    rangeMin: 0,
+    rangeMax: 9
+  };
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.MorePostsOnScrollDown);
+    this.props.sortByDate();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.MorePostsOnScrollDown);
+  }
+
+  MorePostsOnScrollDown = event => {
+    if (
+      window.innerHeight + window.scrollY >= document.body.scrollHeight &&
+      this.props.numberOfPosts !== this.props.totalPostsInState &&
+      this.props.isNotFiltered &&
+      this.state.loading === false
+    ) {
+      this.setState(() => ({ loading: true }));
+      this.props
+        .startSetPosts(undefined, this.props.posts.length, this.props.posts.length + 6)
+        .then(() => {
+          this.setState(() => ({ loading: false }));
+        });
+    }
   };
 
   renderPosts = () => {
@@ -27,25 +56,30 @@ export class PostsList extends Component {
           </div>
         )}
         <div className="grid-dashboard">{this.renderPosts()}</div>
-        <button className="button button--more" onClick={this.handleMorePosts}>
-          Load more
-        </button>
+        {this.props.numberOfPosts !== this.props.posts.length &&
+          this.state.loading && <SmallLoader />}
       </div>
     );
   }
 }
 
 PostsList.propTypes = {
+  isNotFiltered: PropTypes.bool.isRequired,
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  startSetPosts: PropTypes.func.isRequired
+  startSetPosts: PropTypes.func.isRequired,
+  sortByDate: PropTypes.func.isRequired,
+  numberOfPosts: PropTypes.number
 };
 
 const mapDispatchToProps = dispatch => ({
-  startSetPosts: (id, rangeMax) => dispatch(startSetPosts(id, rangeMax))
+  startSetPosts: (id, rangeMin, rangeMax) => dispatch(startSetPosts(id, rangeMin, rangeMax)),
+  sortByDate: () => dispatch(sortByDate())
 });
 
 const mapStateToProps = state => ({
-  posts: selectPosts(state.posts, state.filters)
+  isNotFiltered: state.filters.text === '' && state.filters.sortBy === 'date',
+  posts: selectPosts(state.posts, state.filters),
+  numberOfPosts: state.users.preferences.numberOfPosts
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsList);

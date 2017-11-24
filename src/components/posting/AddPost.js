@@ -6,12 +6,16 @@ import { Link } from 'react-router-dom';
 import PostForm from './PostForm';
 
 import { startAddPost } from '../../actions/posts';
-import { startUpdateUser } from '../../actions/users';
+import { startUpdateUser, upPostsCount } from '../../actions/users';
 
 export class AddPost extends Component {
   onSubmit = post => {
     this.props.startAddPost(post);
-    this.props.startUpdateUser(undefined, { username: post.author });
+    this.props.startUpdateUser(undefined, {
+      numberOfPosts: this.props.preferences.numberOfPosts
+        ? this.props.preferences.numberOfPosts + 1
+        : 1
+    });
     this.props.history.push('/dashboard');
   };
 
@@ -23,25 +27,27 @@ export class AddPost extends Component {
             <Link to="/dashboard">Back to dashboard</Link>
           </header>
         </div>
-        <PostForm onSubmit={this.onSubmit} context="add" author={this.props.user} />
+        <PostForm onSubmit={this.onSubmit} context="add" author={this.props.preferences} />
       </div>
     );
   }
 }
 
 AddPost.propTypes = {
-  user: PropTypes.object.isRequired,
+  preferences: PropTypes.object.isRequired,
   startAddPost: PropTypes.func.isRequired,
   startUpdateUser: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
   startAddPost: post => dispatch(startAddPost(post)),
-  startUpdateUser: (id, updates) => dispatch(startUpdateUser(id, updates))
+  startUpdateUser: (id, updates) => dispatch(startUpdateUser(id, updates)),
+  upPostsCount: id => dispatch(upPostsCount(id))
 });
 
 const mapStateToProps = state => ({
-  user: state.users.preferences
+  preferences: state.users.preferences,
+  userId: state.auth.uid
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddPost);

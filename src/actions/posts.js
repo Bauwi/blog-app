@@ -83,7 +83,7 @@ export const setPosts = posts => ({
 });
 
 // Manage fetching personnal posts in the dashboard
-export const startSetPosts = (id, rangeMax) => (dispatch, getState) => {
+export const startSetPosts = (id, rangeMin, rangeMax) => (dispatch, getState) => {
   const uid = id || getState().auth.uid;
   return db
     .collection('posts')
@@ -100,7 +100,7 @@ export const startSetPosts = (id, rangeMax) => (dispatch, getState) => {
       const posts = allPosts
         .sort((a, b) => a.createdAt - b.createdAt)
         .reverse()
-        .slice(0, rangeMax);
+        .slice(rangeMin, rangeMax);
       dispatch(setPosts(posts));
     });
 };

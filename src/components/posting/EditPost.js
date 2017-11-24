@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { startEditPost, startRemovePost } from '../../actions/posts';
+import { startUpdateUser } from '../../actions/users';
 
 import PostForm from './PostForm';
 
@@ -12,6 +13,9 @@ export class EditPost extends Component {
   };
   onRemovePost = () => {
     this.props.startRemovePost(this.props.post.id);
+    this.props.startUpdateUser(undefined, {
+      numberOfPosts: this.props.preferences.numberOfPosts - 1
+    });
     this.props.history.push('/dashboard');
   };
 
@@ -21,7 +25,7 @@ export class EditPost extends Component {
         <PostForm
           onSubmit={this.onSubmit}
           post={this.props.post}
-          author={this.props.user}
+          author={this.props.preferences}
           context="edit"
         />
         <button onClick={this.onRemovePost}>Remove Post</button>
@@ -43,7 +47,7 @@ EditPost.propTypes = {
     readingTime: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired
   }).isRequired,
-  user: PropTypes.shape({
+  preferences: PropTypes.shape({
     avatar: PropTypes.string,
     description: PropTypes.string,
     email: PropTypes.string,
@@ -60,13 +64,14 @@ const mapStateToProps = (state, props) => {
     post: state.posts.find(post => {
       return post.id === props.match.params.id;
     }),
-    user: state.users.preferences
+    preferences: state.users.preferences
   };
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
   startEditPost: (id, post) => dispatch(startEditPost(id, post)),
-  startRemovePost: id => dispatch(startRemovePost(id))
+  startRemovePost: id => dispatch(startRemovePost(id)),
+  startUpdateUser: (id, updates) => dispatch(startUpdateUser(id, updates))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPost);

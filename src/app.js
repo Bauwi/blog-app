@@ -38,7 +38,7 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
     store.dispatch(startSetUserPreferences());
-    store.dispatch(startSetPosts(user.uid, 16)).then(() => {
+    store.dispatch(startSetPosts(user.uid, 0, 9)).then(() => {
       renderApp();
     });
   } else if (

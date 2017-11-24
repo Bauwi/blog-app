@@ -37,6 +37,7 @@ export const startUpdateUser = (id, updates) => (dispatch, getState) => {
           email: '',
           username: '',
           stars: 0,
+          numberOfPosts: 0,
           topCategories: ['life', 'programming', 'Music']
         })
         .then(startUpdateUser(uid, updates));
