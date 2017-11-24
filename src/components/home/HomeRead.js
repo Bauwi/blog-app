@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Header from '../header/Header';
 import HeaderSub from '../header/HeaderSub';
 import PublicPostsList from '../PublicPostsList';
-import Footer from '../Footer';
 import LoadingPage from '../LoadingPage';
-import HomeReadHeader from './HomeReadHeader';
+import PopularLasttFilter from '../filters/PopularLastFilter';
 
 import { startSetPostsSample } from '../../actions/readings';
 
 export class HomeRead extends Component {
   state = {
-    loading: !this.props.areReadingsAlreadyLoaded
+    loading: !this.props.areReadingsAlreadyFetched
   };
 
   componentDidMount() {
-    return this.props.startSetPostsSample(20).then(() => {
+    return this.props.startSetPostsSample().then(() => {
       this.setState(() => ({ loading: false }));
     });
   }
@@ -30,34 +29,38 @@ export class HomeRead extends Component {
   }
 
   render() {
-    console.log(this.props.areReadingsAlreadyLoaded);
     return (
       <div className="page-container">
-        <Header />
         <HeaderSub />
-        <HomeReadHeader />
+        <div className="content-container">
+          <PopularLasttFilter />
+        </div>
         {this.state.loading ? (
           <LoadingPage />
         ) : (
           <PublicPostsList grid="grid-home-first" category="all" range={14} />
         )}
         {!this.state.loading && this.renderCustomCategories()}
-
-        <Footer />
       </div>
     );
   }
 }
 
+HomeRead.propTypes = {
+  categories: PropTypes.array.isRequired,
+  areReadingsAlreadyFetched: PropTypes.bool.isRequired,
+  startSetPostsSample: PropTypes.func.isRequired
+};
+
 const mapDispatchToProps = dispatch => ({
-  startSetPostsSample: sampleSize => dispatch(startSetPostsSample(sampleSize))
+  startSetPostsSample: () => dispatch(startSetPostsSample())
 });
 
 const mapStateToProps = state => ({
   categories: state.users.preferences
     ? state.users.preferences.topCategories
     : ['litterature', 'music', 'life'],
-  areReadingsAlreadyLoaded: state.readings.length !== 0
+  areReadingsAlreadyFetched: state.readings.length !== 0
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeRead);

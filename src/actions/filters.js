@@ -1,3 +1,4 @@
+// manage filter state. Selector then used state to render proper content.
 export const setTextFilter = (text = '') => ({
   type: 'SET_TEXT_FILTER',
   text

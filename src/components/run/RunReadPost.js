@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Img from 'react-image';
@@ -16,13 +16,27 @@ export class RunReadPost extends Component {
     loading: true
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { id } = this.props.post.content;
     this.props.startSetAuthorFromUserId(this.props.post.content.authorId).then(() => {
       this.setState(() => ({
         loading: false
       }));
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.post.content.id !== nextProps.post.content.id) {
+      this.setState(() => ({
+        loading: true
+      }));
+      const { id } = this.props.post.content;
+      this.props.startSetAuthorFromUserId(nextProps.post.content.authorId).then(() => {
+        this.setState(() => ({
+          loading: false
+        }));
+      });
+    }
   }
 
   onAddStar = () => {
@@ -70,6 +84,13 @@ export class RunReadPost extends Component {
     );
   }
 }
+
+RunReadPost.propTypes = {
+  author: PropTypes.object,
+  startAddUserStar: PropTypes.func.isRequired,
+  startSetAuthorFromUserId: PropTypes.func.isRequired,
+  startUpPostStar: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = dispatch => ({
   startSetAuthorFromUserId: id => dispatch(startSetAuthorFromUserId(id)),

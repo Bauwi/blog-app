@@ -1,5 +1,6 @@
 //manage postsLists that redirects vers public read mode
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import PublicPostsListItem from './PublicPostsListItem';
@@ -17,21 +18,22 @@ export class PublicPostsList extends Component {
     return [arr[0].toUpperCase(), ...arr.slice(1, arr.length)].join('');
   };
   render() {
-    if (this.props.posts.length === 0) {
-      return (
-        <div className="content-container">
-          <p>
-            No matching post. Please check you spelled correctly the category name in your settings
-            or choose a more generic term
-          </p>
-        </div>
-      );
-    }
     return (
       <div className="content-container">
         <h3 className="homelist__title">
           {this.props.category && this.capitalized(this.props.category)}
         </h3>
+        {this.props.posts.length === 0 && (
+          <div className="content-container homelist__empty">
+            <p>
+              Nothing matches! Please check you spelled correctly the category name in your
+              preferences or choose a more generic term.{' '}
+              <span>
+                <Link to="/preferences">Check my preferences</Link>
+              </span>
+            </p>
+          </div>
+        )}
         <div className={this.props.grid}>{this.renderListItem()}</div>
       </div>
     );

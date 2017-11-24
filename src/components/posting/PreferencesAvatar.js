@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Upload, Icon, message } from 'antd';
 import AvatarEditor from 'react-avatar-editor';
 
@@ -24,7 +25,6 @@ export default class PreferencesAvatar extends Component {
   handleImageChange = e => {
     const avatar = e.target.files[0];
     const img = new Image();
-
     const reader = new FileReader();
     const url = reader.readAsDataURL(avatar);
     const objectURL = URL.createObjectURL(avatar);
@@ -87,3 +87,6 @@ export default class PreferencesAvatar extends Component {
     );
   }
 }
+PreferencesAvatar.propTypes = {
+  avatar: PropTypes.string.isRequired
+};

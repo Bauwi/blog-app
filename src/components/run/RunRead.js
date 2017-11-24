@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { notification } from 'antd';
 
@@ -15,7 +17,8 @@ export class RunRead extends Component {
   state = {
     loading: true
   };
-  componentWillMount() {
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
     // if there is no run state set yet, set one. Then set current state too.
     if (this.props.run.length === 0) {
       this.props.startSetRunPosts().then(() => {
@@ -26,10 +29,6 @@ export class RunRead extends Component {
     } else {
       this.setState(() => ({ loading: false }));
     }
-  }
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
@@ -71,6 +70,13 @@ export class RunRead extends Component {
   }
 }
 
+RunRead.propTypes = {
+  current: PropTypes.object,
+  startSetRunPosts: PropTypes.func.isRequired,
+  setCurrentPostRun: PropTypes.func.isRequired,
+  startUpdateRunPostToAlreadyRead: PropTypes.func.isRequired
+};
+
 const mapDispatchToProps = dispatch => ({
   startSetRunPosts: () => dispatch(startSetRunPosts()),
   setCurrentPostRun: id => dispatch(setCurrentPostRun(id)),
@@ -82,4 +88,4 @@ const mapStateToProps = state => ({
   current: state.run.current
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RunRead);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RunRead));

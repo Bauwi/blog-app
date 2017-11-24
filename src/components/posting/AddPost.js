@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import PostForm from './PostForm';
+
 import { startAddPost } from '../../actions/posts';
 import { startUpdateUser } from '../../actions/users';
 
@@ -9,7 +12,7 @@ export class AddPost extends Component {
   onSubmit = post => {
     this.props.startAddPost(post);
     this.props.startUpdateUser(undefined, { username: post.author });
-    this.props.history.push('/');
+    this.props.history.push('/dashboard');
   };
 
   render() {
@@ -26,6 +29,12 @@ export class AddPost extends Component {
   }
 }
 
+AddPost.propTypes = {
+  user: PropTypes.object.isRequired,
+  startAddPost: PropTypes.func.isRequired,
+  startUpdateUser: PropTypes.func.isRequired
+};
+
 const mapDispatchToProps = dispatch => ({
   startAddPost: post => dispatch(startAddPost(post)),
   startUpdateUser: (id, updates) => dispatch(startUpdateUser(id, updates))
@@ -34,4 +43,5 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   user: state.users.preferences
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(AddPost);

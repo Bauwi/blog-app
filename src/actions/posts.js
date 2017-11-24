@@ -1,7 +1,6 @@
-import database from '../firebase/firebase';
-import { db } from '../firebase/firebase';
 import * as firebase from 'firebase';
 import axios from 'axios';
+import { db } from '../firebase/firebase';
 
 // Manage CRUD personnal posts
 export const addPost = post => ({
@@ -83,6 +82,7 @@ export const setPosts = posts => ({
   posts
 });
 
+// Manage fetching personnal posts in the dashboard
 export const startSetPosts = (id, rangeMax) => (dispatch, getState) => {
   const uid = id || getState().auth.uid;
   return db
@@ -105,6 +105,7 @@ export const startSetPosts = (id, rangeMax) => (dispatch, getState) => {
     });
 };
 
+// Add a star to post -- may need to be moved to readings action file
 export const addPostStar = (id, stars) => ({
   type: 'ADD_POST_STAR',
   id,
@@ -131,6 +132,8 @@ export const startUpPostStar = id => (dispatch) => {
 };
 
 // TODO: IMPROVE THIS USING PROMISE.ALL
+// 1: upload cover and minicover to firebasestorage
+// 2: update post with cover and minicover resulting urls.
 export const uploadImage = (id, cover, miniCover) => (dispatch) => {
   const storageRefMiniCover = firebase.storage().ref(`${id}/mini`);
   const storageRefCover = firebase.storage().ref(`${id}/cover`);

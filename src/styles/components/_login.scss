@@ -1,0 +1,14 @@
+.login__modal {
+}
+
+.login__container {
+  background: fade-out(white, 0.15);
+  padding: 0 $m-size $l-size $m-size;
+  text-align: center;
+  width: 100%;
+}
+
+.login__title {
+  margin: 0 0 $m-size*3 0;
+  line-height: 1;
+}

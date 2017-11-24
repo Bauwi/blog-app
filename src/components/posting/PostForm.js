@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import ReactQuill from 'react-quill';
 import ImageTools from '../functions/ImageTools';
+import { Input, message } from 'antd';
 import UserCard from '../UserCard';
 
-import ImageUploader from './ImageUploader';
+const { TextArea } = Input;
+const error = () => {
+  message.error('Your post should include a title, a cover and a body');
+};
 
 export default class PostForm extends Component {
   constructor(props) {
@@ -17,10 +22,14 @@ export default class PostForm extends Component {
       body: props.post ? props.post.body : '',
       keywords: props.post ? props.post.keywords : '',
       createdAt: props.post ? moment(props.post.createdAt) : moment(),
-      author: props.post ? props.post.author : '',
+      author: props.author.username,
       readingTime: props.post ? props.post.readingTime : 0,
       cover: props.post ? props.post.cover : '',
-      bodyToEditor: props.post ? { ops: [...this.props.post.body] } : '',
+      bodyToEditor: props.post
+        ? {
+            ops: [...this.props.post.body]
+          }
+        : '',
       miniCover: props.post ? props.post.miniCover : '',
       coverSrc: '',
       error: ''
@@ -29,13 +38,17 @@ export default class PostForm extends Component {
 
   onTitleChange = e => {
     const title = e.target.value;
-    this.setState(() => ({ title }));
+    this.setState(() => ({
+      title
+    }));
   };
 
   onBodyChange = body => {
     if (this.refs.quill) {
       const body = this.refs.quill.editor.editor.delta;
-      const bodyToEditor = { ops: [...body] };
+      const bodyToEditor = {
+        ops: [...body]
+      };
       const readingTime = this.readingTime(this.refs.quill.editor.getText());
 
       this.setState(() => ({
@@ -46,19 +59,12 @@ export default class PostForm extends Component {
     }
   };
 
-  onAuthorChange = e => {
-    const author = e.target.value;
-    this.setState(() => ({ author }));
-  };
-
   onKeywordsChange = e => {
     const keywords = e.target.value;
-    this.setState(() => ({ keywords }));
+    this.setState(() => ({
+      keywords
+    }));
   };
-  // onCoverChange = e => {
-  //   const cover = e.target.value;
-  //   this.setState(() => ({ cover }));
-  // };
 
   onCoverChange = e => {
     const cover = e.target.files[0];
@@ -73,7 +79,10 @@ export default class PostForm extends Component {
       const coeff = 1 / sizes.width * 500;
       const miniCover = ImageTools.resize(
         cover,
-        { width: Math.round(sizes.width * coeff), height: Math.round(sizes.height * coeff) },
+        {
+          width: Math.round(sizes.width * coeff),
+          height: Math.round(sizes.height * coeff)
+        },
         (blob, didItResize) => {
           if (didItResize) {
             //image width > 640 => image resized
@@ -93,10 +102,15 @@ export default class PostForm extends Component {
     };
 
     const updateState = (cover, miniCover) => {
-      this.setState(() => ({ cover, miniCover }));
+      this.setState(() => ({
+        cover,
+        miniCover
+      }));
     };
     const updateCoverSrc = coverSrc => {
-      this.setState(() => ({ coverSrc }));
+      this.setState(() => ({
+        coverSrc
+      }));
     };
 
     const objectURL = URL.createObjectURL(cover);
@@ -112,17 +126,16 @@ export default class PostForm extends Component {
         <label className="input__file--container">
           <div className="input__file">
             <i className="fa fa-picture-o" />
-            <p>Add a cover...</p>
+            <p> Add a cover... </p>{' '}
           </div>
-
-          <input type="file" onChange={this.onCoverChange} />
+          <input type="file" onChange={this.onCoverChange} />{' '}
         </label>
       );
     } else if (this.state.coverSrc && this.props.context === 'add') {
       return (
         <div>
           <img src={this.state.coverSrc} className="image" />
-          <button>Change</button>
+          <button> Change </button>{' '}
         </div>
       );
     } else if (this.state.cover && this.props.context === 'edit') {
@@ -133,9 +146,8 @@ export default class PostForm extends Component {
   onSubmit = e => {
     e.preventDefault();
     if (!this.state.title || !this.state.body) {
-      this.setState(() => ({ error: 'Please provide a title and body to your post.' }));
+      error();
     } else {
-      this.setState(() => ({ error: '' }));
       this.props.onSubmit({
         title: this.state.title,
         body: this.state.body,
@@ -157,34 +169,22 @@ export default class PostForm extends Component {
       createdAt: this.state.createdAt
     };
     return (
-      <form className="content-container form" onSubmit={this.onSubmit}>
-        <UserCard post={post} author={this.props.author} />
-        <label htmlFor="alias">
-          <p>Alias: </p>
-          <p>What should stand for author name?</p>
-          <input
-            className="text-input"
-            type="text"
-            placeholder="D'Artagnan"
-            value={this.state.author}
-            onChange={this.onAuthorChange}
-          />
-        </label>
+      <form className="content-container form form--post" onSubmit={this.onSubmit}>
+        <UserCard post={post} author={this.props.author} />{' '}
         <label htmlFor="title">
-          <p>Title: </p>
-          <p>What should stand for title?</p>
-
-          <input
-            autoFocus
-            className="text-input"
-            placeholder="Why is Athos sitting by himself?"
+          <p> Title: </p> <p> What should stand for title ? </p>
+          <TextArea
+            placeholder="As if you could kill time without injuring eternity."
             type="text"
             value={this.state.title}
             onChange={this.onTitleChange}
-          />
+            autosize={{
+              minRows: 2,
+              maxRows: 6
+            }}
+          />{' '}
         </label>
-
-        {this.renderCover()}
+        {this.renderCover()}{' '}
         <div>
           <ReactQuill
             ref="quill"
@@ -195,36 +195,72 @@ export default class PostForm extends Component {
             bounds={'.app'}
             placeholder="Add a post to your blog"
             onChange={this.onBodyChange}
-          />
+          />{' '}
         </div>
-
         <input
           className="text-input"
           type="text"
           placeholder="keywords"
           value={this.state.keywords}
           onChange={this.onKeywordsChange}
-        />
+        />{' '}
         <div>
-          <button className="button">Save Post</button>
-        </div>
+          <button className="button"> Save Post </button>{' '}
+        </div>{' '}
       </form>
     );
   }
 }
 
+PostForm.propTypes = {
+  title: PropTypes.string,
+  body: PropTypes.string,
+  keywords: PropTypes.string,
+  createdAt: PropTypes.number,
+  author: PropTypes.object,
+  readingTime: PropTypes.number,
+  cover: PropTypes.string,
+  miniCover: PropTypes.string
+};
+
 PostForm.modules = {
   toolbar: [
-    [{ header: '1' }, { header: '2' }],
+    [
+      {
+        header: '1'
+      },
+      {
+        header: '2'
+      }
+    ],
 
     ['bold', 'italic', 'underline', 'blockquote', 'code-block'],
-    [{ size: ['small', false, 'large', 'huge'] }],
+    [
+      {
+        size: ['small', false, 'large', 'huge']
+      }
+    ],
 
-    [{ color: [] }, { background: [] }],
+    [
+      {
+        color: []
+      },
+      {
+        background: []
+      }
+    ],
 
-    [{ list: 'ordered' }],
+    [
+      {
+        list: 'ordered'
+      }
+    ],
     ['link', 'image', 'video'],
-    [{ align: [] }],
+    [
+      {
+        align: []
+      }
+    ],
     ['clean']
   ]
 };

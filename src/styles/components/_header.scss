@@ -19,33 +19,45 @@
 .header__title {
   color: $dark-grey;
   text-decoration: none;
-
+  padding: $s-size 0;
   h1 {
     margin: 0;
+    font-weight: 1000;
+    line-height: 2.5rem;
+    background: black;
+    color: white;
   }
 }
 
 .header__navbar,
 .header__search {
   width: 20rem;
-  padding: $s-size;
+  // padding: $s-size;
+}
+
+.header__search {
+  display: none;
+  @media (min-width: $desktop-breakpoint) {
+    display: block;
+  }
 }
 
 .header__navbar {
-  align-items: flex-end;
+  align-items: center;
   display: flex;
-  justify-content: center;
-  padding: $s-size 0;
+  justify-content: flex-end;
+  // padding: $s-size 0;
   @media (min-width: $desktop-breakpoint) {
   }
 
   a,
   button,
+  div,
   nav {
     @extend .button, .button--navbar;
     background: white;
     color: $dark-grey;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     &:hover {
       color: #108ee9;
     }
@@ -57,11 +69,19 @@
     margin-right: 0;
     margin-left: 0;
     @media (min-width: $desktop-breakpoint) {
-      margin-right: 3rem;
+      margin-right: 2rem;
     }
     &:hover {
       cursor: pointer;
     }
+  }
+  div {
+    margin: 0;
+    padding: 0;
+  }
+  nav:nth-child(3) {
+    position: relative;
+    bottom: 1.2rem;
   }
 }
 .header__navbar__run {
@@ -70,8 +90,8 @@
 
 .header__navbar__run__badge {
   font-size: 0.8rem !important;
-  left: 17px;
-  top: 4px;
+  left: 15px;
+  top: 12px;
   .ant-badge-count {
     color: white;
     background: grey !important;
@@ -103,16 +123,20 @@
 // }
 
 .header__go-top {
-  border: 10px solid darken($off-white, 3%);
-  border-radius: 50%;
-  font-size: $font-size-huge;
-  line-height: 0;
-  position: fixed;
-  top: 12vh;
-  right: 4vw;
-  padding: $m-size;
-  cursor: pointer;
-  i {
-    color: darken($off-white, 3%);
+  display: none;
+  @media (min-width: $desktop-breakpoint) {
+    display: block;
+    border: 10px solid darken($off-white, 3%);
+    border-radius: 50%;
+    font-size: $font-size-huge;
+    line-height: 0;
+    position: fixed;
+    top: 12vh;
+    right: 4vw;
+    padding: $m-size;
+    cursor: pointer;
+    i {
+      color: darken($off-white, 3%);
+    }
   }
 }

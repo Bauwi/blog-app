@@ -38,13 +38,8 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
     store.dispatch(startSetUserPreferences());
-
     store.dispatch(startSetPosts(user.uid, 16)).then(() => {
       renderApp();
-      // only redirect when user is at the root of the app
-      if (history.location.pathname === '/') {
-        history.push('/dashboard');
-      }
     });
   } else if (
     !history.location.pathname.includes('/read') &&

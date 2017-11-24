@@ -8,9 +8,12 @@ import {
 } from '../../actions/filters';
 
 export class ByTermFilter extends Component {
+  // text
   onTextChange = e => {
     this.props.setTextFilter(e.target.value);
   };
+
+  //select
   onSearchByChange = e => {
     if (e.target.value === 'title') {
       this.props.searchByTitle();
@@ -20,6 +23,11 @@ export class ByTermFilter extends Component {
       this.props.searchByKeyword();
     }
   };
+
+  // clear the text filter. Prevents undesired filtering when user navigates.
+  componentWillUnmount() {
+    this.props.setTextFilter('');
+  }
 
   render() {
     return (

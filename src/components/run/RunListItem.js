@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import moment from 'moment';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import moment from 'moment';
 
 import { setCurrentPostRun } from '../../actions/run';
 
@@ -64,6 +65,11 @@ export class RunListItem extends Component {
     );
   }
 }
+
+RunListItem.propTypes = {
+  post: PropTypes.object.isRequired,
+  setCurrentPostRun: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = dispatch => ({
   setCurrentPostRun: id => dispatch(setCurrentPostRun(id))

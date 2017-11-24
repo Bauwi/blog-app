@@ -26,6 +26,7 @@
     & > * {
       width: calc(100% * 1 / #{$number} - #{$gutter});
     }
+
     & > .flexitem-double {
       width: calc(100% * 2 / #{$number} - #{$gutter});
     }
@@ -33,41 +34,4 @@
       width: calc(100% * 3 / #{$number} - #{$gutter});
     }
   }
-}
-
-/* mixin for multiline */
-@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white) {
-  overflow: hidden;
-  position: relative;
-  line-height: $lineHeight;
-  max-height: $lineHeight * $lineCount;
-  text-align: justify;
-  margin-right: -1.8em !important;
-  padding-right: 1.8em !important;
-  margin-left: 1em;
-
-  &:before {
-    content: "...";
-    color: $light-grey;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    right: 0;
-    width: 2em;
-    height: 1em;
-    margin-top: 0.2em;
-    background: $bgColor;
-    transition: background 0.3s ease;
-  }
-}
-
-.block-with-text-3 {
-  @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3, $bgColor: #222);
-}
-.block-with-text-2 {
-  @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 2, $bgColor: #222);
 }

@@ -1,27 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Header from '../header/Header';
 import PostsList from './PostsList';
 import PostsSummary from './PostsSummary';
 import UserCard from '../UserCard';
 
-export class DashboardPage extends Component {
-  state = { goTopIcon: false };
-  render() {
-    console.log(this.props.user);
-    return (
-      <div className="content-container">
-        <UserCard author={this.props.user} />
-        <PostsSummary />
-        <PostsList />
-      </div>
-    );
-  }
-}
+const DashboardPage = ({ user }) => (
+  <div className="content-container">
+    <div>
+      <UserCard author={user} />
+      <PostsSummary />
+      <PostsList />
+    </div>
+  </div>
+);
+
+DashboardPage.propTypes = {
+  user: PropTypes.shape({
+    avatar: PropTypes.string,
+    description: PropTypes.string,
+    email: PropTypes.string,
+    stars: PropTypes.number.isRequired,
+    topCategories: PropTypes.arrayOf(PropTypes.string),
+    username: PropTypes.string
+  }).isRequired
+};
 
 const mapStateToProps = state => ({
   user: state.users.preferences
 });
 
+export { DashboardPage };
 export default connect(mapStateToProps)(DashboardPage);

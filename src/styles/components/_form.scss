@@ -15,3 +15,8 @@
 .footer--correction__addpost {
   padding-bottom: 20rem;
 }
+
+.form--post > label > textarea {
+  font-size: $font-size-huge;
+  text-align: center;
+}

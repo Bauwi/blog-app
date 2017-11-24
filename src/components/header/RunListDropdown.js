@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Menu, Dropdown, Icon, message } from 'antd';
@@ -41,15 +42,17 @@ export class RunListDropdown extends Component {
   };
 
   render() {
-    console.log(this.props);
     const menu = (
       <Menu>
-        <Menu.Item key="0">
-          <button className="button" onClick={this.handleResumeClick}>
-            Resume
-          </button>
-          <button className="button">Reset</button>
-        </Menu.Item>
+        {this.props.posts &&
+          this.props.posts.length !== 0 && (
+            <Menu.Item key="0">
+              <button className="button" onClick={this.handleResumeClick}>
+                Resume
+              </button>
+              <button className="button">Reset</button>
+            </Menu.Item>
+          )}
         {this.props.posts && this.renderDropdownPosts()}
       </Menu>
     );
@@ -62,6 +65,11 @@ export class RunListDropdown extends Component {
     );
   }
 }
+
+RunListDropdown.propTypes = {
+  posts: PropTypes.array,
+  setCurrentPostRun: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = dispatch => ({
   setCurrentPostRun: id => dispatch(setCurrentPostRun(id))

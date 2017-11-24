@@ -46,7 +46,11 @@ export class PublicPostsListItem extends Component {
         <Link to={`/${authorId}/read/${id}`} className="no-decoration">
           <div className="homelist-item__content">
             <header>
-              <img src={miniCover} className="list-item__img" alt="post cover" />
+              <img
+                src={miniCover}
+                className="list-item__img homelist-item__content__cover"
+                alt="post cover"
+              />
             </header>
             <section className="homelist-item__content__header">
               <div>

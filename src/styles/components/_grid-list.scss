@@ -1,7 +1,6 @@
 @import "./base/mixins";
 .grid-home-first {
   @include grid(4);
-  border-top: 2px solid $gold;
   margin: $xl-size 0;
   padding: 0;
   & > * {
@@ -42,8 +41,18 @@
 .grid-home-second > a:nth-child(7) {
   @extend .flexitem-double;
 }
-
+.homelist__empty {
+  display: flex;
+  justify-content: center;
+  min-height: 35rem;
+  width: 100%;
+  padding: $xl-size;
+  p {
+    font-style: italic;
+  }
+}
 .homelist__title {
+  border-bottom: 2px solid $gold;
   color: $light-grey;
   font-size: $font-size-medium;
   margin: 0 auto 0 $s-size;

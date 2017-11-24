@@ -1,32 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { sortByDate, sortByStars } from '../../actions/filters';
 
-export class PopularLasttFilter extends Component {
-  render() {
-    const popularButtonCLass =
-      this.props.filters.sortBy === 'stars'
-        ? 'button button--simple is-selected'
-        : 'button button--simple';
-    const lastButtonCLass =
-      this.props.filters.sortBy === 'date'
-        ? 'button button--simple is-selected'
-        : 'button button--simple';
-    return (
-      <div className="popular-last-filterbar">
-        <p>{this.props.category}</p>
-        <div>
-          <button className={popularButtonCLass} onClick={this.props.sortByStars}>
-            Popular
-          </button>
-          <button className={lastButtonCLass} onClick={this.props.sortByDate}>
-            Last
-          </button>
-        </div>
+const PopularLasttFilter = ({ filters, sortByStars, sortByDate }) => {
+  const popularButtonCLass =
+    filters.sortBy === 'stars' ? 'button button--simple is-selected' : 'button button--simple';
+  const lastButtonCLass =
+    filters.sortBy === 'date' ? 'button button--simple is-selected' : 'button button--simple';
+  return (
+    <div className="popular-last-filterbar">
+      <p />
+      <div>
+        <button className={popularButtonCLass} onClick={sortByStars}>
+          Popular
+        </button>
+        <button className={lastButtonCLass} onClick={sortByDate}>
+          Last
+        </button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+PopularLasttFilter.propTypes = {
+  filters: PropTypes.objectOf(PropTypes.string).isRequired,
+  sortByDate: PropTypes.func.isRequired,
+  sortByStars: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({ filters: state.filters });
 

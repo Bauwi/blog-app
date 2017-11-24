@@ -17,6 +17,7 @@
         "args": "none"
       }
     ],
+    "no-shadow": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
- }
+}

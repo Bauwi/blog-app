@@ -1,6 +1,5 @@
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-import moment from 'moment';
 
 // const config = {
 //   apiKey: process.env.FIREBASE_API_KEY,
@@ -25,8 +24,6 @@ firebase.initializeApp(config);
 const database = firebase.database();
 const db = firebase.firestore();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+const githubAuthProvider = new firebase.auth.GithubAuthProvider();
 
-console.log('NODE_ENV', process.env.NODE_ENV);
-console.log('API_KEY', process.env.APP_KEY);
-
-export { firebase, googleAuthProvider, db, database as default };
+export { firebase, googleAuthProvider, githubAuthProvider, db, database as default };

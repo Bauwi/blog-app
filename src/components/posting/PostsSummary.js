@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -15,6 +16,10 @@ export const PostsSummary = ({ selectedPosts }) => (
     <h3 className="page-header__subtitle">2 hidden posts</h3>
   </div>
 );
+
+PostsSummary.propTypes = {
+  selectedPosts: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 const mapStateToProps = state => ({
   selectedPosts: selectPosts(state.posts, state.filters)

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import RunListItem from './RunListItem';
 
@@ -24,3 +25,11 @@ export default class RunList extends Component {
     );
   }
 }
+
+RunList.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.object)
+};
+
+RunList.defaultProps = {
+  posts: []
+};

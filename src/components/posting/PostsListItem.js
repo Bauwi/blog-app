@@ -1,61 +1,50 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import moment from 'moment';
 
-import KeywordsListItem from './KeywordsListItem';
+import KeywordsList from '../KeywordsList';
 
-export class PostsListItem extends Component {
-  renderKeywordsList = () => {
-    if (this.props.keywords.length === 0) {
-      return <li>No keyword provided</li>;
-    }
-    return this.props.keywords
-      .split(',')
-      .map(keyword => <KeywordsListItem key={keyword} keyword={keyword.trim()} />);
-  };
-
-  render() {
-    const {
-      id,
-      title,
-      shortBody,
-      keywords,
-      createdAt,
-      author,
-      readingTime,
-      cover,
-      stars,
-      miniCover
-    } = this.props;
-
-    return (
-      <div className="homelist-item">
-        <Link to={`/edit/${id}`}>
-          <div className="homelist-item__content">
-            <header>
-              <img src={miniCover} className="list-item__img" alt="post cover" />
-            </header>
-            <section className="homelist-item__content__header">
-              <div>
-                <i className="fa fa-star" /> {stars}
-              </div>
-              <p className="homelist-item__content__date">
-                {moment(createdAt).format('MMM Do, YYYY')}
-              </p>
-            </section>
-            <div className="homelist-item__content__infos">
-              <h3 className="homelist-item__content__title">{title}</h3>
-
-              <div className="homelist-item__content__subtitle">
-                <p className="homelist-item__content__author">{author}</p>
-              </div>
-            </div>
+const PostsListItem = ({
+  id, title, createdAt, author, stars, miniCover, keywords
+}) => (
+  <div className="list-item">
+    <Link to={`/edit/${id}`}>
+      <div className="list-item__content">
+        <header>
+          <img
+            src={miniCover}
+            className="list-item__img list-item__content__cover"
+            alt="post cover"
+          />
+        </header>
+        <section className="list-item__content__header">
+          <div>
+            <i className="fa fa-star" /> {stars}
           </div>
-        </Link>
-      </div>
-    );
-  }
-}
+          <p className="list-item__content__date">{moment(createdAt).format('MMM Do, YYYY')}</p>
+        </section>
+        <div className="list-item__content__infos">
+          <h3 className="list-item__content__title">{title}</h3>
 
-export default connect()(PostsListItem);
+          <div className="list-item__content__subtitle">
+            <p className="list-item__content__author">{author}</p>
+          </div>
+        </div>
+        <KeywordsList keywords={keywords} />
+      </div>
+    </Link>
+  </div>
+);
+
+PostsListItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  createdAt: PropTypes.number.isRequired,
+  keywords: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  stars: PropTypes.number.isRequired,
+  miniCover: PropTypes.string.isRequired
+};
+
+export default PostsListItem;

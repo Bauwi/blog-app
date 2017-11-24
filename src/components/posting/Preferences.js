@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Upload, Icon, message, Input } from 'antd';
-import AvatarEditor from 'react-avatar-editor';
+import { message, Input } from 'antd';
 
 import PreferencesAvatar from './PreferencesAvatar';
 
 import { startUpdateUser, uploadAvatar } from '../../actions/users';
+
 const { TextArea } = Input;
 const success = () => {
   message.success('Your informations have been successfully updated.');
@@ -18,7 +19,6 @@ const error = () => {
 export class Preferences extends Component {
   state = {
     avatar: this.props.preferences.avatar ? this.props.preferences.avatar : '',
-    avatarPreview: '',
     username: this.props.preferences.username ? this.props.preferences.username : 'Anonymous',
     topCategory1: this.props.preferences.topCategories
       ? this.props.preferences.topCategories[0]
@@ -152,7 +152,7 @@ export class Preferences extends Component {
             <p>Description: </p>
             <p>Your description can not exceed 200 characters</p>
             <TextArea
-              placeholder="Athos"
+              placeholder="I had three chairs in my house; one for solitude, two for friendship, three for society."
               type="text"
               value={this.state.description}
               onChange={this.handleDescriptionChange}
@@ -167,6 +167,16 @@ export class Preferences extends Component {
     );
   }
 }
+
+Preferences.propTypes = {
+  avatar: PropTypes.string,
+  username: PropTypes.string,
+  topCategories: PropTypes.arrayOf(PropTypes.string),
+  description: PropTypes.string,
+  userId: PropTypes.string.isRequired,
+  startUpdateUser: PropTypes.func.isRequired,
+  uploadAvatar: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = dispatch => ({
   startUpdateUser: (id, updates) => dispatch(startUpdateUser(id, updates)),

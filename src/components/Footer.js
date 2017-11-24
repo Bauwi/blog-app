@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Footer = ({ position }) => (
+const Footer = () => (
   <div className="footer">
     <div className="footer__top">
       <nav className="footer__nav">
@@ -18,7 +18,7 @@ const Footer = ({ position }) => (
       </nav>
 
       <nav className="footer__nav">
-        <NavLink to="/home">
+        <NavLink to="/">
           <i className="fa fa-home" /> Home
         </NavLink>
         <NavLink to="/dashboard">

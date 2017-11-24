@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 
-import Header from '../header/Header';
 import UserCard from '../UserCard';
 import LoadingPage from '../LoadingPage';
 import KeywordsList from '../KeywordsList';
-import Footer from '../Footer';
 
 import { startSetOnePost } from '../../actions/readings';
 import { startSetAuthorFromUserId, startAddUserStar } from '../../actions/users';
@@ -16,7 +15,7 @@ import { startUpPostStar } from '../../actions/posts';
 export class ReadPost extends Component {
   state = { loading: true };
 
-  componentWillMount() {
+  componentDidMount() {
     const { id } = this.props.match.params;
     this.props
       .startSetOnePost(id)
@@ -34,7 +33,6 @@ export class ReadPost extends Component {
   render() {
     return (
       <div>
-        <Header />
         {this.state.loading ? (
           <LoadingPage />
         ) : (
@@ -68,11 +66,19 @@ export class ReadPost extends Component {
             </footer>
           </div>
         )}
-        <Footer />
       </div>
     );
   }
 }
+
+ReadPost.propTypes = {
+  post: PropTypes.object,
+  author: PropTypes.object,
+  startSetOnePost: PropTypes.func.isRequired,
+  startSetAuthorFromUserId: PropTypes.func.isRequired,
+  startAddUserStar: PropTypes.func.isRequired,
+  startUpPostStar: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = dispatch => ({
   startSetOnePost: id => dispatch(startSetOnePost(id)),

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { setCurrentPostRun } from '../../actions/run';
@@ -37,8 +38,8 @@ export class RunReadNavItem extends Component {
       title,
       createdAt,
       author,
-      keywords,
       authorId,
+      keywords,
       miniCover,
       stars
     } = this.props.post.content;
@@ -77,6 +78,16 @@ export class RunReadNavItem extends Component {
     );
   }
 }
+
+RunReadNavItem.propTypes = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  createdAt: PropTypes.number,
+  author: PropTypes.object,
+  keywords: PropTypes.string,
+  miniCover: PropTypes.string,
+  stars: PropTypes.number
+};
 
 const mapDispatchToProps = dispatch => ({
   setCurrentPostRun: id => dispatch(setCurrentPostRun(id))

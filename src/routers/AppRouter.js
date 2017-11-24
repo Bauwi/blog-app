@@ -1,7 +1,8 @@
 import React from 'react';
 import { Router, Route, Switch, Link, NavLink } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import LoginPage from '../components/LoginPage';
+import Header from '../components/header/Header';
+import Footer from '../components/Footer';
 import DashboardPage from '../components/posting/DashboardPage';
 import CategorizedReads from '../components/CategorizedReads';
 import Preferences from '../components/posting/Preferences';
@@ -27,9 +28,9 @@ const AppRouter = () => (
   <Router history={history}>
     <ScrollToTop>
       <div>
+        <Header />
         <Switch>
-          <PublicRoute path="/" component={LoginPage} exact />
-          <Route path="/home" component={HomeRead} />
+          <PublicRoute path="/" component={HomeRead} exact />
           <Route path="/category/:id" component={CategorizedReads} />
           <Route exact path="/:id/read/" component={AuthorSummary} />
           <Route path="/:id/read/:id" component={ReadPost} />
@@ -41,6 +42,7 @@ const AppRouter = () => (
           <PrivateRoute path="/edit/:id" component={EditPost} />
           <Route component={NotFoundPage} />
         </Switch>
+        <Footer />
       </div>
     </ScrollToTop>
   </Router>

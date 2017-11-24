@@ -2,19 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-import KeywordsList from './KeywordsList';
+import KeywordsList from '../KeywordsList';
 
-export default class InlineListItem extends Component {
-  renderKeywords() {
-    const keywordsList = this.props.post.content
-      ? this.props.post.content.keywords.split(',')
-      : this.props.post.keywords.split(',');
-    return keywordsList.map((keyword) => {
-      const keywordFormatted = keyword.trim();
-      return <li key={keyword}>{keywordFormatted}</li>;
-    });
-  }
-
+export default class AuthorSummaryListItem extends Component {
   render() {
     const {
       id, title, createdAt, author, keywords, authorId, miniCover, stars

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import InlineListItem from './InlineListItem';
+import AuthorSummaryListItem from './AuthorSummaryListItem';
 
-export default class InlineList extends Component {
+export default class AuthorSummaryList extends Component {
   renderList() {
     return this.props.posts.map((post) => {
       const key = post.content ? post.content.id : post.id;
 
-      return <InlineListItem key={key} post={post} />;
+      return <AuthorSummaryListItem key={key} post={post} />;
     });
   }
 

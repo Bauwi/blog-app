@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import LoadingPage from './LoadingPage';
-import Header from './header/Header';
 import PublicPostsList from './PublicPostsList';
-import Footer from './Footer';
+import PopularLasttFilter from './filters/PopularLastFilter';
 
 import { startSetPostsSample } from '../actions/readings';
-import { HomeReadHeader } from './home/HomeReadHeader';
 
 export class CategorizedReads extends Component {
   state = {
@@ -27,7 +25,6 @@ export class CategorizedReads extends Component {
   render() {
     return (
       <div>
-        <Header />
         {this.state.loading ? (
           <LoadingPage />
         ) : (
@@ -35,8 +32,9 @@ export class CategorizedReads extends Component {
             <div className="category__header">
               <h1>{this.props.match.params.id.toUpperCase()}</h1>
             </div>
-
-            <HomeReadHeader />
+            <div className="content-container">
+              <PopularLasttFilter />
+            </div>
             <PublicPostsList
               grid="grid-home-first"
               category={this.props.match.params.id}
@@ -44,7 +42,6 @@ export class CategorizedReads extends Component {
             />
           </div>
         )}
-        <Footer position="absolute" />
       </div>
     );
   }

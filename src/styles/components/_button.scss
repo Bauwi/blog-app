@@ -29,7 +29,7 @@
 }
 
 .button--more {
-  background: lighten($dark-blue, 50%);
+  // background: lighten($dark-blue, 50%);
   width: 100%;
 }
 
@@ -43,11 +43,16 @@
 .button--simple {
   background: none;
   border: none;
+  border-bottom: 1px solid white;
   color: grey;
   font-weight: 300;
   padding: 0;
   padding-bottom: $s-size/2;
   margin-left: $s-size;
+  &:hover {
+    background: none;
+    color: grey;
+  }
 }
 
 .button--navbar {

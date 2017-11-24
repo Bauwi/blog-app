@@ -3,12 +3,16 @@ import { db } from '../firebase/firebase';
 import * as firebase from 'firebase';
 import axios from 'axios';
 
+// manage CRUD of users
+
 export const updateUser = (id, updates) => ({
   type: 'UPDATE_USER_PREFERENCES',
   id,
   updates
 });
 
+// This one is a bit tricky. Handles updating or creating user.
+// creates a new user entry if that one does not exist yet, update it if it does.
 export const startUpdateUser = (id, updates) => (dispatch, getState) => {
   const uid = id || getState().auth.uid;
   return db
@@ -39,6 +43,7 @@ export const startUpdateUser = (id, updates) => (dispatch, getState) => {
     });
 };
 
+// Add a star to user. Always used simultaneously with addPostStar
 export const addUserStar = nextStars => ({
   type: 'ADD_USER_STAR',
   nextStars
@@ -51,6 +56,8 @@ export const startAddUserStar = (id, prevStars) => dispatch =>
     .update({ stars: prevStars + 1 })
     .then(() => dispatch(addUserStar(prevStars + 1)));
 
+// Used when reading a post. Get the author of this particualr post informations (i.e. preferences)
+// useful in UserCard
 export const setAuthor = author => ({
   type: 'SET_AUTHOR',
   author
@@ -65,6 +72,7 @@ export const startSetAuthorFromUserId = userId => dispatch =>
       dispatch(setAuthor(doc.data()));
     });
 
+// Set the user preferences
 export const setUserPreferences = preferences => ({
   type: 'SET_USER_PREFERENCES',
   preferences
@@ -79,6 +87,7 @@ export const startSetUserPreferences = () => (dispatch, getState) =>
       dispatch(setUserPreferences(doc.data()));
     });
 
+// Used in /preferences. Same logic as uploadImage in posts action file.
 export const uploadAvatar = (userId, avatar) => (dispatch) => {
   const storageAvatar = firebase.storage().ref(`avatars/${userId}`);
   const ROOT_URL = 'https://firebasestorage.googleapis.com/v0/b/blog-app-1de4a.appspot.com/o';

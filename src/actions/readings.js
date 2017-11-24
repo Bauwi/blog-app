@@ -3,16 +3,18 @@ import moment from 'moment';
 import axios from 'axios';
 
 // manage reading all posts
+// set readings in home
 export const setPostsSample = posts => ({
   type: 'SET_POSTS_SAMPLE',
   posts
 });
 
-export const startSetPostsSample = sampleSize => dispatch =>
+// Find the last 100 posts.
+export const startSetPostsSample = () => dispatch =>
   db
     .collection('posts')
     .orderBy('createdAt', 'desc')
-    .limit(50)
+    .limit(100)
     .get()
     .then((querySnapshot) => {
       const posts = [];
