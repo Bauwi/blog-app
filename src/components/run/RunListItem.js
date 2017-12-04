@@ -4,20 +4,14 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 
+import KeywordsList from '../KeywordsList';
+
 import { setCurrentPostRun } from '../../actions/run';
 
 export class RunListItem extends Component {
-  renderKeywords() {
-    const keywordsList = this.props.post.content.keywords.split(',');
-    return keywordsList.map(keyword => {
-      const keywordFormatted = keyword.trim();
-      return <li key={keyword}>{keywordFormatted}</li>;
-    });
-  }
-
   handleItemClick = () => {
-    this.props.setCurrentPostRun(this.props.post.content.id);
     this.props.history.push('/run/start');
+    this.props.setCurrentPostRun(this.props.post.content.id);
   };
 
   render() {
@@ -57,7 +51,7 @@ export class RunListItem extends Component {
               <div className="inline-list-item__subtitle">
                 <p className="inline-list-item__author">{author}</p>
               </div>
-              <ul className="inline-list-item__keywords-list">{this.renderKeywords()}</ul>
+              <KeywordsList keywords={keywords} />
             </div>
           </div>
         </div>
@@ -68,6 +62,7 @@ export class RunListItem extends Component {
 
 RunListItem.propTypes = {
   post: PropTypes.object.isRequired,
+  state: PropTypes.string.isRequired,
   setCurrentPostRun: PropTypes.func.isRequired
 };
 

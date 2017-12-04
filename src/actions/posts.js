@@ -1,6 +1,7 @@
 import * as firebase from 'firebase';
 import axios from 'axios';
 import { db } from '../firebase/firebase';
+import { startAddUserStar } from './users';
 
 // Manage CRUD personnal posts
 export const addPost = post => ({
@@ -77,50 +78,24 @@ export const startEditPost = (id, updates) => dispatch =>
     .update(updates)
     .then(() => dispatch(editPost(id, updates)));
 
-export const setPosts = posts => ({
-  type: 'SET_POSTS',
-  posts
-});
-
-// Manage fetching personnal posts in the dashboard
-export const startSetPosts = (id, rangeMin, rangeMax) => (dispatch, getState) => {
-  const uid = id || getState().auth.uid;
-  return db
-    .collection('posts')
-    .where('authorId', '==', `${uid}`)
-    .get()
-    .then((querySnapshot) => {
-      const allPosts = [];
-      querySnapshot.forEach((doc) => {
-        allPosts.push({
-          id: doc.id,
-          ...doc.data()
-        });
-      });
-      const posts = allPosts
-        .sort((a, b) => a.createdAt - b.createdAt)
-        .reverse()
-        .slice(rangeMin, rangeMax);
-      dispatch(setPosts(posts));
-    });
-};
-
 // Add a star to post -- may need to be moved to readings action file
 export const addPostStar = (id, stars) => ({
-  type: 'ADD_POST_STAR',
+  type: 'UP_POST_STAR',
   id,
   stars
 });
 
-export const startAddPostStar = (id, stars) => dispatch =>
+export const startAdPostStar = (id, stars) => dispatch =>
   db
     .collection('posts')
     .doc(id)
     .update({ stars })
     .then(() => dispatch(addPostStar(id, stars)));
 
-export const startUpPostStar = id => (dispatch) => {
+export const startUpPostStar = (id, authorId, authorStars) => (dispatch) => {
+  console.log(id);
   const ref = db.collection('posts').doc(id);
+  console.log(ref);
   return db
     .runTransaction(transaction =>
       transaction.get(ref).then((doc) => {
@@ -128,7 +103,8 @@ export const startUpPostStar = id => (dispatch) => {
         transaction.update(ref, { stars: newStars });
         return newStars;
       }))
-    .then(newStars => dispatch(addPostStar(id, newStars)));
+    .then(newStars => dispatch(addPostStar(id, newStars)))
+    .then(() => dispatch(startAddUserStar(authorId, authorStars)));
 };
 
 // TODO: IMPROVE THIS USING PROMISE.ALL
@@ -164,4 +140,48 @@ export const uploadImage = (id, cover, miniCover) => (dispatch) => {
         .then(() => dispatch(editPost(id, { miniCover: miniCoverSrc, cover: coverSrc })));
       return [miniCoverSrc, coverSrc];
     });
+};
+
+// Loading - Error
+
+export const postsHasErrored = bool => ({
+  type: 'POSTS_HAS_ERRORED',
+  hasErrored: bool
+});
+
+export const postsIsLoading = bool => ({
+  type: 'POSTS_IS_LOADING',
+  isLoading: bool
+});
+
+export const setPosts = posts => ({
+  type: 'SET_POSTS',
+  posts
+});
+
+// Manage fetching personnal posts in the dashboard
+export const startSetPosts = (id, rangeMin, rangeMax) => (dispatch, getState) => {
+  dispatch(postsIsLoading(true));
+  const uid = id || getState().auth.uid;
+  return db
+    .collection('posts')
+    .where('authorId', '==', `${uid}`)
+    .get()
+    .then((querySnapshot) => {
+      const allPosts = [];
+      querySnapshot.forEach((doc) => {
+        allPosts.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+      const posts = allPosts
+        .sort((a, b) => a.createdAt - b.createdAt)
+        .reverse()
+        .slice(rangeMin, rangeMax);
+      dispatch(postsIsLoading(false));
+      return posts;
+    })
+    .then(posts => dispatch(setPosts(posts)))
+    .catch(() => dispatch(postsHasErrored(true)));
 };

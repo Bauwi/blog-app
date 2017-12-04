@@ -1,33 +1,45 @@
-const postsReducerDefaultState = [];
+const postsReducerDefaultState = { posts: [] };
 
 const postsReducer = (state = postsReducerDefaultState, action) => {
   switch (action.type) {
     case 'ADD_POST':
-      return [...state, action.post];
+      return {
+        ...state,
+        posts: [...state.posts, action.post]
+      };
+
     case 'REMOVE_POST':
-      return state.filter(post => post.id !== action.id);
+      return { ...state, posts: state.posts.filter(post => post.id !== action.id) };
     case 'EDIT_POST':
-      return state.map((post) => {
-        if (post.id === action.id) {
-          return {
-            ...post,
-            ...action.updates
-          };
-        }
-        return post;
-      });
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          if (post.id === action.id) {
+            return {
+              ...post,
+              ...action.updates
+            };
+          }
+          return post;
+        })
+      };
     case 'SET_POSTS':
-      return [...state, ...action.posts];
-    case 'ADD_POST_STAR':
-      return state.map((post) => {
-        if (post.id === action.id) {
-          return {
-            ...post,
-            stars: action.stars
-          };
-        }
-        return post;
-      });
+      return { ...state, posts: [...state.posts, ...action.posts] };
+    case 'POSTS_IS_LOADING':
+      return { ...state, isLoading: action.isLoading };
+    case 'UP_POST_STAR':
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          if (post.id === action.id) {
+            return {
+              ...post,
+              stars: action.stars
+            };
+          }
+          return post;
+        })
+      };
 
     default:
       return state;

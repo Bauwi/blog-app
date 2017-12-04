@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render HeaderNavBar correctly 1`] = `
+<nav
+  className="header__navbar"
+>
+  <NavLink
+    activeClassName="active"
+    ariaCurrent="true"
+    to="/"
+  >
+    <i
+      className="fa fa-home"
+    />
+  </NavLink>
+  <NavLink
+    activeClassName="active"
+    ariaCurrent="true"
+    to="/dashboard"
+  >
+    <i
+      className="fa fa-pencil"
+    />
+  </NavLink>
+  <nav
+    to="/run"
+  >
+    <Badge
+      className="header__navbar__run__badge"
+      count={0}
+      dot={false}
+      overflowCount={99}
+      prefixCls="ant-badge"
+      scrollNumberPrefixCls="ant-scroll-number"
+      showZero={true}
+    />
+    <withRouter(Connect(RunListDropdown)) />
+  </nav>
+  <NavLink
+    activeClassName="active"
+    ariaCurrent="true"
+    to="/preferences"
+  >
+    <i
+      className="fa fa-cog"
+    />
+  </NavLink>
+  <button
+    className="button button--navbar"
+    onClick={[Function]}
+  >
+    <i
+      className="fa fa-sign-out"
+    />
+  </button>
+</nav>
+`;

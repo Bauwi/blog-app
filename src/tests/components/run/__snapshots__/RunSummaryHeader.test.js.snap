@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render RunSummaryHeader component properly 1`] = `
+<div
+  className="run__summary"
+>
+  <div
+    className="content-container"
+  >
+    <header
+      className="run__summary__header"
+    >
+      <div>
+        <h1>
+          Current Run
+        </h1>
+        <p>
+          3
+           posts
+        </p>
+        <p>
+          21 minutes read
+        </p>
+      </div>
+      <div
+        className="run__summary__buttons"
+      >
+        <button
+          className="button button--icon"
+          onClick={[Function]}
+        >
+          <i
+            className="fa fa-play-circle"
+          />
+        </button>
+        <div>
+          <button
+            className="button button--icon"
+            onClick={[Function]}
+          >
+            <i
+              className="fa fa-fire-extinguisher"
+            />
+          </button>
+          <button
+            className="button button--icon"
+            onClick={[Function]}
+          >
+            <i
+              className="fa fa-trash"
+            />
+          </button>
+        </div>
+      </div>
+    </header>
+  </div>
+</div>
+`;

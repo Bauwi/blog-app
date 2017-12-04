@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render PublicPostsList component properly 1`] = `
+<div>
+  <div
+    className="homelist__header"
+  >
+    <div
+      className="content-container"
+    >
+      <h3
+        className="homelist__header__title"
+      />
+    </div>
+  </div>
+  <div
+    className="content-container content-container--border"
+  >
+    <div>
+      <Connect(PublicPostsListItem)
+        key="1"
+        post={
+          Object {
+            "author": "author1",
+            "authorId": "author1Id",
+            "body": Array [
+              Object {
+                "attributes": "h1",
+                "text": "This is the first Post in run",
+              },
+            ],
+            "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "createdAt": 0,
+            "id": "1",
+            "keywords": "red, green, blue",
+            "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "readingTime": 7,
+            "stars": 5,
+            "title": "Post 1 in Run",
+          }
+        }
+      />
+      <Connect(PublicPostsListItem)
+        key="2"
+        post={
+          Object {
+            "author": "author2",
+            "authorId": "author2Id",
+            "body": Array [
+              Object {
+                "attributes": "h2",
+                "text": "This is the second Post in run",
+              },
+            ],
+            "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "createdAt": -1500,
+            "id": "2",
+            "keywords": "cat, dog, fish",
+            "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "readingTime": 12,
+            "stars": 25,
+            "title": "Post 2 in Run",
+          }
+        }
+      />
+      <Connect(PublicPostsListItem)
+        key="3"
+        post={
+          Object {
+            "author": "author3",
+            "authorId": "author3Id",
+            "body": Array [
+              Object {
+                "attributes": "h3",
+                "text": "blabla",
+              },
+            ],
+            "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "createdAt": 1000000,
+            "id": "3",
+            "keywords": "car, pool, cake",
+            "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "readingTime": 2,
+            "stars": 2,
+            "title": "Post 3 in Run",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should render PublicPostsList component properly on loading 1`] = `<Component />`;
+
+exports[`should render PublicPostsLists component properly when no post provided 1`] = `
+<div>
+  <div
+    className="homelist__header"
+  >
+    <div
+      className="content-container"
+    >
+      <h3
+        className="homelist__header__title"
+      />
+    </div>
+  </div>
+  <div
+    className="content-container homelist__empty"
+  >
+    <p>
+      Nothing matches! Please check you spelled correctly the category name in your preferences or choose a more generic term.
+       
+      <span>
+        <Link
+          replace={false}
+          to="/preferences"
+        >
+          Check my preferences
+        </Link>
+      </span>
+    </p>
+  </div>
+  <div
+    className="content-container content-container--border"
+  >
+    <div />
+  </div>
+</div>
+`;

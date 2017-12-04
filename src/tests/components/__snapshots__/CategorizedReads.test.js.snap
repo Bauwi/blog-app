@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render CategorizedReads component properly 1`] = `
+<div>
+  <HeaderSub
+    category="music"
+  />
+  <div>
+    <div
+      className="content-container"
+    >
+      <Connect(PopularLasttFilter)
+        relative={true}
+      />
+    </div>
+    <Connect(PublicPostsList)
+      category="music"
+      grid="grid-home-first"
+      range={14}
+    />
+  </div>
+</div>
+`;
+
+exports[`should render CategorizedReads component properly on loading 1`] = `
+<div>
+  <HeaderSub
+    category="music"
+  />
+  <Component />
+</div>
+`;

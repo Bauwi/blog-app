@@ -2,12 +2,29 @@
 
 exports[`should render DashboardPage component 1`] = `
 <div>
-  <Link
-    replace={false}
-    to="/create"
+  <Connect(PostsSummary) />
+  <div
+    className="content-container"
   >
-    New Post
-  </Link>
-  <Connect(PostsList) />
+    <UserCard
+      author={
+        Object {
+          "avatar": "http://www.perlworkshop.nl/nlpw2016/img/default-avatar.png",
+          "description": "I had three chairs in my house; one for solitude, two for friendship, three for society.",
+          "email": "",
+          "numberOfPosts": 3,
+          "stars": 12,
+          "topCategories": Array [
+            "music",
+            "movie",
+            "litterature",
+          ],
+          "username": "user1",
+        }
+      }
+      userId="123abc"
+    />
+    <Connect(PostsList) />
+  </div>
 </div>
 `;

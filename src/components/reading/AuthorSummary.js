@@ -10,34 +10,21 @@ import selectPosts from '../../selectors/posts';
 import LoadingPage from '../LoadingPage';
 
 import { startSetSpecificUserPosts } from '../../actions/readings';
-import { startSetAuthorFromUserId } from '../../actions/users';
 
 export class AuthorSummary extends Component {
-  state = {
-    loading: true
-  };
-
   componentDidMount() {
-    const userId = this.props.location.pathname.slice(1, 29);
-    return this.props
-      .startSetSpecificUserPosts(userId)
-      .then(() => {
-        return this.props.startSetAuthorFromUserId(userId);
-      })
-      .then(() => {
-        this.setState(() => ({ loading: false }));
-      });
+    this.props.startSetSpecificUserPosts(this.props.userId);
   }
 
   render() {
-    if (this.state.loading) {
+    if (this.props.isLoading) {
       return <LoadingPage />;
     }
     return (
       <div>
         <div className="page-container">
           <div className="content-container">
-            <UserCard author={this.props.author} />
+            <UserCard author={this.props.author} userId={this.props.userId} />
             <CompleteFiltersBar />
           </div>
           <AuthorSummaryList posts={this.props.posts} />
@@ -50,18 +37,20 @@ export class AuthorSummary extends Component {
 AuthorSummary.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   author: PropTypes.object,
-  startSetAuthorFromUserId: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool,
   startSetSpecificUserPosts: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
-  startSetSpecificUserPosts: id => dispatch(startSetSpecificUserPosts(id)),
-  startSetAuthorFromUserId: userId => dispatch(startSetAuthorFromUserId(userId))
+  startSetSpecificUserPosts: id => dispatch(startSetSpecificUserPosts(id))
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   posts: selectPosts(state.readings.currentUserPosts, state.filters),
-  author: state.users.author
+  author: state.users.author,
+  isLoading: state.readings.isLoading,
+  userId: props.location.pathname.slice(1, 29)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthorSummary);

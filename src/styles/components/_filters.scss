@@ -1,9 +1,17 @@
 //the one used in home for example
+.popular-last-filterbar__container {
+  color: grey;
+}
+
 .popular-last-filterbar {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-top: $m-size;
+}
+
+.popular-last-filterbar--relative {
+  position: relative;
+  top: 7rem;
 }
 
 //the one used in dashboard for example

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render EditPost component properly 1`] = `
+<div>
+  <PostForm
+    author={
+      Object {
+        "avatar": "http://www.perlworkshop.nl/nlpw2016/img/default-avatar.png",
+        "description": "I had three chairs in my house; one for solitude, two for friendship, three for society.",
+        "email": "",
+        "numberOfPosts": 3,
+        "stars": 12,
+        "topCategories": Array [
+          "music",
+          "movie",
+          "litterature",
+        ],
+        "username": "user1",
+      }
+    }
+    context="edit"
+    onSubmit={[Function]}
+    post={
+      Object {
+        "author": "author3",
+        "authorId": "author3Id",
+        "body": Array [
+          Object {
+            "attributes": "h3",
+            "text": "blabla",
+          },
+        ],
+        "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+        "createdAt": 1000000,
+        "id": "3",
+        "keywords": "car, pool, cake",
+        "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+        "readingTime": 2,
+        "stars": 2,
+        "title": "Post 3 in Run",
+      }
+    }
+  />
+  <div
+    className="content-container"
+  >
+    <button
+      className="button"
+      onClick={[Function]}
+    >
+      Remove Post
+    </button>
+  </div>
+</div>
+`;

@@ -10,14 +10,8 @@ import PopularLasttFilter from '../filters/PopularLastFilter';
 import { startSetPostsSample } from '../../actions/readings';
 
 export class HomeRead extends Component {
-  state = {
-    loading: !this.props.areReadingsAlreadyFetched
-  };
-
   componentDidMount() {
-    return this.props.startSetPostsSample().then(() => {
-      this.setState(() => ({ loading: false }));
-    });
+    this.props.startSetPostsSample();
   }
 
   renderCustomCategories() {
@@ -32,15 +26,18 @@ export class HomeRead extends Component {
     return (
       <div className="page-container">
         <HeaderSub />
-        <div className="content-container">
-          <PopularLasttFilter />
+        <div className="popular-last-filterbar__container">
+          <div className="content-container">
+            <PopularLasttFilter relative />
+          </div>
         </div>
-        {this.state.loading ? (
+
+        {this.props.isLoading ? (
           <LoadingPage />
         ) : (
           <PublicPostsList grid="grid-home-first" category="all" range={14} />
         )}
-        {!this.state.loading && this.renderCustomCategories()}
+        {!this.props.isLoading && this.renderCustomCategories()}
       </div>
     );
   }
@@ -48,7 +45,6 @@ export class HomeRead extends Component {
 
 HomeRead.propTypes = {
   categories: PropTypes.array.isRequired,
-  areReadingsAlreadyFetched: PropTypes.bool.isRequired,
   startSetPostsSample: PropTypes.func.isRequired
 };
 
@@ -60,7 +56,7 @@ const mapStateToProps = state => ({
   categories: state.users.preferences
     ? state.users.preferences.topCategories
     : ['litterature', 'music', 'life'],
-  areReadingsAlreadyFetched: state.readings.length !== 0
+  isLoading: state.posts.isLoading
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeRead);

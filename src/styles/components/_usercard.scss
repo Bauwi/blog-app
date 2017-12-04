@@ -16,7 +16,6 @@
 
 .usercard__avatar {
   align-items: center;
-  border: 1px solid red;
   border-radius: 50%;
   width: 8rem;
   height: 8rem;
@@ -27,6 +26,9 @@
   }
 }
 
+.usercard__infos {
+  width: 70%;
+}
 .usercard__infos--data {
   display: flex;
   justify-content: space-between;

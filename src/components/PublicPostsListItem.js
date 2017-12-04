@@ -8,32 +8,24 @@ import KeywordsList from './KeywordsList';
 
 import { startAddPostToRun, startRemovePostToRun } from '../actions/run';
 
-export class PublicPostsListItem extends Component {
-  state = {
-    error: ''
-  };
+const success = () => {
+  message.success('Post added to your run.');
+};
 
+const error = () => {
+  message.error('Your run can not contain more than 20 reads.');
+};
+
+export class PublicPostsListItem extends Component {
   handleAddPostToRun = () => {
     if (this.props.isInRun) {
       this.props.startRemovePostToRun(this.props.post.id, this.props.DBid);
     } else if (this.props.run.length < 20) {
       this.props.startAddPostToRun({ content: this.props.post, state: 'unread' });
-      this.success();
+      this.props.success();
     } else {
-      this.error();
+      this.props.error();
     }
-  };
-
-  success = () => {
-    message.success('Post added to your run.');
-  };
-
-  error = () => {
-    message.error('Your run can not contain more than 20 reads.');
-  };
-
-  warning = () => {
-    message.warning('This is message of warning');
   };
 
   render() {
@@ -90,7 +82,9 @@ export class PublicPostsListItem extends Component {
 
 const mapDispatchToProps = dispatch => ({
   startAddPostToRun: post => dispatch(startAddPostToRun(post)),
-  startRemovePostToRun: (id, DBid) => dispatch(startRemovePostToRun(id, DBid))
+  startRemovePostToRun: (id, DBid) => dispatch(startRemovePostToRun(id, DBid)),
+  success: () => success(),
+  error: () => error()
 });
 
 const mapStateToProps = (state, props) => {
@@ -101,7 +95,7 @@ const mapStateToProps = (state, props) => {
     ? state.run.posts.find(post => props.post.id === post.content.id).DBid
     : undefined;
   return {
-    run: state.run.posts,
+    run: state.run.posts || 0,
     isInRun,
     index: isInRun ? state.run.posts.findIndex(post => props.post.id === post.content.id) + 1 : '',
     DBid

@@ -11,10 +11,9 @@ import PostsListItem from './PostsListItem';
 import SmallLoader from '../SmallLoader';
 
 export class PostsList extends Component {
-  state = {
-    loading: false,
-    rangeMin: 0,
-    rangeMax: 9
+  static defaultProps = {
+    isNotFiltered: true,
+    numberOfPosts: 0
   };
 
   componentDidMount() {
@@ -31,14 +30,9 @@ export class PostsList extends Component {
       window.innerHeight + window.scrollY >= document.body.scrollHeight &&
       this.props.numberOfPosts !== this.props.totalPostsInState &&
       this.props.isNotFiltered &&
-      this.state.loading === false
+      this.props.isLoading === false
     ) {
-      this.setState(() => ({ loading: true }));
-      this.props
-        .startSetPosts(undefined, this.props.posts.length, this.props.posts.length + 6)
-        .then(() => {
-          this.setState(() => ({ loading: false }));
-        });
+      this.props.startSetPosts(undefined, this.props.posts.length, this.props.posts.length + 6);
     }
   };
 
@@ -56,8 +50,11 @@ export class PostsList extends Component {
           </div>
         )}
         <div className="grid-dashboard">{this.renderPosts()}</div>
-        {this.props.numberOfPosts !== this.props.posts.length &&
-          this.state.loading && <SmallLoader />}
+        {this.props.numberOfPosts !== this.props.posts.length && this.props.isLoading ? (
+          <SmallLoader />
+        ) : (
+          <div className="loader loader--small loader--empty" />
+        )}
       </div>
     );
   }
@@ -78,8 +75,9 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   isNotFiltered: state.filters.text === '' && state.filters.sortBy === 'date',
-  posts: selectPosts(state.posts, state.filters),
-  numberOfPosts: state.users.preferences.numberOfPosts
+  posts: selectPosts(state.posts.posts, state.filters),
+  numberOfPosts: state.users.preferences ? state.users.preferences.numberOfPosts : 0,
+  isLoading: state.posts.isLoading
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsList);

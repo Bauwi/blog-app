@@ -12,7 +12,8 @@ p {
 }
 body {
   color: $dark-grey;
-  font-family: Space Mono, Arial, sans-serif;
+  // font-family: Space Mono, Arial, sans-serif;
+  font-family: Source Sans Pro, Arial, sans-serif;
   font-size: $m-size;
   height: 100%;
   line-height: 1.6;
@@ -48,4 +49,7 @@ label {
 
 .no-decoration {
   text-decoration: none;
+}
+a:focus {
+  outline: none;
 }

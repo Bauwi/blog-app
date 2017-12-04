@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render KeywordsList component properly 1`] = `
+<ul
+  className="keywords-list"
+>
+  <Link
+    key="cat"
+    replace={false}
+    to="/category/cat"
+  >
+    cat
+  </Link>
+  <Link
+    key=" dog"
+    replace={false}
+    to="/category/ dog"
+  >
+    dog
+  </Link>
+  <Link
+    key=" fish"
+    replace={false}
+    to="/category/ fish"
+  >
+    fish
+  </Link>
+</ul>
+`;

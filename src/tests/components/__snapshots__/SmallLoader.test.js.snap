@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SmallLoader component properly 1`] = `
+<div
+  className="loader loader--small"
+>
+  <img
+    alt="Loading..."
+    className="loader__image"
+    src="/images/loader.gif"
+  />
+</div>
+`;

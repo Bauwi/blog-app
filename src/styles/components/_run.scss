@@ -1,9 +1,30 @@
 .run__summary {
-  background: $off-white;
-  height: 30rem;
+  background: black;
+  color: $off-white;
+  padding: $l-size $s-size;
 }
+.run__summary__header {
+  display: flex;
+  justify-content: space-between;
+  div > h1 {
+    color: $off-white !important;
+    margin: 0;
+  }
+}
+
 .run-list {
-  padding-bottom: 10rem;
+  padding: 10rem 0;
+}
+
+.run-list__empty {
+  display: flex;
+  justify-content: center;
+  min-height: 35rem;
+  width: 100%;
+  padding: $xl-size;
+  p {
+    font-style: italic;
+  }
 }
 .run__list-item {
   position: relative;
@@ -18,4 +39,19 @@
   height: inherit;
   width: 100%;
   z-index: 5;
+}
+
+.run__summary__buttons {
+  align-items: center;
+  display: flex;
+  & > button {
+    border-radius: 50%;
+    font-size: $font-size-huge;
+    height: 6.6rem;
+    width: 6.6rem;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+  }
 }

@@ -14,7 +14,8 @@
   // transition: all 0.3s ease;
   &:hover {
     background: $off-white;
-    border: 1px solid $grey;
+    // border: 1px solid $grey;
+    cursor: pointer;
     transition: all 0.3s ease;
     * {
       background: $off-white;

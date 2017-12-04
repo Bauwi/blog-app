@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { setCurrentPostRun } from '../../actions/run';
+import { startSetCurrentPostRun } from '../../actions/run';
 
 export class RunReadNavItem extends Component {
-  scrollToTop = scrollDuration => {
+  constructor(props) {
+    super(props);
+    this.scrollToTop = this.scrollToTop.bind(this);
+  }
+  scrollToTop(scrollDuration) {
     const scrollHeight = window.scrollY,
       scrollStep = Math.PI / (scrollDuration / 15),
       cosParameter = scrollHeight / 2;
@@ -18,10 +22,10 @@ export class RunReadNavItem extends Component {
           window.scrollTo(0, scrollHeight - scrollMargin);
         } else clearInterval(scrollInterval);
       }, 15);
-  };
+  }
   handleChangeCurrent = () => {
-    this.scrollToTop();
-    setTimeout(() => this.props.setCurrentPostRun(this.props.post.content.id), 100);
+    this.scrollToTop(90);
+    setTimeout(() => this.props.startSetCurrentPostRun(this.props.post.content.id), 100);
   };
 
   render() {
@@ -86,11 +90,12 @@ RunReadNavItem.propTypes = {
   author: PropTypes.object,
   keywords: PropTypes.string,
   miniCover: PropTypes.string,
-  stars: PropTypes.number
+  stars: PropTypes.number,
+  startSetCurrentPostRun: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentPostRun: id => dispatch(setCurrentPostRun(id))
+  startSetCurrentPostRun: id => dispatch(startSetCurrentPostRun(id))
 });
 
 export default connect(undefined, mapDispatchToProps)(RunReadNavItem);

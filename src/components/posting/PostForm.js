@@ -27,12 +27,12 @@ export default class PostForm extends Component {
       cover: props.post ? props.post.cover : '',
       bodyToEditor: props.post
         ? {
-            ops: [...this.props.post.body]
+            ops: [...props.post.body]
           }
-        : '',
+        : { ops: [] },
       miniCover: props.post ? props.post.miniCover : '',
       coverSrc: '',
-      error: ''
+      error: false
     };
   }
 
@@ -146,8 +146,10 @@ export default class PostForm extends Component {
   onSubmit = e => {
     e.preventDefault();
     if (!this.state.title || !this.state.body) {
+      this.setState(() => ({ error: true }));
       error();
     } else {
+      this.setState(() => ({ error: false }));
       this.props.onSubmit({
         title: this.state.title,
         body: this.state.body,

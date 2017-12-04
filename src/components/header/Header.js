@@ -9,12 +9,8 @@ const Header = () => (
     <header className="header">
       <div className="content-container">
         <div className="header__content">
-          <label className="header__search">
-            <i className="fa fa-search" />
-          </label>
-
           <Link className="header__title" to="/">
-            <h1>BLOYSTER</h1>
+            <h1>Bloyster</h1>
           </Link>
           <HeaderNavBar />
         </div>

@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render PostsLists component correctly after loading 1`] = `
+<div
+  className="content-container post-list"
+>
+  <PostListFilters />
+  <div
+    className="grid-dashboard"
+  >
+    <PostsListItem
+      author="author1"
+      authorId="author1Id"
+      body={
+        Array [
+          Object {
+            "attributes": "h1",
+            "text": "This is the first Post in run",
+          },
+        ]
+      }
+      cover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      createdAt={0}
+      id="1"
+      key="1"
+      keywords="red, green, blue"
+      miniCover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      readingTime={7}
+      stars={5}
+      title="Post 1 in Run"
+    />
+    <PostsListItem
+      author="author2"
+      authorId="author2Id"
+      body={
+        Array [
+          Object {
+            "attributes": "h2",
+            "text": "This is the second Post in run",
+          },
+        ]
+      }
+      cover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      createdAt={-1500}
+      id="2"
+      key="2"
+      keywords="cat, dog, fish"
+      miniCover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      readingTime={12}
+      stars={25}
+      title="Post 2 in Run"
+    />
+    <PostsListItem
+      author="author3"
+      authorId="author3Id"
+      body={
+        Array [
+          Object {
+            "attributes": "h3",
+            "text": "blabla",
+          },
+        ]
+      }
+      cover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      createdAt={1000000}
+      id="3"
+      key="3"
+      keywords="car, pool, cake"
+      miniCover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      readingTime={2}
+      stars={2}
+      title="Post 3 in Run"
+    />
+  </div>
+  <div
+    className="loader loader--small loader--empty"
+  />
+</div>
+`;
+
+exports[`should render PostsLists component correctly on loading 1`] = `
+<div
+  className="content-container post-list"
+>
+  <PostListFilters />
+  <div
+    className="grid-dashboard"
+  >
+    <PostsListItem
+      author="author1"
+      authorId="author1Id"
+      body={
+        Array [
+          Object {
+            "attributes": "h1",
+            "text": "This is the first Post in run",
+          },
+        ]
+      }
+      cover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      createdAt={0}
+      id="1"
+      key="1"
+      keywords="red, green, blue"
+      miniCover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      readingTime={7}
+      stars={5}
+      title="Post 1 in Run"
+    />
+    <PostsListItem
+      author="author2"
+      authorId="author2Id"
+      body={
+        Array [
+          Object {
+            "attributes": "h2",
+            "text": "This is the second Post in run",
+          },
+        ]
+      }
+      cover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      createdAt={-1500}
+      id="2"
+      key="2"
+      keywords="cat, dog, fish"
+      miniCover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      readingTime={12}
+      stars={25}
+      title="Post 2 in Run"
+    />
+    <PostsListItem
+      author="author3"
+      authorId="author3Id"
+      body={
+        Array [
+          Object {
+            "attributes": "h3",
+            "text": "blabla",
+          },
+        ]
+      }
+      cover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      createdAt={1000000}
+      id="3"
+      key="3"
+      keywords="car, pool, cake"
+      miniCover="https://www.w3schools.com/w3css/img_fjords.jpg"
+      readingTime={2}
+      stars={2}
+      title="Post 3 in Run"
+    />
+  </div>
+  <Component />
+</div>
+`;

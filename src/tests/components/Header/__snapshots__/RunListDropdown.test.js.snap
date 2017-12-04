@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render RunListDropdown properly 1`] = `
+<Dropdown
+  className="dropdown"
+  mouseEnterDelay={0.15}
+  mouseLeaveDelay={0.1}
+  overlay={
+    <Menu
+      className=""
+      prefixCls="ant-menu"
+      theme="light"
+    >
+      <MenuItem>
+        <button
+          className="button"
+          onClick={[Function]}
+        >
+          Resume
+        </button>
+        <button
+          className="button"
+          onClick={[Function]}
+        >
+          Reset
+        </button>
+      </MenuItem>
+    </Menu>
+  }
+  placement="bottomCenter"
+  prefixCls="ant-dropdown"
+>
+  <Link
+    className="ant-dropdown-link"
+    replace={false}
+    to="/run"
+  >
+    <i
+      className="fa fa-book"
+    />
+  </Link>
+</Dropdown>
+`;

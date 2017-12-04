@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render RunReadPost component properly 1`] = `
+<div>
+  <header
+    className="page-header page-header--read"
+  >
+    <div
+      className="content-container"
+    >
+      <UserCard
+        author={
+          Object {
+            "avatar": "https://www.timeshighereducation.com/sites/default/files/byline_photos/default-avatar.png",
+            "description": "I had three chairs in my house; one for solitude, two for friendship, three for society.",
+            "stars": 0,
+            "username": "Anonymous",
+          }
+        }
+        post={
+          Object {
+            "author": "author1",
+            "authorId": "author1Id",
+            "body": Array [
+              Object {
+                "attributes": "h1",
+                "text": "This is the first Post in run",
+              },
+            ],
+            "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "createdAt": 0,
+            "id": "1",
+            "keywords": "red, green, blue",
+            "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "readingTime": 7,
+            "stars": 5,
+            "title": "Post 1 in Run",
+          }
+        }
+      />
+       
+      <div
+        className="read-header__stars"
+      >
+        <span>
+          5
+        </span>
+        <button
+          className="button button--star"
+          onClick={[Function]}
+        >
+          <i
+            className="fa fa-star-o"
+          />
+        </button>
+        <p>
+           
+        </p>
+         
+      </div>
+       
+    </div>
+     
+  </header>
+  <h2
+    className="read-header__title"
+  >
+     
+    Post 1 in Run
+     
+  </h2>
+  <Cover />
+  <RunReadPostEditor
+    delta={
+      Object {
+        "ops": Array [
+          Object {
+            "attributes": "h1",
+            "text": "This is the first Post in run",
+          },
+        ],
+      }
+    }
+  />
+  <footer
+    className="content-container"
+  >
+     
+    <KeywordsList
+      keywords="red, green, blue"
+    />
+     
+  </footer>
+</div>
+`;
+
+exports[`should render RunReadPost component properly on loading 1`] = `<Component />`;

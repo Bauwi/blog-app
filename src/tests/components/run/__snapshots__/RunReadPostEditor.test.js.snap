@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render RunReadPostEditor component properly 1`] = `
+<div
+  className="content-container read-only"
+>
+  <Quill
+    bounds=".app"
+    modules={
+      Object {
+        "toolbar": Array [],
+      }
+    }
+    placeholder="Add a post to your blog"
+    readOnly={true}
+    theme="snow"
+    value={
+      Object {
+        "ops": Array [
+          Object {
+            "attributes": "h2",
+            "text": "This is the second Post in run",
+          },
+        ],
+      }
+    }
+  />
+</div>
+`;

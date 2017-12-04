@@ -41,28 +41,50 @@ export const startRemovePostToRun = (id, DBid) => (dispatch, getState) => {
 
 // set Run posts. This action is dispatched in the header component
 // as it needs to be available for the run dropdown
+
+export const runsHasErrored = bool => ({
+  type: 'RUN_HAS_ERRORED',
+  hasErrored: bool
+});
+
+export const runIsLoading = bool => ({
+  type: 'RUN_IS_LOADING',
+  isLoading: bool
+});
+
 export const setRunPosts = posts => ({
   type: 'SET_RUN_POSTS',
   posts
 });
 
-export const startSetRunPosts = () => (dispatch, getState) => {
+export const startSetRunPosts = resume => (dispatch, getState) => {
+  dispatch(runIsLoading(true));
   const { uid } = getState().auth;
+  const run = [];
   return db
     .collection('runs')
     .doc(uid)
     .collection('UserRuns')
     .get()
     .then((querySnapshot) => {
-      const run = [];
       querySnapshot.forEach((doc) => {
         run.push({
           DBid: doc.id,
           ...doc.data()
         });
       });
-      dispatch(setRunPosts(run));
-    });
+      return run;
+    })
+    .then(run => dispatch(setRunPosts(run)))
+    .then(() => {
+      const firstUnreadIndex = run.findIndex(post => post.state === 'unread');
+      if (firstUnreadIndex === -1) {
+        return dispatch(setCurrentPostRun(run[0].content.id));
+      }
+      return dispatch(setCurrentPostRun(run[firstUnreadIndex].content.id));
+    })
+    .then(() => dispatch(runIsLoading(false)))
+    .catch(() => dispatch(runsHasErrored(true)));
 };
 
 // change the status of the past from read to unread
@@ -97,6 +119,18 @@ export const setCurrentPostRun = id => ({
   type: 'SET_CURRENT_POST_RUN',
   id
 });
+
+export const startSetCurrentPostRun = id => (dispatch) => {
+  dispatch(runIsLoading(true));
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 10);
+  })
+    .then(() => dispatch(setCurrentPostRun(id)))
+    .then(() => dispatch(runIsLoading(false)))
+    .catch(() => dispatch(runsHasErrored(true)));
+};
 
 export const resetRun = () => ({
   type: 'RESET_RUN'

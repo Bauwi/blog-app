@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render AuthorSummaryListItem component properly 1`] = `
+<Link
+  className="no-decoration"
+  replace={false}
+  to="/author2Id/read/2"
+>
+  <div
+    className="inline-list-item"
+  >
+    <header
+      className="inline-list-item__left"
+    >
+      <img
+        alt="post cover"
+        className="inline-list-item__cover"
+        src="https://www.w3schools.com/w3css/img_fjords.jpg"
+      />
+    </header>
+    <div
+      className="inline-list-item__right"
+    >
+      <section
+        className="inline-list-item__header"
+      >
+        <div>
+          <i
+            className="fa fa-star"
+          />
+           
+          25
+        </div>
+        <p
+          className="inline-list-item__date"
+        >
+          Jan 1st, 1970
+        </p>
+      </section>
+      <div
+        className="inline-list-item__infos"
+      >
+        <h3
+          className="inline-list-item__title"
+        >
+          Post 2 in Run
+        </h3>
+        <div
+          className="inline-list-item__subtitle"
+        >
+          <p
+            className="inline-list-item__author"
+          >
+            author2
+          </p>
+        </div>
+        <footer
+          className="keywords-list__list-item-container"
+        >
+          <KeywordsList
+            keywords="cat, dog, fish"
+          />
+        </footer>
+      </div>
+    </div>
+  </div>
+</Link>
+`;

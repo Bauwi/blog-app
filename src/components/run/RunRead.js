@@ -7,28 +7,11 @@ import { notification } from 'antd';
 import RunReadNav from './RunReadNav';
 import RunReadPost from './RunReadPost';
 import LoadingPage from '../LoadingPage';
-import {
-  startSetRunPosts,
-  setCurrentPostRun,
-  startUpdateRunPostToAlreadyRead
-} from '../../actions/run';
+import { startSetRunPosts, startUpdateRunPostToAlreadyRead } from '../../actions/run';
 
 export class RunRead extends Component {
-  state = {
-    loading: true
-  };
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-    // if there is no run state set yet, set one. Then set current state too.
-    if (this.props.run.length === 0) {
-      this.props.startSetRunPosts().then(() => {
-        const firstUnreadIndex = this.props.run.posts.findIndex(post => post.state === 'unread');
-        this.props.setCurrentPostRun(this.props.run.posts[firstUnreadIndex].content.id);
-        this.setState(() => ({ loading: false }));
-      });
-    } else {
-      this.setState(() => ({ loading: false }));
-    }
   }
 
   componentWillUnmount() {
@@ -53,18 +36,14 @@ export class RunRead extends Component {
   };
 
   render() {
-    if (this.state.loading) {
+    if (this.props.isLoading) {
       return <LoadingPage />;
     }
 
     return (
       <div>
         <RunReadPost post={this.props.current} />
-        <RunReadNav
-          currentRead={this.props.current}
-          previousRead={this.props.previous}
-          nextRead={this.props.next}
-        />
+        <RunReadNav currentRead={this.props.current} />
       </div>
     );
   }
@@ -72,20 +51,17 @@ export class RunRead extends Component {
 
 RunRead.propTypes = {
   current: PropTypes.object,
-  startSetRunPosts: PropTypes.func.isRequired,
-  setCurrentPostRun: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   startUpdateRunPostToAlreadyRead: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
-  startSetRunPosts: () => dispatch(startSetRunPosts()),
-  setCurrentPostRun: id => dispatch(setCurrentPostRun(id)),
   startUpdateRunPostToAlreadyRead: (id, DBid) => dispatch(startUpdateRunPostToAlreadyRead(id, DBid))
 });
 
 const mapStateToProps = state => ({
-  run: state.run,
-  current: state.run.current
+  current: state.run.current,
+  isLoading: state.run.isLoading
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RunRead));

@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render PostsSummary component properly with multiple posts provided 1`] = `
+<div
+  className="page-header__container"
+>
+  <div
+    className="content-container"
+  >
+    <div
+      className="page-header__actions"
+    >
+      <Link
+        className="button"
+        replace={false}
+        to="/create"
+      >
+        <i
+          className="fa fa-pencil"
+        />
+         New Post
+      </Link>
+    </div>
+    <h1
+      className="page-header__title"
+    >
+      3
+       post
+      s
+      . 
+      21
+       minute
+      s
+       
+      read.
+    </h1>
+    <h3
+      className="page-header__subtitle"
+    >
+      0
+       hidden posts
+    </h3>
+  </div>
+</div>
+`;
+
+exports[`should render PostsSummary component properly with no post provided 1`] = `
+<div
+  className="page-header__container"
+>
+  <div
+    className="content-container"
+  >
+    <div
+      className="page-header__actions"
+    >
+      <Link
+        className="button"
+        replace={false}
+        to="/create"
+      >
+        <i
+          className="fa fa-pencil"
+        />
+         New Post
+      </Link>
+    </div>
+    <h1
+      className="page-header__title"
+    >
+      0
+       post
+      . 
+      0
+       minute
+       
+      read.
+    </h1>
+    <h3
+      className="page-header__subtitle"
+    >
+      0
+       hidden posts
+    </h3>
+  </div>
+</div>
+`;

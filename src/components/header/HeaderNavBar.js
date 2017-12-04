@@ -26,7 +26,7 @@ export class HeaderNavBar extends Component {
             <i className="fa fa-home" />
           </NavLink>
           <NavLink to="/dashboard">
-            <i className="fa fa-tachometer" />
+            <i className="fa fa-pencil" />
           </NavLink>
           <nav to="/run">
             <Badge className="header__navbar__run__badge" showZero count={runCount} />

@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render RunListItem properly if already read 1`] = `
+<div
+  onClick={[Function]}
+>
+  <div
+    className="inline-list-item"
+  >
+    <header
+      className="inline-list-item__left"
+    >
+      <img
+        alt="post cover"
+        className="inline-list-item__cover"
+        src="https://www.w3schools.com/w3css/img_fjords.jpg"
+      />
+    </header>
+    <div
+      className="inline-list-item__right"
+    >
+      <section
+        className="inline-list-item__header"
+      >
+        <div>
+          <i
+            className="fa fa-star"
+          />
+           
+          5
+        </div>
+        <div
+          className="inline-list-item__header--right"
+        >
+          <p>
+            <i
+              className="fa fa-check"
+            />
+          </p>
+          <p
+            className="inline-list-item__date"
+          >
+            Jan 1st, 1970
+          </p>
+        </div>
+      </section>
+      <div
+        className="inline-list-item__infos"
+      >
+        <h3
+          className="inline-list-item__title"
+        >
+          Post 1 in Run
+        </h3>
+        <div
+          className="inline-list-item__subtitle"
+        >
+          <p
+            className="inline-list-item__author"
+          >
+            author1
+          </p>
+        </div>
+        <KeywordsList
+          keywords="red, green, blue"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should render RunListItem properly if not read yet 1`] = `
+<div
+  onClick={[Function]}
+>
+  <div
+    className="inline-list-item"
+  >
+    <header
+      className="inline-list-item__left"
+    >
+      <img
+        alt="post cover"
+        className="inline-list-item__cover"
+        src="https://www.w3schools.com/w3css/img_fjords.jpg"
+      />
+    </header>
+    <div
+      className="inline-list-item__right"
+    >
+      <section
+        className="inline-list-item__header"
+      >
+        <div>
+          <i
+            className="fa fa-star"
+          />
+           
+          25
+        </div>
+        <div
+          className="inline-list-item__header--right"
+        >
+          <p
+            className="inline-list-item__date"
+          >
+            Jan 1st, 1970
+          </p>
+        </div>
+      </section>
+      <div
+        className="inline-list-item__infos"
+      >
+        <h3
+          className="inline-list-item__title"
+        >
+          Post 2 in Run
+        </h3>
+        <div
+          className="inline-list-item__subtitle"
+        >
+          <p
+            className="inline-list-item__author"
+          >
+            author2
+          </p>
+        </div>
+        <KeywordsList
+          keywords="cat, dog, fish"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Menu, Dropdown, Icon, message } from 'antd';
 
-import { setCurrentPostRun } from '../../actions/run';
+import { setCurrentPostRun, startResetRun } from '../../actions/run';
 
 const warning = () => {
-  message.warning('You have already read all the posts contained in your run.');
+  message.warning('You have no unread post left.');
 };
 
 export class RunListDropdown extends Component {
@@ -41,18 +41,22 @@ export class RunListDropdown extends Component {
     return this.props.history.push('/run/start');
   };
 
+  handleResetClick = () => {
+    this.props.startResetRun();
+  };
+
   render() {
     const menu = (
       <Menu>
-        {this.props.posts &&
-          this.props.posts.length !== 0 && (
-            <Menu.Item key="0">
-              <button className="button" onClick={this.handleResumeClick}>
-                Resume
-              </button>
-              <button className="button">Reset</button>
-            </Menu.Item>
-          )}
+        <Menu.Item key="0">
+          <button className="button" onClick={this.handleResumeClick}>
+            Resume
+          </button>
+          <button className="button" onClick={this.handleResetClick}>
+            Reset
+          </button>
+        </Menu.Item>
+
         {this.props.posts && this.renderDropdownPosts()}
       </Menu>
     );
@@ -68,11 +72,13 @@ export class RunListDropdown extends Component {
 
 RunListDropdown.propTypes = {
   posts: PropTypes.array,
-  setCurrentPostRun: PropTypes.func.isRequired
+  setCurrentPostRun: PropTypes.func.isRequired,
+  startResetRun: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentPostRun: id => dispatch(setCurrentPostRun(id))
+  setCurrentPostRun: id => dispatch(setCurrentPostRun(id)),
+  startResetRun: () => dispatch(startResetRun())
 });
 
 const mapStateToProps = state => ({

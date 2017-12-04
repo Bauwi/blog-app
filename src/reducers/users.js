@@ -2,6 +2,11 @@ const usersReducerDefaultState = [];
 
 const usersReducer = (state = usersReducerDefaultState, action) => {
   switch (action.type) {
+    case 'CREATE_USER':
+      return {
+        ...state,
+        preferences: action.newUser
+      };
     case 'UPDATE_USER_PREFERENCES':
       return {
         ...state,
@@ -24,6 +29,16 @@ const usersReducer = (state = usersReducerDefaultState, action) => {
       return {
         ...state,
         preferences: action.preferences
+      };
+    case 'USERS_IS_LOADING':
+      return {
+        ...state,
+        isLoading: action.isLoading
+      };
+    case 'USERS_HAS_ERRORED':
+      return {
+        ...state,
+        hasErrored: action.hasErrored
       };
     default:
       return state;

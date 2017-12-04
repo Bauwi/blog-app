@@ -6,15 +6,13 @@ import { Link } from 'react-router-dom';
 import PostForm from './PostForm';
 
 import { startAddPost } from '../../actions/posts';
-import { startUpdateUser, upPostsCount } from '../../actions/users';
+import { startUpdateUser } from '../../actions/users';
 
 export class AddPost extends Component {
   onSubmit = post => {
     this.props.startAddPost(post);
     this.props.startUpdateUser(undefined, {
-      numberOfPosts: this.props.preferences.numberOfPosts
-        ? this.props.preferences.numberOfPosts + 1
-        : 1
+      numberOfPosts: this.props.preferences.numberOfPosts + 1
     });
     this.props.history.push('/dashboard');
   };
@@ -41,8 +39,7 @@ AddPost.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   startAddPost: post => dispatch(startAddPost(post)),
-  startUpdateUser: (id, updates) => dispatch(startUpdateUser(id, updates)),
-  upPostsCount: id => dispatch(upPostsCount(id))
+  startUpdateUser: (id, updates) => dispatch(startUpdateUser(id, updates))
 });
 
 const mapStateToProps = state => ({

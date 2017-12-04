@@ -14,5 +14,5 @@ const RunSummary = ({ run }) => (
 const mapStateToProps = state => ({
   run: state.run
 });
-
+export { RunSummary };
 export default connect(mapStateToProps)(RunSummary);

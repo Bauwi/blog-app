@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render post page correctly 1`] = `
+<div>
+  <div
+    className="page-header"
+  >
+    <header
+      className="content-container"
+    >
+      <Link
+        replace={false}
+        to="/dashboard"
+      >
+        Back to dashboard
+      </Link>
+    </header>
+  </div>
+  <PostForm
+    author={
+      Object {
+        "avatar": "http://www.perlworkshop.nl/nlpw2016/img/default-avatar.png",
+        "description": "I had three chairs in my house; one for solitude, two for friendship, three for society.",
+        "email": "",
+        "numberOfPosts": 3,
+        "stars": 12,
+        "topCategories": Array [
+          "music",
+          "movie",
+          "litterature",
+        ],
+        "username": "user1",
+      }
+    }
+    context="add"
+    onSubmit={[Function]}
+  />
+</div>
+`;

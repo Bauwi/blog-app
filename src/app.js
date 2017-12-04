@@ -8,6 +8,7 @@ import { firebase } from './firebase/firebase';
 import { startSetPosts } from './actions/posts';
 import { login, logout } from './actions/auth';
 import { startSetUserPreferences } from './actions/users';
+import { startSetRunPosts } from './actions/run';
 import LoadingPage from './components/LoadingPage';
 
 import 'normalize-css/normalize.css';
@@ -37,10 +38,13 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
-    store.dispatch(startSetUserPreferences());
-    store.dispatch(startSetPosts(user.uid, 0, 9)).then(() => {
-      renderApp();
-    });
+    store
+      .dispatch(startSetUserPreferences())
+      .then(() => store.dispatch(startSetPosts(user.uid, 0, 9)))
+      .then(() => store.dispatch(startSetRunPosts()))
+      .then(() => {
+        renderApp();
+      });
   } else if (
     !history.location.pathname.includes('/read') &&
     history.location.pathname !== '/home'

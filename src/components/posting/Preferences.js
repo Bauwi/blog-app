@@ -16,43 +16,70 @@ const error = () => {
   message.error('Oops, something went wrong.');
 };
 
+const validationMax = {
+  username: 20,
+  categories: 20,
+  description: 200
+};
+
 export class Preferences extends Component {
   state = {
-    avatar: this.props.preferences.avatar ? this.props.preferences.avatar : '',
-    username: this.props.preferences.username ? this.props.preferences.username : 'Anonymous',
-    topCategory1: this.props.preferences.topCategories
-      ? this.props.preferences.topCategories[0]
-      : '',
-    topCategory2: this.props.preferences.topCategories
-      ? this.props.preferences.topCategories[1]
-      : '',
-    topCategory3: this.props.preferences.topCategories
-      ? this.props.preferences.topCategories[2]
-      : '',
-    description: this.props.preferences.description ? this.props.preferences.description : '',
+    avatar:
+      this.props.preferences && this.props.preferences.avatar ? this.props.preferences.avatar : '',
+    username:
+      this.props.preferences && this.props.preferences.username
+        ? this.props.preferences.username
+        : 'Anonymous',
+    topCategory1:
+      this.props.preferences && this.props.preferences.topCategories
+        ? this.props.preferences.topCategories[0]
+        : '',
+    topCategory2:
+      this.props.preferences && this.props.preferences.topCategories
+        ? this.props.preferences.topCategories[1]
+        : '',
+    topCategory3:
+      this.props.preferences && this.props.preferences.topCategories
+        ? this.props.preferences.topCategories[2]
+        : '',
+    description:
+      this.props.preferences && this.props.preferences.description
+        ? this.props.preferences.description
+        : '',
     proceeding: false
   };
 
   handleUsernameChange = e => {
     const username = e.target.value;
-    this.setState(() => ({ username }));
+    if (username.length <= validationMax.username) {
+      this.setState(() => ({ username }));
+    }
   };
 
   handleCat1Change = e => {
     const topCategory1 = e.target.value;
-    this.setState(() => ({ topCategory1 }));
+    if (topCategory1.length <= validationMax.categories) {
+      this.setState(() => ({ topCategory1 }));
+    }
   };
   handleCat2Change = e => {
     const topCategory2 = e.target.value;
-    this.setState(() => ({ topCategory2 }));
+    if (topCategory2.length <= validationMax.categories) {
+      this.setState(() => ({ topCategory2 }));
+    }
   };
   handleCat3Change = e => {
     const topCategory3 = e.target.value;
-    this.setState(() => ({ topCategory3 }));
+    if (topCategory3.length <= validationMax.categories) {
+      this.setState(() => ({ topCategory3 }));
+    }
   };
+
   handleDescriptionChange = e => {
     const description = e.target.value;
-    this.setState(() => ({ description }));
+    if (description.length <= validationMax.description) {
+      this.setState(() => ({ description }));
+    }
   };
 
   onSubmit = e => {
@@ -92,7 +119,11 @@ export class Preferences extends Component {
         <PreferencesAvatar
           upload={this.props.uploadAvatar}
           userId={this.props.userId}
-          avatar={this.props.preferences.avatar ? this.props.preferences.avatar : ''}
+          avatar={
+            this.props.preferences && this.props.preferences.avatar
+              ? this.props.preferences.avatar
+              : ''
+          }
         />
 
         <form className="form preferences__form" onSubmit={this.onSubmit}>
@@ -116,7 +147,6 @@ export class Preferences extends Component {
               <label htmlFor="category 1">
                 <p>1: </p>
                 <input
-                  autoFocus
                   className="text-input"
                   placeholder="Sport"
                   type="text"
@@ -127,7 +157,6 @@ export class Preferences extends Component {
               <label htmlFor="category 2">
                 <p>2: </p>
                 <input
-                  autoFocus
                   className="text-input"
                   placeholder="Litterature"
                   type="text"
@@ -138,7 +167,6 @@ export class Preferences extends Component {
               <label htmlFor="category 3">
                 <p>3: </p>
                 <input
-                  autoFocus
                   className="text-input"
                   placeholder="Third Category"
                   type="text"
@@ -151,6 +179,9 @@ export class Preferences extends Component {
           <label htmlFor="title" className="preferences__form__block">
             <p>Description: </p>
             <p>Your description can not exceed 200 characters</p>
+            <p>
+              {this.state.description.length} / {validationMax.description}
+            </p>
             <TextArea
               placeholder="I had three chairs in my house; one for solitude, two for friendship, three for society."
               type="text"

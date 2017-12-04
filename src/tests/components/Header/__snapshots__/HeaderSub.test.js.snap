@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render HeaderSub correctly 1`] = `
+<nav
+  className="header__navbarsub"
+>
+  <div
+    className="header-navbarsub--three"
+  >
+    <NavLink
+      activeClassName="header__navbarsub__tab--selected"
+      ariaCurrent="true"
+      to="/category/music"
+    >
+      Music
+    </NavLink>
+    <NavLink
+      activeClassName="header__navbarsub__tab--selected"
+      ariaCurrent="true"
+      to="/category/movie"
+    >
+      Movie
+    </NavLink>
+    <NavLink
+      activeClassName="header__navbarsub__tab--selected"
+      ariaCurrent="true"
+      to="/category/litterature"
+    >
+      Litterature
+    </NavLink>
+  </div>
+  <div
+    className="header-navbarsub--three"
+  >
+    <NavLink
+      activeClassName="header__navbarsub__tab--selected"
+      ariaCurrent="true"
+      to="/category/life"
+    >
+      Life
+    </NavLink>
+    <NavLink
+      activeClassName="header__navbarsub__tab--selected"
+      ariaCurrent="true"
+      to="/category/programming"
+    >
+      Programming
+    </NavLink>
+    <NavLink
+      activeClassName="header__navbarsub__tab--selected"
+      ariaCurrent="true"
+      to="/category/history"
+    >
+      History
+    </NavLink>
+  </div>
+  <div
+    className="header-navbarsub--three"
+  >
+    <NavLink
+      activeClassName="header__navbarsub__tab--selected"
+      ariaCurrent="true"
+      to="/category/sport"
+    >
+      Sport
+    </NavLink>
+    <NavLink
+      activeClassName="header__navbarsub__tab--selected"
+      ariaCurrent="true"
+      to="/category/business"
+    >
+      Business
+    </NavLink>
+  </div>
+</nav>
+`;

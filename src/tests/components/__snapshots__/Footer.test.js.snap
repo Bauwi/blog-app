@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Footer component properly 1`] = `
+<div
+  className="footer__container"
+>
+  <div
+    className="content-container"
+  >
+    <div
+      className="footer"
+    >
+      <nav
+        className="footer__nav"
+      >
+        <NavLink
+          activeClassName="active"
+          ariaCurrent="true"
+          to="/contact"
+        >
+          <i
+            className="fa fa-address-card"
+          />
+           Contact
+        </NavLink>
+        <NavLink
+          activeClassName="active"
+          ariaCurrent="true"
+          to="/about"
+        >
+          <i
+            className="fa fa-question"
+          />
+           About
+        </NavLink>
+        <NavLink
+          activeClassName="active"
+          ariaCurrent="true"
+          to="/job"
+        >
+          <i
+            className="fa fa-handshake-o"
+          />
+           Hire me!
+        </NavLink>
+      </nav>
+      <div
+        className="footer__license"
+      >
+        <p>
+          2017 - License MIT
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -15,11 +15,12 @@ export default class RunList extends Component {
   render() {
     return (
       <div className="content-container run-list">
-        <p>RunList</p>
-        {this.props.posts ? (
+        {this.props.posts && this.props.posts.length !== 0 ? (
           this.renderList()
         ) : (
-          <div>Add a post to your run to start a session</div>
+          <div className="run-list__empty">
+            <p>Add a post to your run to start a session</p>
+          </div>
         )}
       </div>
     );

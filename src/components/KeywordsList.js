@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class KeywordsList extends Component {
   renderKeywords() {
     const keywordsList = this.props.keywords.split(',');
     return keywordsList.map((keyword) => {
       const keywordFormatted = keyword.trim();
-      return <li key={keyword}>{keywordFormatted}</li>;
+      return (
+        <Link to={`/category/${keyword}`} key={keyword}>
+          {keywordFormatted}
+        </Link>
+      );
     });
   }
 

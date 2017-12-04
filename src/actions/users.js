@@ -3,7 +3,31 @@ import { db } from '../firebase/firebase';
 import * as firebase from 'firebase';
 import axios from 'axios';
 
-// manage CRUD of users
+// manage CRU/D of users
+
+export const createUser = newUser => ({
+  type: 'CREATE_USER',
+  newUser
+});
+
+export const startCreateUser = () => (dispatch, getState) => {
+  const { uid } = getState().auth;
+  const newUser = {
+    avatar: 'http://www.perlworkshop.nl/nlpw2016/img/default-avatar.png',
+    description:
+      'I had three chairs in my house; one for solitude, two for friendship, three for society.',
+    email: '',
+    username: 'Anonymous',
+    stars: 0,
+    numberOfPosts: 0,
+    topCategories: ['music', 'litterature', 'programming']
+  };
+  return db
+    .collection('users')
+    .doc(uid)
+    .set(newUser)
+    .then(() => dispatch(createUser(newUser)));
+};
 
 export const updateUser = (id, updates) => ({
   type: 'UPDATE_USER_PREFERENCES',
@@ -11,8 +35,6 @@ export const updateUser = (id, updates) => ({
   updates
 });
 
-// This one is a bit tricky. Handles updating or creating user.
-// creates a new user entry if that one does not exist yet, update it if it does.
 export const startUpdateUser = (id, updates) => (dispatch, getState) => {
   const uid = id || getState().auth.uid;
   return db
@@ -29,18 +51,6 @@ export const startUpdateUser = (id, updates) => (dispatch, getState) => {
             dispatch(updateUser(uid, updates));
           });
       }
-      return db
-        .collection('users')
-        .doc(uid)
-        .set({
-          avatar: 'http://www.perlworkshop.nl/nlpw2016/img/default-avatar.png',
-          email: '',
-          username: '',
-          stars: 0,
-          numberOfPosts: 0,
-          topCategories: ['life', 'programming', 'Music']
-        })
-        .then(startUpdateUser(uid, updates));
     });
 };
 
@@ -50,12 +60,25 @@ export const addUserStar = nextStars => ({
   nextStars
 });
 
-export const startAddUserStar = (id, prevStars) => dispatch =>
-  db
+export const startAddUserStar = (id, prevStars) => (dispatch) => {
+  console.log('id', id);
+  console.log('prevstars', prevStars);
+  return db
     .collection('users')
     .doc(id)
     .update({ stars: prevStars + 1 })
     .then(() => dispatch(addUserStar(prevStars + 1)));
+};
+
+export const usersHasErrored = bool => ({
+  type: 'USERS_HAS_ERRORED',
+  hasErrored: bool
+});
+
+export const usersIsLoading = bool => ({
+  type: 'USERS_IS_LOADING',
+  isLoading: bool
+});
 
 // Used when reading a post. Get the author of this particualr post informations (i.e. preferences)
 // useful in UserCard
@@ -64,14 +87,21 @@ export const setAuthor = author => ({
   author
 });
 // used to display UserCard from post id
-export const startSetAuthorFromUserId = userId => dispatch =>
-  db
+export const startSetAuthorFromUserId = userId => (dispatch) => {
+  dispatch(usersIsLoading(true));
+  return db
     .collection('users')
     .doc(userId)
     .get()
     .then((doc) => {
-      dispatch(setAuthor(doc.data()));
-    });
+      if (doc.exists) {
+        return doc;
+      }
+    })
+    .then(doc => dispatch(setAuthor(doc.data())))
+    .then(() => dispatch(usersIsLoading(false)))
+    .catch(() => dispatch(usersHasErrored(true)));
+};
 
 // Set the user preferences
 export const setUserPreferences = preferences => ({
@@ -85,7 +115,10 @@ export const startSetUserPreferences = () => (dispatch, getState) =>
     .doc(getState().auth.uid)
     .get()
     .then((doc) => {
-      dispatch(setUserPreferences(doc.data()));
+      if (doc.exists) {
+        return dispatch(setUserPreferences(doc.data()));
+      }
+      return dispatch(startCreateUser()).then(() => startSetUserPreferences());
     });
 
 // Used in /preferences. Same logic as uploadImage in posts action file.

@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render RunReadNavItem component properly 1`] = `
+<li
+  className="post-nav-item"
+  onClick={[Function]}
+>
+  <div
+    className="post-nav-item__arrow"
+  >
+    <i
+      className="fa fa-angle-left angle-left"
+    />
+  </div>
+  <div
+    className="post-nav-item__infoscover__container"
+  >
+    <header
+      className="post-nav-item__left"
+    >
+      <img
+        alt="post cover"
+        className="post-nav-item__cover"
+        src="https://www.w3schools.com/w3css/img_fjords.jpg"
+      />
+    </header>
+    <div
+      className="post-nav-item__right"
+    >
+      <div
+        className="post-nav-item__infos"
+      >
+        <h3
+          className="post-nav-item__title"
+        >
+          Post 3 in Run
+        </h3>
+        <div
+          className="post-nav-item__subtitle"
+        >
+          <p>
+            <i
+              className="fa fa-check"
+            />
+          </p>
+          <p
+            className="post-nav-item__author"
+          >
+            author3
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="post-nav-item__arrow"
+  >
+    <i
+      className="fa fa-angle-right angle-right "
+    />
+  </div>
+</li>
+`;
+
+exports[`should render RunReadNavItem properly if empty 1`] = `
+<li>
+  <p />
+</li>
+`;

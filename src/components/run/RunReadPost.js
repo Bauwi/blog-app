@@ -7,45 +7,31 @@ import Img from 'react-image';
 import UserCard from '../UserCard';
 import LoadingPage from '../LoadingPage';
 import RunReadPostEditor from './RunReadPostEditor';
+import KeywordsList from '../KeywordsList';
 
-import { startSetAuthorFromUserId, startAddUserStar } from '../../actions/users';
+import { startSetAuthorFromUserId } from '../../actions/users';
 import { startUpPostStar } from '../../actions/posts';
 
 export class RunReadPost extends Component {
-  state = {
-    loading: true
-  };
-
   componentDidMount() {
-    const { id } = this.props.post.content;
-    this.props.startSetAuthorFromUserId(this.props.post.content.authorId).then(() => {
-      this.setState(() => ({
-        loading: false
-      }));
-    });
+    this.props.startSetAuthorFromUserId(this.props.post.content.authorId);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.post.content.id !== nextProps.post.content.id) {
-      this.setState(() => ({
-        loading: true
-      }));
       const { id } = this.props.post.content;
-      this.props.startSetAuthorFromUserId(nextProps.post.content.authorId).then(() => {
-        this.setState(() => ({
-          loading: false
-        }));
-      });
+      this.props.startSetAuthorFromUserId(nextProps.post.content.authorId);
     }
   }
 
   onAddStar = () => {
-    this.props.startAddUserStar(this.props.post.content.authorId, this.props.author.stars);
-    this.props.startUpPostStar(this.props.post.content.id);
+    const { id, authorId } = this.props.post.content;
+    const { stars } = this.props.author;
+    this.props.startUpPostStar(id, authorId, stars);
   };
 
   render() {
-    if (this.state.loading) {
+    if (this.props.isLoading) {
       return <LoadingPage />;
     }
     const Cover = () => (
@@ -79,7 +65,10 @@ export class RunReadPost extends Component {
         <Cover />
         <RunReadPostEditor delta={delta} />
 
-        <footer> keywords: {keywords} </footer>
+        <footer className="content-container">
+          {' '}
+          <KeywordsList keywords={keywords} />{' '}
+        </footer>
       </div>
     );
   }
@@ -87,19 +76,18 @@ export class RunReadPost extends Component {
 
 RunReadPost.propTypes = {
   author: PropTypes.object,
-  startAddUserStar: PropTypes.func.isRequired,
   startSetAuthorFromUserId: PropTypes.func.isRequired,
   startUpPostStar: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
   startSetAuthorFromUserId: id => dispatch(startSetAuthorFromUserId(id)),
-  startAddUserStar: (id, prevStars) => dispatch(startAddUserStar(id, prevStars)),
-  startUpPostStar: id => dispatch(startUpPostStar(id))
+  startUpPostStar: (id, authorId, stars) => dispatch(startUpPostStar(id, authorId, stars))
 });
 
 const mapStateToProps = (state, props) => ({
-  author: state.users.author
+  author: state.users.author,
+  isLoading: state.run.isLoading
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RunReadPost));

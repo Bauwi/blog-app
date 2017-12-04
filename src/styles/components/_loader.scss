@@ -15,8 +15,16 @@
   margin: $m-size 0 $xl-size 0;
   display: flex;
   justify-content: center;
+  height: 3rem;
+  width: 100%;
   img {
     height: 3rem;
     width: 3rem;
+  }
+}
+
+.loader--empty {
+  img {
+    display: none;
   }
 }

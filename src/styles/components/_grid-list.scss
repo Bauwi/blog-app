@@ -1,14 +1,14 @@
 @import "./base/mixins";
 .grid-home-first {
   @include grid(4);
-  margin: $xl-size 0;
-  padding: 0;
+  margin: $xl-size 0 0 0;
+  padding: 0 0 $xl-size 0;
   & > * {
     text-decoration: none;
   }
   @media (min-width: $desktop-breakpoint) {
-    margin: 0 0 $xl-size*2 0;
-    padding-top: $m-size;
+    margin: 0;
+    padding: $xl-size 0 $xl-size*2 0;
   }
 }
 
@@ -26,7 +26,6 @@
 
 .grid-home-second {
   @include grid(3);
-  border-top: 2px solid $gold;
   margin: $l-size 0;
   & > * {
     text-decoration: none;
@@ -51,10 +50,16 @@
     font-style: italic;
   }
 }
-.homelist__title {
-  border-bottom: 2px solid $gold;
-  color: $light-grey;
-  font-size: $font-size-medium;
+
+.homelist__header {
+  color: grey;
+  border-bottom: 2px solid black;
+  // border-top: 5px solid lightgrey;
+  // border-bottom: 5px solid lightgrey;
+}
+.homelist__header__title {
+  color: grey;
+  font-size: $font-size-huge;
   margin: 0 auto 0 $s-size;
 }
 .homelist-item {
@@ -68,18 +73,28 @@
 .homelist-item__content {
   border: 1px solid #fff;
   margin-bottom: $s-size;
+  padding-bottom: $s-size;
   text-decoration: none;
-  // transition: all 0.3s ease;
+  // transition: all 0.5s ease;
+  -webkit-transition: object-position 0.5s ease;
   &:hover {
-    background: $off-white;
-    border: 1px solid $grey;
-    transition: all 0.3s ease;
-    * {
-      background: $off-white;
-      transition: all 0.3s ease;
+    // transform: scale(1.05);
+    -webkit-transition: object-position 0.5s ease;
+    // transition: transform 0.5s ease;
+    // * {
+    //   background: $off-white;
+    //   transition: all 1s ease;
+    // }
+    * >  {
+      -webkit-transition: object-position 0.5s ease;
     }
     .homelist-item__title {
       color: black;
+    }
+    .homelist-item__content__cover {
+      // width: 80%;
+      object-position: 60% 60%;
+      -webkit-transition: object-position 0.5s ease;
     }
   }
 }
@@ -90,6 +105,8 @@
   width: 100%;
   height: 12rem;
   object-fit: cover;
+  object-position: 30% 30%;
+  transition: object-position 0.5s ease;
 }
 
 .homelist-item__content__header {

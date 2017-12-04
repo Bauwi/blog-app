@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render LoginPage correctly 1`] = `
+<div
+  className="login__modal"
+>
+  <button
+    className="button button--navbar"
+    onClick={[Function]}
+  >
+    <i
+      className="fa fa-sign-in "
+    />
+  </button>
+  <Modal
+    confirmLoading={false}
+    footer={Array []}
+    maskTransitionName="fade"
+    okType="primary"
+    onCancel={[Function]}
+    prefixCls="ant-modal"
+    title="Bloyster"
+    transitionName="zoom"
+    visible={false}
+    width={520}
+  >
+    <div
+      className="login__container"
+    >
+      <h1
+        className="login__title"
+      >
+        Share !
+      </h1>
+      <button
+        className="button"
+        onClick={[Function]}
+      >
+        <i
+          className="fa fa-google"
+        />
+         Login With Google
+      </button>
+      <button
+        className="button"
+        onClick={[Function]}
+      >
+        <i
+          className="fa fa-github"
+        />
+         Login With Github
+      </button>
+    </div>
+  </Modal>
+</div>
+`;

@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should have rendered custom categories properly 1`] = `
+<div
+  className="page-container"
+>
+  <HeaderSub />
+  <div
+    className="popular-last-filterbar__container"
+  >
+    <div
+      className="content-container"
+    >
+      <Connect(PopularLasttFilter)
+        relative={true}
+      />
+    </div>
+  </div>
+  <Connect(PublicPostsList)
+    category="all"
+    grid="grid-home-first"
+    range={14}
+  />
+  <Connect(PublicPostsList)
+    category="alpha"
+    grid="grid-home-second"
+    key="alpha"
+    range={7}
+  />
+  <Connect(PublicPostsList)
+    category="beta"
+    grid="grid-home-first"
+    key="beta"
+    range={6}
+  />
+  <Connect(PublicPostsList)
+    category="gamma"
+    grid="grid-home-first"
+    key="gamma"
+    range={3}
+  />
+</div>
+`;
+
+exports[`should render HomeRead component properly 1`] = `
+<div
+  className="page-container"
+>
+  <HeaderSub />
+  <div
+    className="popular-last-filterbar__container"
+  >
+    <div
+      className="content-container"
+    >
+      <Connect(PopularLasttFilter)
+        relative={true}
+      />
+    </div>
+  </div>
+  <Connect(PublicPostsList)
+    category="all"
+    grid="grid-home-first"
+    range={14}
+  />
+</div>
+`;

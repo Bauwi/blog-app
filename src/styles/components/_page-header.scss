@@ -1,20 +1,26 @@
-.page-header {
-  // background: $off-white;
+.page-header__container {
+  background: black;
+
   // margin-bottom: $l-size;
   // padding: $l-size 0;
 }
 
 .page-header__actions {
-  margin-top: $m-size;
+  padding: $s-size 0;
 }
 
 .page-header__title {
+  color: $off-white;
   font-weight: 300;
   margin: $m-size 0 0 0;
 
   span {
     font-weight: bold;
   }
+}
+.page-header__subtitle {
+  color: $off-white;
+  padding: $s-size 0;
 }
 
 .page-header--read {

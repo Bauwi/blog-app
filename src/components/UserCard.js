@@ -3,11 +3,21 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 class UserCard extends Component {
+  static defaultProps = {
+    author: {
+      username: 'Anonymous',
+      avatar:
+        'https://www.timeshighereducation.com/sites/default/files/byline_photos/default-avatar.png',
+      stars: 0,
+      description:
+        'I had three chairs in my house; one for solitude, two for friendship, three for society.'
+    }
+  };
+
   render() {
-    const { authorId, createdAt, readingTime } = this.props.post ? this.props.post : '';
-    const {
-      username, avatar, stars, description
-    } = this.props.author;
+    const { createdAt, readingTime } = this.props.post ? this.props.post : '';
+    const authorId = this.props.post ? this.props.post.authorId : this.props.userId;
+    const { username, avatar, stars, description } = this.props.author;
     return (
       <div className="usercard__container">
         <div className="usercard__avatar">

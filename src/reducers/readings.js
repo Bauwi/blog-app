@@ -1,4 +1,4 @@
-const readingsDefaultState = [];
+const readingsDefaultState = { isLoading: true };
 
 const readingsReducer = (state = readingsDefaultState, action) => {
   switch (action.type) {
@@ -14,7 +14,18 @@ const readingsReducer = (state = readingsDefaultState, action) => {
       };
     case 'SET_POSTS_SAMPLE':
       return {
+        ...state,
         posts: action.posts
+      };
+    case 'READINGS_IS_LOADING':
+      return {
+        ...state,
+        isLoading: action.isLoading
+      };
+    case 'READINGS_HAS_ERRORED':
+      return {
+        ...state,
+        hasErrored: action.hasErrored
       };
     default:
       return state;

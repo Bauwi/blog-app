@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render RunSummary component properly 1`] = `
+<div
+  className="page-container"
+>
+  <withRouter(Connect(RunSummaryHeader))
+    run={
+      Object {
+        "posts": Array [
+          Object {
+            "DBid": "DBid1",
+            "content": Object {
+              "author": "author1",
+              "authorId": "author1Id",
+              "body": Array [
+                Object {
+                  "attributes": "h1",
+                  "text": "This is the first Post in run",
+                },
+              ],
+              "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+              "createdAt": 0,
+              "id": "1",
+              "keywords": "red, green, blue",
+              "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+              "readingTime": 7,
+              "stars": 5,
+              "title": "Post 1 in Run",
+            },
+            "state": "read",
+          },
+          Object {
+            "DBid": "DBid2",
+            "content": Object {
+              "author": "author2",
+              "authorId": "author2Id",
+              "body": Array [
+                Object {
+                  "attributes": "h2",
+                  "text": "This is the second Post in run",
+                },
+              ],
+              "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+              "createdAt": -1500,
+              "id": "2",
+              "keywords": "cat, dog, fish",
+              "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+              "readingTime": 12,
+              "stars": 25,
+              "title": "Post 2 in Run",
+            },
+            "state": "unread",
+          },
+          Object {
+            "DBid": "DBid3",
+            "content": Object {
+              "author": "author3",
+              "authorId": "author3Id",
+              "body": Array [
+                Object {
+                  "attributes": "h3",
+                  "text": "blabla",
+                },
+              ],
+              "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+              "createdAt": 1000000,
+              "id": "3",
+              "keywords": "car, pool, cake",
+              "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+              "readingTime": 2,
+              "stars": 2,
+              "title": "Post 3 in Run",
+            },
+            "state": "read",
+          },
+        ],
+      }
+    }
+  />
+  <RunList
+    posts={
+      Array [
+        Object {
+          "DBid": "DBid1",
+          "content": Object {
+            "author": "author1",
+            "authorId": "author1Id",
+            "body": Array [
+              Object {
+                "attributes": "h1",
+                "text": "This is the first Post in run",
+              },
+            ],
+            "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "createdAt": 0,
+            "id": "1",
+            "keywords": "red, green, blue",
+            "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "readingTime": 7,
+            "stars": 5,
+            "title": "Post 1 in Run",
+          },
+          "state": "read",
+        },
+        Object {
+          "DBid": "DBid2",
+          "content": Object {
+            "author": "author2",
+            "authorId": "author2Id",
+            "body": Array [
+              Object {
+                "attributes": "h2",
+                "text": "This is the second Post in run",
+              },
+            ],
+            "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "createdAt": -1500,
+            "id": "2",
+            "keywords": "cat, dog, fish",
+            "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "readingTime": 12,
+            "stars": 25,
+            "title": "Post 2 in Run",
+          },
+          "state": "unread",
+        },
+        Object {
+          "DBid": "DBid3",
+          "content": Object {
+            "author": "author3",
+            "authorId": "author3Id",
+            "body": Array [
+              Object {
+                "attributes": "h3",
+                "text": "blabla",
+              },
+            ],
+            "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "createdAt": 1000000,
+            "id": "3",
+            "keywords": "car, pool, cake",
+            "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+            "readingTime": 2,
+            "stars": 2,
+            "title": "Post 3 in Run",
+          },
+          "state": "read",
+        },
+      ]
+    }
+  />
+</div>
+`;

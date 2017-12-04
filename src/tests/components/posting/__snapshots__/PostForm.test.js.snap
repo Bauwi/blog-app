@@ -1,0 +1,338 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render PostForm Component properly 1`] = `
+<form
+  className="content-container form form--post"
+  onSubmit={[Function]}
+>
+  <UserCard
+    author={
+      Object {
+        "avatar": "http://www.perlworkshop.nl/nlpw2016/img/default-avatar.png",
+        "description": "User2 description",
+        "email": "",
+        "numberOfPosts": 7,
+        "stars": 20,
+        "topCategories": Array [
+          "life",
+          "business",
+          "history",
+        ],
+        "username": "user2",
+      }
+    }
+    post={
+      Object {
+        "author": "user2",
+        "authorId": "todo",
+        "createdAt": "1970-01-01T00:00:00.000Z",
+        "readingTime": 0,
+      }
+    }
+  />
+   
+  <label
+    htmlFor="title"
+  >
+    <p>
+       Title: 
+    </p>
+     
+    <p>
+       What should stand for title ? 
+    </p>
+    <TextArea
+      autosize={
+        Object {
+          "maxRows": 6,
+          "minRows": 2,
+        }
+      }
+      onChange={[Function]}
+      placeholder="As if you could kill time without injuring eternity."
+      prefixCls="ant-input"
+      type="text"
+      value=""
+    />
+     
+  </label>
+   
+  <div>
+    <Quill
+      bounds=".app"
+      defaultValue={
+        Object {
+          "ops": Array [],
+        }
+      }
+      formats={
+        Array [
+          "header",
+          "bold",
+          "size",
+          "color",
+          "background",
+          "italic",
+          "underline",
+          "blockquote",
+          "code-block",
+          "list",
+          "link",
+          "image",
+          "video",
+          "align",
+        ]
+      }
+      modules={
+        Object {
+          "toolbar": Array [
+            Array [
+              Object {
+                "header": "1",
+              },
+              Object {
+                "header": "2",
+              },
+            ],
+            Array [
+              "bold",
+              "italic",
+              "underline",
+              "blockquote",
+              "code-block",
+            ],
+            Array [
+              Object {
+                "size": Array [
+                  "small",
+                  false,
+                  "large",
+                  "huge",
+                ],
+              },
+            ],
+            Array [
+              Object {
+                "color": Array [],
+              },
+              Object {
+                "background": Array [],
+              },
+            ],
+            Array [
+              Object {
+                "list": "ordered",
+              },
+            ],
+            Array [
+              "link",
+              "image",
+              "video",
+            ],
+            Array [
+              Object {
+                "align": Array [],
+              },
+            ],
+            Array [
+              "clean",
+            ],
+          ],
+        }
+      }
+      onChange={[Function]}
+      placeholder="Add a post to your blog"
+      theme="snow"
+    />
+     
+  </div>
+  <input
+    className="text-input"
+    onChange={[Function]}
+    placeholder="keywords"
+    type="text"
+    value=""
+  />
+   
+  <div>
+    <button
+      className="button"
+    >
+       Save Post 
+    </button>
+     
+  </div>
+   
+</form>
+`;
+
+exports[`should render PostForm with correct data in 1`] = `
+<form
+  className="content-container form form--post"
+  onSubmit={[Function]}
+>
+  <UserCard
+    author={
+      Object {
+        "avatar": "http://www.perlworkshop.nl/nlpw2016/img/default-avatar.png",
+        "description": "User2 description",
+        "email": "",
+        "numberOfPosts": 7,
+        "stars": 20,
+        "topCategories": Array [
+          "life",
+          "business",
+          "history",
+        ],
+        "username": "user2",
+      }
+    }
+    post={
+      Object {
+        "author": "user2",
+        "authorId": "todo",
+        "createdAt": "1970-01-01T00:00:00.000Z",
+        "readingTime": 7,
+      }
+    }
+  />
+   
+  <label
+    htmlFor="title"
+  >
+    <p>
+       Title: 
+    </p>
+     
+    <p>
+       What should stand for title ? 
+    </p>
+    <TextArea
+      autosize={
+        Object {
+          "maxRows": 6,
+          "minRows": 2,
+        }
+      }
+      onChange={[Function]}
+      placeholder="As if you could kill time without injuring eternity."
+      prefixCls="ant-input"
+      type="text"
+      value="Post 1 in Run"
+    />
+     
+  </label>
+   
+  <div>
+    <Quill
+      bounds=".app"
+      defaultValue={
+        Object {
+          "ops": Array [
+            Object {
+              "attributes": "h1",
+              "text": "This is the first Post in run",
+            },
+          ],
+        }
+      }
+      formats={
+        Array [
+          "header",
+          "bold",
+          "size",
+          "color",
+          "background",
+          "italic",
+          "underline",
+          "blockquote",
+          "code-block",
+          "list",
+          "link",
+          "image",
+          "video",
+          "align",
+        ]
+      }
+      modules={
+        Object {
+          "toolbar": Array [
+            Array [
+              Object {
+                "header": "1",
+              },
+              Object {
+                "header": "2",
+              },
+            ],
+            Array [
+              "bold",
+              "italic",
+              "underline",
+              "blockquote",
+              "code-block",
+            ],
+            Array [
+              Object {
+                "size": Array [
+                  "small",
+                  false,
+                  "large",
+                  "huge",
+                ],
+              },
+            ],
+            Array [
+              Object {
+                "color": Array [],
+              },
+              Object {
+                "background": Array [],
+              },
+            ],
+            Array [
+              Object {
+                "list": "ordered",
+              },
+            ],
+            Array [
+              "link",
+              "image",
+              "video",
+            ],
+            Array [
+              Object {
+                "align": Array [],
+              },
+            ],
+            Array [
+              "clean",
+            ],
+          ],
+        }
+      }
+      onChange={[Function]}
+      placeholder="Add a post to your blog"
+      theme="snow"
+    />
+     
+  </div>
+  <input
+    className="text-input"
+    onChange={[Function]}
+    placeholder="keywords"
+    type="text"
+    value="red, green, blue"
+  />
+   
+  <div>
+    <button
+      className="button"
+    >
+       Save Post 
+    </button>
+     
+  </div>
+   
+</form>
+`;

@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render UserCard component properly when post not provided 1`] = `
+<div
+  className="usercard__container"
+>
+  <div
+    className="usercard__avatar"
+  >
+    <img
+      alt="user2's avatar"
+      className="image image--circle"
+      src="http://www.perlworkshop.nl/nlpw2016/img/default-avatar.png"
+    />
+  </div>
+  <div
+    className="usercard__infos"
+  >
+    <div
+      className="usercard__infos--data"
+    >
+      <Link
+        replace={false}
+        to="/undefined/read/"
+      >
+        <h4
+          className="usercard__infos--data--author"
+        >
+          user2
+        </h4>
+      </Link>
+      <p>
+         
+        20
+         
+        <i
+          className="fa fa-star"
+        />
+      </p>
+    </div>
+    <div
+      className="usercard__infos--description"
+    >
+      <p>
+        User2 description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should render UserCard component properly when post provided 1`] = `
+<div
+  className="usercard__container"
+>
+  <div
+    className="usercard__avatar"
+  >
+    <img
+      alt="user2's avatar"
+      className="image image--circle"
+      src="http://www.perlworkshop.nl/nlpw2016/img/default-avatar.png"
+    />
+  </div>
+  <div
+    className="usercard__infos"
+  >
+    <div
+      className="usercard__infos--data"
+    >
+      <Link
+        replace={false}
+        to="/author2Id/read/"
+      >
+        <h4
+          className="usercard__infos--data--author"
+        >
+          user2
+        </h4>
+      </Link>
+      <p>
+         
+        20
+         
+        <i
+          className="fa fa-star"
+        />
+      </p>
+    </div>
+    <div
+      className="usercard__infos--description"
+    >
+      <p>
+        User2 description
+      </p>
+    </div>
+    <footer
+      className="usercard__infos--footer"
+    >
+      <p>
+        Jan 1st, 1970
+      </p>
+      <p>
+        12
+         minutes
+      </p>
+    </footer>
+  </div>
+</div>
+`;

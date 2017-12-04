@@ -1,4 +1,6 @@
-const runReducerDefaultState = [];
+const runReducerDefaultState = {
+  isLoading: true, posts: [], hasErrored: false, current: {}
+};
 
 const runReducer = (state = runReducerDefaultState, action) => {
   switch (action.type) {
@@ -16,6 +18,16 @@ const runReducer = (state = runReducerDefaultState, action) => {
       return {
         ...state,
         posts: action.posts
+      };
+    case 'RUN_IS_LOADING':
+      return {
+        ...state,
+        isLoading: action.isLoading
+      };
+    case 'RUN_HAS_ERRORED':
+      return {
+        ...state,
+        hasErrored: action.hasErrored
       };
     case 'SET_CURRENT_POST_RUN':
       return {
@@ -50,7 +62,9 @@ const runReducer = (state = runReducerDefaultState, action) => {
         })
       };
     case 'RESET_RUN':
-      return {};
+      return {
+        posts: []
+      };
     case 'CLEAN_RUN':
       return {
         ...state,

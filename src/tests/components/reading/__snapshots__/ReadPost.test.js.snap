@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ReadPost component properly 1`] = `
+<div>
+  <div>
+    <header
+      className="page-header page-header--read"
+    >
+      <div
+        className="content-container"
+      >
+        <UserCard
+          author={
+            Object {
+              "avatar": "https://www.timeshighereducation.com/sites/default/files/byline_photos/default-avatar.png",
+              "description": "I had three chairs in my house; one for solitude, two for friendship, three for society.",
+              "stars": 0,
+              "username": "Anonymous",
+            }
+          }
+          post={
+            Object {
+              "author": "author3",
+              "authorId": "author3Id",
+              "body": Array [
+                Object {
+                  "attributes": "h3",
+                  "text": "blabla",
+                },
+              ],
+              "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+              "createdAt": 1000000,
+              "id": "3",
+              "keywords": "car, pool, cake",
+              "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+              "readingTime": 2,
+              "stars": 2,
+              "title": "Post 3 in Run",
+            }
+          }
+        />
+        <div
+          className="read-header__stars"
+        >
+          <button
+            className="button button--star"
+            onClick={[Function]}
+          >
+            <i
+              className="fa fa-star-o"
+            />
+          </button>
+          <p />
+        </div>
+      </div>
+    </header>
+    <h2
+      className="read-header__title"
+    >
+      Post 3 in Run
+    </h2>
+    <img
+      className="image image--cover"
+      src="https://www.w3schools.com/w3css/img_fjords.jpg"
+    />
+    <div
+      className="content-container read-only"
+    >
+      <Quill
+        bounds=".app"
+        modules={
+          Object {
+            "toolbar": Array [],
+          }
+        }
+        placeholder="Add a post to your blog"
+        readOnly={true}
+        theme="snow"
+        value={
+          Object {
+            "ops": Array [
+              Object {
+                "attributes": "h3",
+                "text": "blabla",
+              },
+            ],
+          }
+        }
+      />
+    </div>
+    <footer
+      className="keywords-list__read-post-container "
+    >
+      <KeywordsList
+        keywords="car, pool, cake"
+      />
+    </footer>
+  </div>
+</div>
+`;
+
+exports[`should render ReadPost properly on loading 1`] = `<Component />`;

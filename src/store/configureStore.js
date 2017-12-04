@@ -15,17 +15,26 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // different reducing functioins into a single reducing function you
 // can pass to createStore
 
+// rootReducer is used to re-initialize store when users logs out.
+
+const appReducer = combineReducers({
+  auth: authReducer,
+  posts: postsReducer,
+  filters: filtersReducer,
+  readings: readingsReducer,
+  users: usersReducer,
+  run: runReducer
+});
+
+const rootReducer = (state, action) => {
+  if (action.type === 'LOGOUT') {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+};
+
 export default () => {
-  const store = createStore(
-    combineReducers({
-      auth: authReducer,
-      posts: postsReducer,
-      filters: filtersReducer,
-      readings: readingsReducer,
-      users: usersReducer,
-      run: runReducer
-    }),
-    composeEnhancers(applyMiddleware(thunk))
-  );
+  const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
   return store;
 };

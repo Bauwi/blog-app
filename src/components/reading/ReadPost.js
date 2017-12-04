@@ -9,63 +9,64 @@ import LoadingPage from '../LoadingPage';
 import KeywordsList from '../KeywordsList';
 
 import { startSetOnePost } from '../../actions/readings';
-import { startSetAuthorFromUserId, startAddUserStar } from '../../actions/users';
 import { startUpPostStar } from '../../actions/posts';
 
 export class ReadPost extends Component {
-  state = { loading: true };
-
+  static defaultProps = {
+    post: {
+      title: '',
+      cover: '',
+      body: [],
+      keywords: ''
+    }
+  };
   componentDidMount() {
-    const { id } = this.props.match.params;
-    this.props
-      .startSetOnePost(id)
-      .then(ref => this.props.startSetAuthorFromUserId(ref.post.authorId))
-      .then(() => {
-        this.setState(() => ({ loading: false }));
-      });
+    this.props.startSetOnePost(this.props.postId);
   }
 
   onAddStar = () => {
-    this.props.startAddUserStar(this.props.post.authorId, this.props.author.stars);
-    this.props.startUpPostStar(this.props.match.params.id);
+    const { postId } = this.props;
+    const { authorId } = this.props.post;
+    const { stars } = this.props.author;
+    this.props.startUpPostStar(postId, authorId, stars);
   };
 
   render() {
+    if (this.props.isLoading) {
+      return <LoadingPage />;
+    }
+    const { title, cover, body, keywords } = this.props.post;
     return (
       <div>
-        {this.state.loading ? (
-          <LoadingPage />
-        ) : (
-          <div>
-            <header className="page-header page-header--read">
-              <div className="content-container">
-                <UserCard post={this.props.post} author={this.props.author} />
-                <div className="read-header__stars">
-                  <button className="button button--star" onClick={this.onAddStar}>
-                    <i className="fa fa-star-o" />
-                  </button>
-                  <p>{this.props.postStars}</p>
-                </div>
+        <div>
+          <header className="page-header page-header--read">
+            <div className="content-container">
+              <UserCard post={this.props.post} author={this.props.author} />
+              <div className="read-header__stars">
+                <button className="button button--star" onClick={this.onAddStar}>
+                  <i className="fa fa-star-o" />
+                </button>
+                <p>{this.props.postStars}</p>
               </div>
-            </header>
-            <h2 className="read-header__title">{this.props.post.title}</h2>
-            <img className="image image--cover" src={this.props.post.cover} />
-            <div className="content-container read-only">
-              <ReactQuill
-                theme="snow"
-                value={{ ops: [...this.props.post.body] }}
-                readOnly
-                modules={ReadPost.modules}
-                bounds=".app"
-                placeholder="Add a post to your blog"
-              />
             </div>
-
-            <footer className="keywords-list__read-post-container ">
-              <KeywordsList keywords={this.props.post.keywords} />
-            </footer>
+          </header>
+          <h2 className="read-header__title">{title}</h2>
+          <img className="image image--cover" src={cover} />
+          <div className="content-container read-only">
+            <ReactQuill
+              theme="snow"
+              value={{ ops: [...body] }}
+              readOnly
+              modules={ReadPost.modules}
+              bounds=".app"
+              placeholder="Add a post to your blog"
+            />
           </div>
-        )}
+
+          <footer className="keywords-list__read-post-container ">
+            <KeywordsList keywords={keywords} />
+          </footer>
+        </div>
       </div>
     );
   }
@@ -74,22 +75,22 @@ export class ReadPost extends Component {
 ReadPost.propTypes = {
   post: PropTypes.object,
   author: PropTypes.object,
+  postId: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   startSetOnePost: PropTypes.func.isRequired,
-  startSetAuthorFromUserId: PropTypes.func.isRequired,
-  startAddUserStar: PropTypes.func.isRequired,
   startUpPostStar: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
   startSetOnePost: id => dispatch(startSetOnePost(id)),
-  startSetAuthorFromUserId: id => dispatch(startSetAuthorFromUserId(id)),
-  startAddUserStar: (id, prevStars) => dispatch(startAddUserStar(id, prevStars)),
-  startUpPostStar: id => dispatch(startUpPostStar(id))
+  startUpPostStar: (id, authorId, stars) => dispatch(startUpPostStar(id, authorId, stars))
 });
 
 const mapStateToProps = (state, props) => ({
   post: state.readings.current,
-  author: state.users.author
+  postId: props.match.params.id,
+  author: state.users.author,
+  isLoading: state.readings.isLoading
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReadPost));

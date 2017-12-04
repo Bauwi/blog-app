@@ -1,17 +1,30 @@
 import { db } from '../firebase/firebase';
 import moment from 'moment';
 import axios from 'axios';
+import { startSetAuthorFromUserId } from './users';
 
 // manage reading all posts
 // set readings in home
+
+export const readingssHasErrored = bool => ({
+  type: 'READINGS_HAS_ERRORED',
+  hasErrored: bool
+});
+
+export const readingsIsLoading = bool => ({
+  type: 'READINGS_IS_LOADING',
+  isLoading: bool
+});
+
 export const setPostsSample = posts => ({
   type: 'SET_POSTS_SAMPLE',
   posts
 });
 
 // Find the last 100 posts.
-export const startSetPostsSample = () => dispatch =>
-  db
+export const startSetPostsSample = () => (dispatch) => {
+  dispatch(readingsIsLoading(true));
+  return db
     .collection('posts')
     .orderBy('createdAt', 'desc')
     .limit(100)
@@ -24,8 +37,12 @@ export const startSetPostsSample = () => dispatch =>
           ...doc.data()
         });
       });
-      dispatch(setPostsSample(posts));
-    });
+      dispatch(readingsIsLoading(false));
+      return posts;
+    })
+    .then(posts => dispatch(setPostsSample(posts)))
+    .catch(() => dispatch(readingssHasErrored(true)));
+};
 
 // manage reading specific user posts.
 
@@ -34,8 +51,9 @@ export const setSpecificUserPosts = posts => ({
   posts
 });
 
-export const startSetSpecificUserPosts = id => dispatch =>
-  db
+export const startSetSpecificUserPosts = id => (dispatch) => {
+  dispatch(readingsIsLoading(true));
+  return db
     .collection('posts')
     .where('authorId', '==', id)
     .get()
@@ -48,8 +66,13 @@ export const startSetSpecificUserPosts = id => dispatch =>
         });
       });
       posts.sort((a, b) => a.createdAt - b.createdAt);
-      dispatch(setSpecificUserPosts(posts));
-    });
+      return posts;
+    })
+    .then(posts => dispatch(setSpecificUserPosts(posts)))
+    .then(() => dispatch(startSetAuthorFromUserId(id)))
+    .then(() => dispatch(readingsIsLoading(false)))
+    .catch(() => dispatch(readingssHasErrored(true)));
+};
 
 // manage reading a single post.
 // make it current.
@@ -58,8 +81,9 @@ export const setOnePost = post => ({
   post
 });
 
-export const startSetOnePost = id => (dispatch, getState) =>
-  db
+export const startSetOnePost = id => (dispatch, getState) => {
+  dispatch(readingsIsLoading(true));
+  return db
     .collection('posts')
     .doc(id)
     .get()
@@ -67,4 +91,8 @@ export const startSetOnePost = id => (dispatch, getState) =>
       dispatch(setOnePost({
         id: doc.id,
         ...doc.data()
-      })));
+      })))
+    .then(ref => dispatch(startSetAuthorFromUserId(ref.post.authorId)))
+    .then(() => dispatch(readingsIsLoading(false)))
+    .catch(() => dispatch(readingssHasErrored(true)));
+};

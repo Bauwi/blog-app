@@ -28,7 +28,11 @@ export class EditPost extends Component {
           author={this.props.preferences}
           context="edit"
         />
-        <button onClick={this.onRemovePost}>Remove Post</button>
+        <div className="content-container">
+          <button className="button" onClick={this.onRemovePost}>
+            Remove Post
+          </button>
+        </div>
       </div>
     );
   }
@@ -61,7 +65,7 @@ EditPost.propTypes = {
 
 const mapStateToProps = (state, props) => {
   return {
-    post: state.posts.find(post => {
+    post: state.posts.posts.find(post => {
       return post.id === props.match.params.id;
     }),
     preferences: state.users.preferences

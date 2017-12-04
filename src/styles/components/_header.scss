@@ -22,10 +22,13 @@
   padding: $s-size 0;
   h1 {
     margin: 0;
+    font-family: "Source Sans Pro";
+    font-size: $font-size-large;
     font-weight: 1000;
-    line-height: 2.5rem;
-    background: black;
-    color: white;
+    // line-height: 2.4rem;
+    // background: black;
+    // color: white;
+    margin: $s-size 0;
   }
 }
 
@@ -45,9 +48,11 @@
 .header__navbar {
   align-items: center;
   display: flex;
-  justify-content: flex-end;
-  // padding: $s-size 0;
+  justify-content: center;
+  padding: 0 0 $s-size 0;
   @media (min-width: $desktop-breakpoint) {
+    justify-content: flex-end;
+    padding: 0;
   }
 
   a,
@@ -100,23 +105,42 @@
 }
 
 .header__navbarsub {
-  @extend .content-container;
+  align-items: center;
+  background: black;
   border-bottom: 1px solid $grey;
   display: flex;
   flex-direction: column;
+  min-height: 4rem;
   justify-content: center;
-  * {
-    color: $light-grey;
+  div {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+  }
+  div > a {
+    align-items: center;
+    display: flex;
+    border-bottom: 2px solid black;
+    color: $off-white;
     font-size: $font-size-small;
+    height: 4rem;
     margin-left: $s-size;
-    padding: $s-size 0;
     text-decoration: none;
+    transition: all 0.7s ease;
+  }
+  div > a:hover {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.7s ease;
   }
   @media (min-width: $desktop-breakpoint) {
     flex-direction: row;
   }
 }
 
+.header__navbarsub__tab--selected {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5) !important;
+  transition: all 0.7s ease;
+}
 // overridding antd styles for badge
 // .ant-message {
 //   margin-top: 7rem;
