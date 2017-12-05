@@ -78,7 +78,7 @@ test('should reset run', () => {
     type: 'RESET_RUN'
   };
   const state = runReducer({ ...runReducerDefaultState, posts }, action);
-  expect(state).toEqual(runReducerDefaultState);
+  expect(state).toEqual({ ...runReducerDefaultState, isLoading: false });
 });
 
 test('should clean run', () => {

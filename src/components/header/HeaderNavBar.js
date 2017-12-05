@@ -8,15 +8,8 @@ import RunListDropdown from './RunListDropdown';
 import LoginModal from './LoginModal';
 
 import { startLogout } from '../../actions/auth';
-import { startSetRunPosts } from '../../actions/run';
 
 export class HeaderNavBar extends Component {
-  componentDidMount() {
-    if (this.props.isAuthenticated) {
-      this.props.startSetRunPosts();
-    }
-  }
-
   render() {
     const { isAuthenticated, runCount = 0, startLogout } = this.props;
     if (isAuthenticated) {
@@ -55,15 +48,13 @@ export class HeaderNavBar extends Component {
 HeaderNavBar.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   runCount: PropTypes.number,
-  startLogout: PropTypes.func.isRequired,
-  startSetRunPosts: PropTypes.func.isRequired
+  startLogout: PropTypes.func.isRequired
 };
 
 HeaderNavBar.defaultProps = { runCount: 0 };
 
 const mapDispatchToProps = dispatch => ({
-  startLogout: () => dispatch(startLogout()),
-  startSetRunPosts: () => dispatch(startSetRunPosts())
+  startLogout: () => dispatch(startLogout())
 });
 
 const mapStateToProps = state => ({

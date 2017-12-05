@@ -3,8 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { message } from 'antd';
 
-import LoadingPage from '../LoadingPage';
-
 const noUnreadPostWarning = () => {
   message.warning('You have no unread post left.');
 };
@@ -50,9 +48,6 @@ export class RunSummaryHeader extends Component {
   };
 
   render() {
-    if (this.props.isLoading) {
-      return <LoadingPage />;
-    }
     return (
       <div className="run__summary">
         <div className="content-container">
@@ -90,8 +85,4 @@ const mapDispatchToProps = dispatch => ({
   noUnreadPostWarning: () => noUnreadPostWarning()
 });
 
-const mapStateToProps = state => ({
-  isLoading: state.run.isLoading
-});
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RunSummaryHeader));
+export default withRouter(connect(undefined, mapDispatchToProps)(RunSummaryHeader));

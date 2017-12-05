@@ -43,6 +43,9 @@ export class RunListDropdown extends Component {
 
   handleResetClick = () => {
     this.props.startResetRun();
+    if (this.props.history.location.pathname === '/run/start') {
+      this.props.history.push('/');
+    }
   };
 
   render() {

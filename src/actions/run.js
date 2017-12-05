@@ -78,6 +78,9 @@ export const startSetRunPosts = resume => (dispatch, getState) => {
     .then(run => dispatch(setRunPosts(run)))
     .then(() => {
       const firstUnreadIndex = run.findIndex(post => post.state === 'unread');
+      if (run.length === 0) {
+        return;
+      }
       if (firstUnreadIndex === -1) {
         return dispatch(setCurrentPostRun(run[0].content.id));
       }

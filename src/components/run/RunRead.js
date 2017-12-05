@@ -7,7 +7,7 @@ import { notification } from 'antd';
 import RunReadNav from './RunReadNav';
 import RunReadPost from './RunReadPost';
 import LoadingPage from '../LoadingPage';
-import { startSetRunPosts, startUpdateRunPostToAlreadyRead } from '../../actions/run';
+import { startUpdateRunPostToAlreadyRead } from '../../actions/run';
 
 export class RunRead extends Component {
   componentDidMount() {

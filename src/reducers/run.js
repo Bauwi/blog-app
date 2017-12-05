@@ -52,7 +52,7 @@ const runReducer = (state = runReducerDefaultState, action) => {
         })
       };
     case 'RESET_RUN':
-      return runReducerDefaultState;
+      return { ...runReducerDefaultState, isLoading: false };
     case 'CLEAN_RUN':
       return {
         ...state,

@@ -16,21 +16,3 @@ test('should call startLogout on button click', () => {
 
   expect(startLogout).toHaveBeenCalled();
 });
-
-test('should call startSetRunPosts on mount', () => {
-  const startSetRunPosts = jest.fn();
-  const wrapper = shallow(<HeaderNavBar startLogout={() => {}} startSetRunPosts={startSetRunPosts} isAuthenticated />);
-
-  expect(startSetRunPosts).toHaveBeenCalled();
-});
-
-test('should not call startSetRunPost if not authenticated', () => {
-  const startSetRunPosts = jest.fn();
-  const wrapper = shallow(<HeaderNavBar
-    startLogout={() => {}}
-    startSetRunPosts={startSetRunPosts}
-    isAuthenticated={false}
-  />);
-
-  expect(startSetRunPosts).not.toHaveBeenCalled();
-});
