@@ -2,6 +2,7 @@ import * as firebase from 'firebase';
 import axios from 'axios';
 import { db } from '../firebase/firebase';
 import { startAddUserStar } from './users';
+import { upPostStarsReadings } from './readings';
 
 // Manage CRUD personnal posts
 export const addPost = post => ({
@@ -78,33 +79,23 @@ export const startEditPost = (id, updates) => dispatch =>
     .update(updates)
     .then(() => dispatch(editPost(id, updates)));
 
-// Add a star to post -- may need to be moved to readings action file
-export const addPostStar = (id, stars) => ({
-  type: 'UP_POST_STAR',
-  id,
-  stars
-});
-
-export const startAdPostStar = (id, stars) => dispatch =>
-  db
-    .collection('posts')
-    .doc(id)
-    .update({ stars })
-    .then(() => dispatch(addPostStar(id, stars)));
 
 export const startUpPostStar = (id, authorId, authorStars) => (dispatch) => {
   console.log(id);
   const ref = db.collection('posts').doc(id);
   console.log(ref);
-  return db
-    .runTransaction(transaction =>
-      transaction.get(ref).then((doc) => {
-        const newStars = doc.data().stars + 1;
-        transaction.update(ref, { stars: newStars });
-        return newStars;
-      }))
-    .then(newStars => dispatch(addPostStar(id, newStars)))
-    .then(() => dispatch(startAddUserStar(authorId, authorStars)));
+  return (
+    db
+      .runTransaction(transaction =>
+        transaction.get(ref).then((doc) => {
+          const newStars = doc.data().stars + 1;
+          transaction.update(ref, { stars: newStars });
+          console.log(newStars);
+          return newStars;
+        }))
+      .then(() => dispatch(startAddUserStar(authorId, authorStars)))
+      .then(() => dispatch(upPostStarsReadings()))
+  );
 };
 
 // TODO: IMPROVE THIS USING PROMISE.ALL

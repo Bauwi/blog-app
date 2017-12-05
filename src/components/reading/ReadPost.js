@@ -35,7 +35,7 @@ export class ReadPost extends Component {
     if (this.props.isLoading) {
       return <LoadingPage />;
     }
-    const { title, cover, body, keywords } = this.props.post;
+    const { title, cover, body, keywords, stars } = this.props.post;
     return (
       <div>
         <div>
@@ -44,6 +44,7 @@ export class ReadPost extends Component {
               <UserCard post={this.props.post} author={this.props.author} />
               <div className="read-header__stars">
                 <button className="button button--star" onClick={this.onAddStar}>
+                  {stars}
                   <i className="fa fa-star-o" />
                 </button>
                 <p>{this.props.postStars}</p>

@@ -1,5 +1,8 @@
 const runReducerDefaultState = {
-  isLoading: true, posts: [], hasErrored: false, current: {}
+  isLoading: true,
+  posts: [],
+  hasErrored: false,
+  current: {}
 };
 
 const runReducer = (state = runReducerDefaultState, action) => {
@@ -48,23 +51,8 @@ const runReducer = (state = runReducerDefaultState, action) => {
           return post;
         })
       };
-    case 'UPDATE_RUN_POST_TO_NOT_ALREADY_READ':
-      return {
-        ...state,
-        posts: state.posts.map((post) => {
-          if (post.content.id === action.id) {
-            return {
-              ...post,
-              state: 'unread'
-            };
-          }
-          return post;
-        })
-      };
     case 'RESET_RUN':
-      return {
-        posts: []
-      };
+      return runReducerDefaultState;
     case 'CLEAN_RUN':
       return {
         ...state,

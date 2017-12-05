@@ -27,6 +27,8 @@ const postsReducer = (state = postsReducerDefaultState, action) => {
       return { ...state, posts: [...state.posts, ...action.posts] };
     case 'POSTS_IS_LOADING':
       return { ...state, isLoading: action.isLoading };
+    case 'POSTS_HAS_ERRORED':
+      return { ...state, hasErrored: action.hasErrored };
     case 'UP_POST_STAR':
       return {
         ...state,

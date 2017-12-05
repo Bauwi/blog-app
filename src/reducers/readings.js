@@ -17,6 +17,14 @@ const readingsReducer = (state = readingsDefaultState, action) => {
         ...state,
         posts: action.posts
       };
+    case 'UP_POST_STARS_READINGS':
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          stars: state.current.stars + 1
+        }
+      };
     case 'READINGS_IS_LOADING':
       return {
         ...state,

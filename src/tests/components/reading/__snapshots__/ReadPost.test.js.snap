@@ -46,6 +46,7 @@ exports[`should render ReadPost component properly 1`] = `
             className="button button--star"
             onClick={[Function]}
           >
+            2
             <i
               className="fa fa-star-o"
             />

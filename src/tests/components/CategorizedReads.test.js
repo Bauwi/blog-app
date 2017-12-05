@@ -1,9 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { CategorizedReads } from '../../components/CategorizedReads';
-import run from '../fixtures/run';
-
-const posts = run.posts.map(post => post.content);
+import { posts } from '../fixtures/run';
 
 test('should render CategorizedReads component properly', () => {
   const wrapper = shallow(<CategorizedReads

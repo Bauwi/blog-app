@@ -58,8 +58,6 @@ export class PublicPostsListItem extends Component {
               <div className="homelist-item__content__subtitle">
                 <p className="homelist-item__content__author">{author}</p>
               </div>
-
-              <p>{this.state.error}</p>
             </div>
           </div>
         </Link>

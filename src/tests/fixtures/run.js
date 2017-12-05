@@ -109,4 +109,6 @@ export const runAlt = {
     }
   ]
 };
+export const posts = run.posts.map(post => post.content);
+
 export default run;

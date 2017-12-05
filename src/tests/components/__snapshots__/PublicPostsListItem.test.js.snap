@@ -52,7 +52,6 @@ exports[`should render PublicPostsListItem component properly 1`] = `
             author2
           </p>
         </div>
-        <p />
       </div>
     </div>
   </Link>

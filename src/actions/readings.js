@@ -96,3 +96,7 @@ export const startSetOnePost = id => (dispatch, getState) => {
     .then(() => dispatch(readingsIsLoading(false)))
     .catch(() => dispatch(readingssHasErrored(true)));
 };
+
+export const upPostStarsReadings = () => ({
+  type: 'UP_POST_STARS_READINGS'
+});
