@@ -7,7 +7,7 @@ export default class KeywordsList extends Component {
     return keywordsList.map((keyword) => {
       const keywordFormatted = keyword.trim();
       return (
-        <Link to={`/category/${keyword}`} key={keyword}>
+        <Link to={`/category/${keywordFormatted}`} key={keyword}>
           {keywordFormatted}
         </Link>
       );

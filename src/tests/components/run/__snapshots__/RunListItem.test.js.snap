@@ -52,19 +52,19 @@ exports[`should render RunListItem properly if already read 1`] = `
         >
           Post 1 in Run
         </h3>
-        <div
-          className="inline-list-item__subtitle"
+      </div>
+      <footer
+        className="inline-list-item__footer"
+      >
+        <p
+          className="inline-list-item__author"
         >
-          <p
-            className="inline-list-item__author"
-          >
-            author1
-          </p>
-        </div>
+          author1
+        </p>
         <KeywordsList
           keywords="red, green, blue"
         />
-      </div>
+      </footer>
     </div>
   </div>
 </div>
@@ -117,19 +117,19 @@ exports[`should render RunListItem properly if not read yet 1`] = `
         >
           Post 2 in Run
         </h3>
-        <div
-          className="inline-list-item__subtitle"
+      </div>
+      <footer
+        className="inline-list-item__footer"
+      >
+        <p
+          className="inline-list-item__author"
         >
-          <p
-            className="inline-list-item__author"
-          >
-            author2
-          </p>
-        </div>
+          author2
+        </p>
         <KeywordsList
           keywords="cat, dog, fish"
         />
-      </div>
+      </footer>
     </div>
   </div>
 </div>

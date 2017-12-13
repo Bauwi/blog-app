@@ -29,12 +29,13 @@
 .post-nav-item {
   // border: 1px solid grey;
   align-items: flex-start;
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   text-decoration: none;
   margin: $s-size 0;
   padding: $s-size 0;
-
+  transition: transform 1s ease, box-shadow 1.5s ease;
   width: 50%;
   // transition: all 0.3s ease;
 
@@ -46,16 +47,14 @@
   }
 
   &:hover {
-    background: $off-white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    * {
-      background: $off-white;
-      transition: all 0.3s ease;
-    }
-    .post-nav-item__title {
-      color: black;
-    }
+    transform: scale(1.05);
+
+    -webkit-box-shadow: 0px 30px 95px -23px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 30px 95px -23px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 30px 95px -23px rgba(0, 0, 0, 0.75);
+
+    transition: transform 1s ease, box-shadow 1.5s ease;
+    transition-delay: 0.1s;
   }
 }
 .post-nav-item__left {
@@ -75,6 +74,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
   @media (min-width: $desktop-breakpoint) {
     align-items: flex-start;
     flex-direction: row;
@@ -96,7 +96,7 @@
 
 .post-nav-item__title {
   // font-family: Helvetica;
-  color: rgb(85, 85, 85);
+  color: $off-white;
   border-bottom: 1px solid rgb(70, 70, 70);
   margin: 0;
   padding: 0 $s-size $s-size $s-size;

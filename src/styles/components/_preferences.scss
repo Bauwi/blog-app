@@ -7,6 +7,9 @@
     flex-direction: row;
   }
 }
+.preferences__title {
+  color: $off-white;
+}
 
 .preferences__avatar__container {
   @extend .content-container;
@@ -45,12 +48,17 @@
   }
 
   label > p {
+    color: $off-white;
     margin-right: $s-size;
   }
 }
 
 .preferences__form__block {
   margin: $m-size;
+  textarea {
+    background: rgba(150, 150, 150, 0.1);
+    color: $off-white;
+  }
 }
 
 .preferences__form__block__input-group {

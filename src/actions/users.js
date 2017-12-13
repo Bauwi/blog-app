@@ -60,15 +60,11 @@ export const addUserStar = nextStars => ({
   nextStars
 });
 
-export const startAddUserStar = (id, prevStars) => (dispatch) => {
-  console.log('id', id);
-  console.log('prevstars', prevStars);
-  return db
-    .collection('users')
-    .doc(id)
-    .update({ stars: prevStars + 1 })
-    .then(() => dispatch(addUserStar(prevStars + 1)));
-};
+export const startAddUserStar = (id, prevStars) => dispatch => db
+  .collection('users')
+  .doc(id)
+  .update({ stars: prevStars + 1 })
+  .then(() => dispatch(addUserStar(prevStars + 1)));
 
 export const usersHasErrored = bool => ({
   type: 'USERS_HAS_ERRORED',

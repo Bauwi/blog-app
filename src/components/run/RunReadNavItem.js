@@ -24,8 +24,8 @@ export class RunReadNavItem extends Component {
       }, 15);
   }
   handleChangeCurrent = () => {
-    this.scrollToTop(90);
-    setTimeout(() => this.props.startSetCurrentPostRun(this.props.post.content.id), 100);
+    this.scrollToTop(1000);
+    setTimeout(() => this.props.startSetCurrentPostRun(this.props.post.content.id), 1200);
   };
 
   render() {

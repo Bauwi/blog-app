@@ -8,38 +8,48 @@ exports[`should render PostsSummary component properly with multiple posts provi
     className="content-container"
   >
     <div
-      className="page-header__actions"
+      className="page-header__content"
     >
-      <Link
-        className="button"
-        replace={false}
-        to="/create"
+      <div>
+        <h1
+          className="page-header__title"
+        >
+          Dashboard
+        </h1>
+        <p
+          className="page-header__title"
+        >
+          3
+           post
+          s
+           totalling
+           
+          21
+           minute
+          s
+           read.
+        </p>
+        <p
+          className="page-header__subtitle"
+        >
+          0
+           hidden posts
+        </p>
+      </div>
+      <div
+        className="page-header__actions"
       >
-        <i
-          className="fa fa-pencil"
-        />
-         New Post
-      </Link>
+        <Link
+          className="button button--icon"
+          replace={false}
+          to="/create"
+        >
+          <i
+            className="fa fa-pencil-square-o"
+          />
+        </Link>
+      </div>
     </div>
-    <h1
-      className="page-header__title"
-    >
-      3
-       post
-      s
-      . 
-      21
-       minute
-      s
-       
-      read.
-    </h1>
-    <h3
-      className="page-header__subtitle"
-    >
-      0
-       hidden posts
-    </h3>
   </div>
 </div>
 `;
@@ -52,36 +62,46 @@ exports[`should render PostsSummary component properly with no post provided 1`]
     className="content-container"
   >
     <div
-      className="page-header__actions"
+      className="page-header__content"
     >
-      <Link
-        className="button"
-        replace={false}
-        to="/create"
+      <div>
+        <h1
+          className="page-header__title"
+        >
+          Dashboard
+        </h1>
+        <p
+          className="page-header__title"
+        >
+          0
+           post
+           totalling
+           
+          0
+           minute
+           read.
+        </p>
+        <p
+          className="page-header__subtitle"
+        >
+          0
+           hidden posts
+        </p>
+      </div>
+      <div
+        className="page-header__actions"
       >
-        <i
-          className="fa fa-pencil"
-        />
-         New Post
-      </Link>
+        <Link
+          className="button button--icon"
+          replace={false}
+          to="/create"
+        >
+          <i
+            className="fa fa-pencil-square-o"
+          />
+        </Link>
+      </div>
     </div>
-    <h1
-      className="page-header__title"
-    >
-      0
-       post
-      . 
-      0
-       minute
-       
-      read.
-    </h1>
-    <h3
-      className="page-header__subtitle"
-    >
-      0
-       hidden posts
-    </h3>
   </div>
 </div>
 `;

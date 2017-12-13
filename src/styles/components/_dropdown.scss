@@ -14,8 +14,23 @@
 }
 
 .ant-dropdown-menu {
-  top: 33px;
+  top: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  .ant-dropdown-menu-item {
+    color: $off-white;
+    &:hover {
+      color: black;
+    }
+  }
 }
 .ant-dropdown-menu-item:first-child {
   background: none;
+}
+
+.dropdown__check {
+  color: green;
+  // position: relative;
+  // right: 2.4rem;
+  height: 20px;
+  width: 20px;
 }

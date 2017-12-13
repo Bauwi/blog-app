@@ -15,35 +15,29 @@ class UserCard extends Component {
   };
 
   render() {
-    const { createdAt, readingTime } = this.props.post ? this.props.post : '';
     const authorId = this.props.post ? this.props.post.authorId : this.props.userId;
     const { username, avatar, stars, description } = this.props.author;
     return (
-      <div className="usercard__container">
-        <div className="usercard__avatar">
-          <img className="image image--circle" src={avatar} alt={`${username}'s avatar`} />
-        </div>
-        <div className="usercard__infos">
-          <div className="usercard__infos--data">
-            <Link to={`/${authorId}/read/`}>
+      <Link to={`/${authorId}/read/`}>
+        <div className="usercard__container">
+          <div className="usercard__avatar">
+            <img className="image image--circle" src={avatar} alt={`${username}'s avatar`} />
+          </div>
+          <div className="usercard__infos">
+            <div className="usercard__infos--data">
               <h4 className="usercard__infos--data--author">{username}</h4>
-            </Link>
-            <p>
-              {' '}
-              {stars} <i className="fa fa-star" />
-            </p>
+
+              <p>
+                {' '}
+                {stars} <i className="fa fa-star" />
+              </p>
+            </div>
+            <div className="usercard__infos--description">
+              <p>{description}</p>
+            </div>
           </div>
-          <div className="usercard__infos--description">
-            <p>{description}</p>
-          </div>
-          {this.props.post && (
-            <footer className="usercard__infos--footer">
-              <p>{moment(createdAt).format('MMM Do, YYYY')}</p>
-              <p>{readingTime} minutes</p>
-            </footer>
-          )}
         </div>
-      </div>
+      </Link>
     );
   }
 }

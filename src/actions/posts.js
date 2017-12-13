@@ -79,23 +79,17 @@ export const startEditPost = (id, updates) => dispatch =>
     .update(updates)
     .then(() => dispatch(editPost(id, updates)));
 
-
 export const startUpPostStar = (id, authorId, authorStars) => (dispatch) => {
-  console.log(id);
   const ref = db.collection('posts').doc(id);
-  console.log(ref);
-  return (
-    db
-      .runTransaction(transaction =>
-        transaction.get(ref).then((doc) => {
-          const newStars = doc.data().stars + 1;
-          transaction.update(ref, { stars: newStars });
-          console.log(newStars);
-          return newStars;
-        }))
-      .then(() => dispatch(startAddUserStar(authorId, authorStars)))
-      .then(() => dispatch(upPostStarsReadings()))
-  );
+  return db
+    .runTransaction(transaction =>
+      transaction.get(ref).then((doc) => {
+        const newStars = doc.data().stars + 1;
+        transaction.update(ref, { stars: newStars });
+        return newStars;
+      }))
+    .then(() => dispatch(startAddUserStar(authorId, authorStars)))
+    .then(() => dispatch(upPostStarsReadings()));
 };
 
 // TODO: IMPROVE THIS USING PROMISE.ALL

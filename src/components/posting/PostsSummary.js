@@ -7,20 +7,26 @@ import selectPosts from '../../selectors/posts';
 
 export const PostsSummary = ({ selectedPosts, totalUserPosts }) => {
   const totalInMinutes = selectedPosts.reduce((total, post) => (total += post.readingTime), 0);
-  const hiddenPostsNum = totalUserPosts - selectedPosts.length;
+  const hiddenPostsNum =
+    totalUserPosts - selectedPosts.length >= 0 ? totalUserPosts - selectedPosts.length : 0;
   return (
     <div className="page-header__container">
       <div className="content-container">
-        <div className="page-header__actions">
-          <Link className="button" to="/create">
-            <i className="fa fa-pencil" /> New Post
-          </Link>
+        <div className="page-header__content">
+          <div>
+            <h1 className="page-header__title">Dashboard</h1>
+            <p className="page-header__title">
+              {selectedPosts.length} post{selectedPosts.length > 1 ? 's' : ''} totalling{' '}
+              {totalInMinutes} minute{totalInMinutes > 1 ? 's' : ''} read.
+            </p>
+            <p className="page-header__subtitle">{hiddenPostsNum} hidden posts</p>
+          </div>
+          <div className="page-header__actions">
+            <Link className="button button--icon" to="/create">
+              <i className="fa fa-pencil-square-o" />
+            </Link>
+          </div>
         </div>
-        <h1 className="page-header__title">
-          {selectedPosts.length} post{selectedPosts.length > 1 ? 's' : ''}. {totalInMinutes} minute{totalInMinutes > 1 ? 's' : ''}{' '}
-          read.
-        </h1>
-        <h3 className="page-header__subtitle">{hiddenPostsNum} hidden posts</h3>
       </div>
     </div>
   );

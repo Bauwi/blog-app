@@ -26,7 +26,11 @@ export class RunRead extends Component {
         const openNotificationWithIcon = type => {
           notification[type]({
             message: title,
-            description: `by ${author}`
+            description: `by ${author}`,
+            style: {
+              position: 'relative',
+              top: '4rem'
+            }
           });
         };
         openNotificationWithIcon('success');

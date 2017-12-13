@@ -1,7 +1,8 @@
 .text-input {
+  background: rgba(150, 150, 150, 0.1);
   border: none;
   border-bottom: 1px solid #cacccd;
-  color: $light-grey;
+  color: $off-white;
   font-size: $font-size-medium;
   font-weight: 300;
   height: 50px;
@@ -15,7 +16,8 @@
 
 .select {
   @extend .text-input;
-  width: 10rem;
+  width: 13rem;
+  margin: 1rem 1rem 0 0;
 }
 
 .textarea {

@@ -33,5 +33,11 @@
     & > .flexitem-triple {
       width: calc(100% * 3 / #{$number} - #{$gutter});
     }
+    & > .flexitem-quadruple {
+      width: calc(100% * 4 / #{$number} - #{$gutter});
+    }
+    & > .flexitem-hexuple {
+      width: calc(100% * 6 / #{$number} - #{$gutter});
+    }
   }
 }

@@ -33,9 +33,10 @@ export class PublicPostsListItem extends Component {
     const buttonClassName = this.props.isInRun
       ? 'button--pin button--pin--selected'
       : 'button--pin';
+    const category = keywords.split(',')[0].trim();
     return (
       <div className="homelist-item">
-        <Link to={`/${authorId}/read/${id}`} className="no-decoration">
+        <div>
           <div className="homelist-item__content">
             <header>
               <img
@@ -44,35 +45,42 @@ export class PublicPostsListItem extends Component {
                 alt="post cover"
               />
             </header>
-            <section className="homelist-item__content__header">
-              <div>
-                <i className="fa fa-star" /> {stars}
-              </div>
-              <p className="homelist-item__content__date">
-                {moment(createdAt).format('MMM Do, YYYY')}
-              </p>
-            </section>
-            <div className="homelist-item__content__infos">
-              <h3 className="homelist-item__content__title">{title}</h3>
+            <div className="homelist-item__content__container">
+              <Link to={`/${authorId}/read/${id}`} className="no-decoration">
+                <div className="homelist-item__content__infos">
+                  <section className="homelist-item__content__header">
+                    <div>
+                      <i className="fa fa-star" /> {stars}
+                    </div>
+                    <p className="homelist-item__content__date">
+                      {moment(createdAt).format('MMM Do, YYYY')}
+                    </p>
+                  </section>
+                  <h3 className="homelist-item__content__title">{title}</h3>
 
-              <div className="homelist-item__content__subtitle">
-                <p className="homelist-item__content__author">{author}</p>
-              </div>
+                  <div className="homelist-item__content__subtitle">
+                    <p className="homelist-item__content__author">{author}</p>
+                  </div>
+                </div>
+              </Link>
+              <footer className="homelist-item__footer">
+                <KeywordsList keywords={keywords} />
+                <div className="homelist-item__footer__bottom">
+                  <div>
+                    <p className={`category border-${category}`}>{category}</p>
+                  </div>
+                  <div className="button--pin__container">
+                    <p className="homelist-item__footer__index">{this.props.index}</p>
+
+                    <button className={buttonClassName} onClick={this.handleAddPostToRun}>
+                      <i className="fa fa-book" />
+                    </button>
+                  </div>
+                </div>
+              </footer>
             </div>
           </div>
-        </Link>
-
-        <footer className="homelist-item__footer">
-          <KeywordsList keywords={keywords} />
-          <div className="">
-            <div className="button--pin__container">
-              <p className="homelist-item__footer__index">{this.props.index}</p>
-              <button className={buttonClassName} onClick={this.handleAddPostToRun}>
-                <i className="fa fa-book" />
-              </button>
-            </div>
-          </div>
-        </footer>
+        </div>
       </div>
     );
   }

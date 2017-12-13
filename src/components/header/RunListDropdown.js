@@ -23,6 +23,13 @@ export class RunListDropdown extends Component {
             }}
           >
             <img src={post.content.miniCover} alt="minicover" />
+            {post.state === 'read' ? (
+              <p className="dropdown__check">
+                <i className="fa fa-check" />
+              </p>
+            ) : (
+              <p className="dropdown__check" />
+            )}
             <p>{post.content.title}</p>
           </div>
         </Menu.Item>

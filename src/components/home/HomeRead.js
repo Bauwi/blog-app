@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import HeaderSub from '../header/HeaderSub';
+import Jumbotron from '../header/Jumbotron';
 import PublicPostsList from '../PublicPostsList';
 import LoadingPage from '../LoadingPage';
 import PopularLasttFilter from '../filters/PopularLastFilter';
@@ -26,16 +27,19 @@ export class HomeRead extends Component {
     return (
       <div className="page-container">
         <HeaderSub />
-        <div className="popular-last-filterbar__container">
-          <div className="content-container">
-            <PopularLasttFilter relative />
-          </div>
-        </div>
+        <Jumbotron />
 
         {this.props.isLoading ? (
           <LoadingPage />
         ) : (
-          <PublicPostsList grid="grid-home-first" category="all" range={14} />
+          <div>
+            <div className="popular-last-filterbar__container">
+              <div className="content-container">
+                <PopularLasttFilter relative />
+              </div>
+            </div>
+            <PublicPostsList grid="grid-home-first" category="all" range={14} />
+          </div>
         )}
         {!this.props.isLoading && this.renderCustomCategories()}
       </div>
@@ -56,7 +60,7 @@ const mapStateToProps = state => ({
   categories: state.users.preferences
     ? state.users.preferences.topCategories
     : ['litterature', 'music', 'life'],
-  isLoading: state.posts.isLoading
+  isLoading: state.readings.isLoading
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeRead);

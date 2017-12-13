@@ -1,5 +1,6 @@
 .read-header__title {
   @extend .content-container;
+  color: $off-white;
   font-size: $font-size-large;
   padding: 0 $s-size $l-size $s-size;
   text-align: center;

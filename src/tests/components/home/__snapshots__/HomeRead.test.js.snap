@@ -5,22 +5,25 @@ exports[`should have rendered custom categories properly 1`] = `
   className="page-container"
 >
   <HeaderSub />
-  <div
-    className="popular-last-filterbar__container"
-  >
+  <withRouter(Connect(Jumbotron)) />
+  <div>
     <div
-      className="content-container"
+      className="popular-last-filterbar__container"
     >
-      <Connect(PopularLasttFilter)
-        relative={true}
-      />
+      <div
+        className="content-container"
+      >
+        <Connect(PopularLasttFilter)
+          relative={true}
+        />
+      </div>
     </div>
+    <Connect(PublicPostsList)
+      category="all"
+      grid="grid-home-first"
+      range={14}
+    />
   </div>
-  <Connect(PublicPostsList)
-    category="all"
-    grid="grid-home-first"
-    range={14}
-  />
   <Connect(PublicPostsList)
     category="alpha"
     grid="grid-home-second"
@@ -47,21 +50,24 @@ exports[`should render HomeRead component properly 1`] = `
   className="page-container"
 >
   <HeaderSub />
-  <div
-    className="popular-last-filterbar__container"
-  >
+  <withRouter(Connect(Jumbotron)) />
+  <div>
     <div
-      className="content-container"
+      className="popular-last-filterbar__container"
     >
-      <Connect(PopularLasttFilter)
-        relative={true}
-      />
+      <div
+        className="content-container"
+      >
+        <Connect(PopularLasttFilter)
+          relative={true}
+        />
+      </div>
     </div>
+    <Connect(PublicPostsList)
+      category="all"
+      grid="grid-home-first"
+      range={14}
+    />
   </div>
-  <Connect(PublicPostsList)
-    category="all"
-    grid="grid-home-first"
-    range={14}
-  />
 </div>
 `;

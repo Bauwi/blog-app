@@ -114,86 +114,121 @@ export class Preferences extends Component {
 
   render() {
     const avatarPreview = this.state.avatarPreview;
+    const topCategories = [
+      this.state.topCategory1,
+      this.state.topCategory2,
+      this.state.topCategory3
+    ];
     return (
-      <div className="preferences">
-        <PreferencesAvatar
-          upload={this.props.uploadAvatar}
-          userId={this.props.userId}
-          avatar={
-            this.props.preferences && this.props.preferences.avatar
-              ? this.props.preferences.avatar
-              : ''
-          }
-        />
-
-        <form className="form preferences__form" onSubmit={this.onSubmit}>
-          <label htmlFor="title" className="preferences__form__block">
-            <p>Username: </p>
-            <p>Your username can not exceed 14 characters</p>
-
-            <input
-              autoFocus
-              className="text-input"
-              placeholder="Athos"
-              type="text"
-              value={this.state.username}
-              onChange={this.handleUsernameChange}
-            />
-          </label>
-          <label htmlFor="title" className="preferences__form__block">
-            <p>Interests: </p>
-            <p>Customize your homepage by setting up your interests</p>
-            <div className="preferences__form__block__input-group">
-              <label htmlFor="category 1">
-                <p>1: </p>
-                <input
-                  className="text-input"
-                  placeholder="Sport"
-                  type="text"
-                  value={this.state.topCategory1}
-                  onChange={this.handleCat1Change}
-                />
-              </label>
-              <label htmlFor="category 2">
-                <p>2: </p>
-                <input
-                  className="text-input"
-                  placeholder="Litterature"
-                  type="text"
-                  value={this.state.topCategory2}
-                  onChange={this.handleCat2Change}
-                />
-              </label>
-              <label htmlFor="category 3">
-                <p>3: </p>
-                <input
-                  className="text-input"
-                  placeholder="Third Category"
-                  type="text"
-                  value={this.state.topCategory3}
-                  onChange={this.handleCat3Change}
-                />
-              </label>
+      <div>
+        <div className="page-header__container">
+          <div className="content-container">
+            <div className="page-header__content">
+              <div>
+                <h1 className="preferences__title">Preferences</h1>
+              </div>
             </div>
-          </label>
-          <label htmlFor="title" className="preferences__form__block">
-            <p>Description: </p>
-            <p>Your description can not exceed 200 characters</p>
-            <p>
-              {this.state.description.length} / {validationMax.description}
-            </p>
-            <TextArea
-              placeholder="I had three chairs in my house; one for solitude, two for friendship, three for society."
-              type="text"
-              value={this.state.description}
-              onChange={this.handleDescriptionChange}
-              autosize={{ minRows: 2, maxRows: 6 }}
-            />
-          </label>
-          <button className="button">
-            {this.state.proceeding ? 'Saving...' : 'Save Preferences'}
-          </button>
-        </form>
+          </div>
+        </div>
+        <div className="preferences">
+          <PreferencesAvatar
+            upload={this.props.uploadAvatar}
+            userId={this.props.userId}
+            avatar={
+              this.props.preferences && this.props.preferences.avatar
+                ? this.props.preferences.avatar
+                : ''
+            }
+          />
+
+          <form className="form preferences__form" onSubmit={this.onSubmit}>
+            <label htmlFor="title" className="preferences__form__block">
+              <p>Username: </p>
+              <p>Your username can not exceed 14 characters</p>
+
+              <input
+                autoFocus
+                className="text-input"
+                placeholder="Athos"
+                type="text"
+                value={this.state.username}
+                onChange={this.handleUsernameChange}
+              />
+            </label>
+            <label htmlFor="title" className="preferences__form__block">
+              <p>Interests: </p>
+              <p>Customize your homepage by setting up your interests</p>
+              <select
+                className="select"
+                value={this.state.topCategory1}
+                onChange={this.handleCat1Change}
+              >
+                <option value="architecture">Architecture</option>
+                <option value="sculpture">Sculpture</option>
+                <option value="visuals">Visuals</option>
+                <option value="music">Music</option>
+                <option value="literature">Literature</option>
+                <option value="performing">Performing</option>
+                <option value="cinema">Cinema</option>
+                <option value="photography">Photography</option>
+              </select>
+              <select
+                className="select"
+                value={this.state.topCategory2}
+                onChange={this.handleCat2Change}
+              >
+                <option
+                  value="architecture"
+                  disabled={() => topCategories.includes('architecture')}
+                >
+                  Architecture
+                </option>
+                <option value="sculpture" disabled>
+                  Sculpture
+                </option>
+                <option value="visuals">Visuals</option>
+                <option value="music">Music</option>
+                <option value="literature">Literature</option>
+                <option value="performing">Performing</option>
+                <option value="cinema">Cinema</option>
+                <option value="photography">Photography</option>
+              </select>
+              <select
+                className="select"
+                value={this.state.topCategory3}
+                onChange={this.handleCat3Change}
+              >
+                <option value="architecture" disabled={this.shouldBeDisabled}>
+                  Architecture
+                </option>
+                <option value="sculpture">Sculpture</option>
+                <option value="visuals">Visuals</option>
+                <option value="music">Music</option>
+                <option value="literature">Literature</option>
+                <option value="performing">Performing</option>
+                <option value="cinema">Cinema</option>
+                <option value="photography">Photography</option>
+              </select>
+            </label>
+            <label htmlFor="title" className="preferences__form__block">
+              <p>Description: </p>
+              <p>Your description can not exceed 200 characters</p>
+              <p>
+                {this.state.description.length} / {validationMax.description}
+              </p>
+              <TextArea
+                placeholder="I had three chairs in my house; one for solitude, two for friendship, three for society."
+                type="text"
+                value={this.state.description}
+                onChange={this.handleDescriptionChange}
+                autosize={{ minRows: 2, maxRows: 6 }}
+              />
+            </label>
+            <button className="button">
+              {this.state.proceeding ? 'Saving...' : 'Save Preferences'}
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

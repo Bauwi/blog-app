@@ -9,31 +9,35 @@ const PostsListItem = ({
   id, title, createdAt, author, stars, miniCover, keywords
 }) => (
   <div className="list-item">
-    <Link to={`/edit/${id}`}>
-      <div className="list-item__content">
-        <header>
-          <img
-            src={miniCover}
-            className="list-item__img list-item__content__cover"
-            alt="post cover"
-          />
-        </header>
-        <section className="list-item__content__header">
-          <div>
-            <i className="fa fa-star" /> {stars}
-          </div>
-          <p className="list-item__content__date">{moment(createdAt).format('MMM Do, YYYY')}</p>
-        </section>
-        <div className="list-item__content__infos">
-          <h3 className="list-item__content__title">{title}</h3>
-
-          <div className="list-item__content__subtitle">
-            <p className="list-item__content__author">{author}</p>
-          </div>
+    <div className="list-item__content">
+      <header>
+        <img
+          src={miniCover}
+          className="list-item__img list-item__content__cover"
+          alt="post cover"
+        />
+      </header>
+      <section className="list-item__content__header">
+        <div>
+          <i className="fa fa-star" /> {stars}
         </div>
-        <KeywordsList keywords={keywords} />
+        <p className="list-item__content__date">{moment(createdAt).format('MMM Do, YYYY')}</p>
+      </section>
+      <div className="list-item__content__infos">
+        <Link to={`/edit/${id}`}>
+          <h3 className="list-item__content__title">{title}</h3>
+        </Link>
+        <div className="list-item__content__subtitle">
+          <p className="list-item__content__author">{author}</p>
+        </div>
       </div>
-    </Link>
+      <KeywordsList keywords={keywords} />
+      <div className="list-item__content__category">
+        <p className={`category border-${keywords.split(',')[0].trim()}`}>
+          {keywords.split(',')[0].trim()}
+        </p>
+      </div>
+    </div>
   </div>
 );
 

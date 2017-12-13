@@ -17,6 +17,12 @@
 }
 
 .form--post > label > textarea {
+  background: none;
+  color: $off-white;
   font-size: $font-size-huge;
   text-align: center;
+}
+
+.form label {
+  color: $off-white;
 }

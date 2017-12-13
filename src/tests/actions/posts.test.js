@@ -22,29 +22,6 @@ const uid = '123abc';
 const defaultAuthState = { auth: { uid } };
 const createMockStore = configureMockStore([thunk]);
 
-// beforeEach((done) => {
-//   const expensesData = {};
-//   posts.forEach(({ id, title, createdAt }) => {
-//     expensesData[id] = { title, createdAt };
-//   });
-//   console.log(expensesData['1']);
-//   db
-//     .collection('posts')
-//     .add(expensesData)
-//     .then(() => done());
-//   database
-//     .ref('posts')
-//     .set(expensesData)
-//     .then(() => done());
-// });
-
-// beforeEach(done => new Promise((resolve) => {
-//   resolve(db
-//     .collection('posts')
-//     .doc('123')
-//     .set({ id: 123 }));
-// }).then(() => done()));
-
 test('should setup remove post action object', () => {
   const action = removePost('123abc');
   expect(action).toEqual({

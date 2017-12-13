@@ -5,18 +5,16 @@ import Headroom from 'react-headroom';
 import HeaderNavBar from './HeaderNavBar';
 
 const Header = () => (
-  <Headroom>
-    <header className="header">
-      <div className="content-container">
-        <div className="header__content">
-          <Link className="header__title" to="/">
-            <h1>Bloyster</h1>
-          </Link>
-          <HeaderNavBar />
-        </div>
+  <header className="header">
+    <div className="content-container">
+      <div className="header__content">
+        <Link className="header__title" to="/">
+          <h1>Bloyster</h1>
+        </Link>
+        <HeaderNavBar />
       </div>
-    </header>
-  </Headroom>
+    </div>
+  </header>
 );
 
 export default Header;

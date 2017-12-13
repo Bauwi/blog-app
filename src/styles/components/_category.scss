@@ -2,3 +2,84 @@
   @extend .content-container;
   font-style: italic;
 }
+
+.category {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  font-size: $font-size-small;
+  padding: 0 0.5rem;
+  margin-left: 1rem;
+}
+
+.border-architecture {
+  color: transparentize($architecture, 0.5);
+}
+.border-sculpture {
+  color: transparentize($sculpture, 0.3);
+}
+
+.border-visuals {
+  color: transparentize($visuals, 0.7);
+}
+
+.border-music {
+  color: transparentize($music, 0.7);
+}
+
+.border-literature {
+  color: transparentize($literature, 0.7);
+}
+
+.border-performings {
+  color: transparentize($performings, 0.7);
+}
+
+.border-cinema {
+  color: transparentize($cinema, 0.4);
+}
+
+.border-photography {
+  color: transparentize($photography, 0.5);
+}
+
+//sub nav bar colors
+
+.architecture {
+  color: $architecture !important;
+  transform: scale(1.4);
+}
+.sculpture {
+  color: $sculpture !important;
+  transform: scale(1.4);
+}
+
+.visuals {
+  color: $visuals !important;
+  transform: scale(1.4);
+}
+
+.music {
+  color: $music !important;
+  transform: scale(1.4);
+}
+
+.literature {
+  color: $literature !important;
+  transform: scale(1.4);
+}
+
+.performings {
+  color: $performings !important;
+  transform: scale(1.4);
+}
+
+.cinema {
+  color: $cinema !important;
+  transform: scale(1.4);
+}
+
+.photography {
+  color: $photography !important;
+  transform: scale(1.4);
+}

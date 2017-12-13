@@ -26,7 +26,7 @@ export class RunListItem extends Component {
       stars
     } = this.props.post.content;
     return (
-      <div onClick={this.handleItemClick}>
+      <div>
         <div className="inline-list-item">
           <header className="inline-list-item__left">
             <img src={miniCover} className="inline-list-item__cover" alt="post cover" />
@@ -45,14 +45,13 @@ export class RunListItem extends Component {
                 <p className="inline-list-item__date">{moment(createdAt).format('MMM Do, YYYY')}</p>
               </div>
             </section>
-            <div className="inline-list-item__infos">
+            <div onClick={this.handleItemClick} className="inline-list-item__infos">
               <h3 className="inline-list-item__title">{title}</h3>
-
-              <div className="inline-list-item__subtitle">
-                <p className="inline-list-item__author">{author}</p>
-              </div>
-              <KeywordsList keywords={keywords} />
             </div>
+            <footer className="inline-list-item__footer">
+              <p className="inline-list-item__author">{author}</p>
+              <KeywordsList keywords={keywords} />
+            </footer>
           </div>
         </div>
       </div>

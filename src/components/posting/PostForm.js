@@ -8,8 +8,18 @@ import UserCard from '../UserCard';
 
 const { TextArea } = Input;
 const error = () => {
-  message.error('Your post should include a title, a cover and a body');
+  message.error('Your post should include a title, a cover, a body and a category');
 };
+const categories = [
+  'architecture',
+  'sculpture',
+  'visuals',
+  'music',
+  'literature',
+  'performings',
+  'cinema',
+  'photography'
+];
 
 export default class PostForm extends Component {
   constructor(props) {
@@ -17,10 +27,18 @@ export default class PostForm extends Component {
     // bodyToEditor is a tweak as db does not handle delta format from quill Editor
     // body is the part sent to db and bodyToEditor the data used as the correct format
     // to display content ==> delta standard format: delta {ops: [array of data]}
+
     this.state = {
       title: props.post ? props.post.title : '',
+      category: props.post ? props.post.keywords.split(',')[0].trim() : '',
       body: props.post ? props.post.body : '',
-      keywords: props.post ? props.post.keywords : '',
+      keywords: props.post
+        ? props.post.keywords
+            .split(',')
+            .map(el => el.trim())
+            .filter(el => !categories.includes(el))
+            .join(', ')
+        : '',
       createdAt: props.post ? moment(props.post.createdAt) : moment(),
       author: props.author.username,
       readingTime: props.post ? props.post.readingTime : 0,
@@ -57,6 +75,11 @@ export default class PostForm extends Component {
         readingTime
       }));
     }
+  };
+
+  onCategoryChange = e => {
+    const category = e.target.value;
+    this.setState(() => ({ category }));
   };
 
   onKeywordsChange = e => {
@@ -145,7 +168,7 @@ export default class PostForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    if (!this.state.title || !this.state.body) {
+    if (!this.state.title || !this.state.body || !this.state.category) {
       this.setState(() => ({ error: true }));
       error();
     } else {
@@ -153,7 +176,7 @@ export default class PostForm extends Component {
       this.props.onSubmit({
         title: this.state.title,
         body: this.state.body,
-        keywords: this.state.keywords.toLowerCase(),
+        keywords: `${this.state.category}, ${this.state.keywords}`,
         createdAt: this.state.createdAt.valueOf(),
         author: this.state.author,
         readingTime: this.state.readingTime,
@@ -199,6 +222,16 @@ export default class PostForm extends Component {
             onChange={this.onBodyChange}
           />{' '}
         </div>
+        <select className="select" value={this.state.category} onChange={this.onCategoryChange}>
+          <option value="architecture">Architecture</option>
+          <option value="sculpture">Sculpture</option>
+          <option value="visuals">Visuals</option>
+          <option value="music">Music</option>
+          <option value="literature">Literature</option>
+          <option value="performings">Performings</option>
+          <option value="cinema">Cinema</option>
+          <option value="photography">Photography</option>
+        </select>
         <input
           className="text-input"
           type="text"

@@ -87,7 +87,9 @@ export const startSetRunPosts = resume => (dispatch, getState) => {
       return dispatch(setCurrentPostRun(run[firstUnreadIndex].content.id));
     })
     .then(() => dispatch(runIsLoading(false)))
-    .catch(() => dispatch(runsHasErrored(true)));
+    .catch((e) => {
+      dispatch(runsHasErrored(true));
+    });
 };
 
 // change the status of the past from read to unread
