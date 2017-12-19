@@ -71,7 +71,7 @@ export class RunListDropdown extends Component {
       </Menu>
     );
     return (
-      <Dropdown overlay={menu} placement="bottomCenter" className="dropdown" trigger={['click']}>
+      <Dropdown overlay={menu} placement="bottomCenter" className="dropdown">
         <Link className="ant-dropdown-link" to="/run">
           <i className="fa fa-book" />
         </Link>

@@ -48,12 +48,13 @@ export class RunReadPost extends Component {
     );
     const { title, body, keywords, cover, stars, createdAt, readingTime } = this.props.post.content;
     const delta = { ops: [...body] };
+    const category = keywords.split(',')[0].trim();
     return (
       <div>
         <header className="page-header page-header--read">
           <div className="content-container">
             <UserCard post={this.props.post} author={this.props.author} />
-            <div className="read-header__datereadingtime">
+            <div className={`read-header__datereadingtime border-top-item-${category}`}>
               <p>{moment(createdAt).format('MMM Do, YYYY')}</p>
               <p>
                 <i className="fa fa-clock-o" />{' '}
@@ -73,7 +74,7 @@ export class RunReadPost extends Component {
         <Cover />
         <RunReadPostEditor delta={delta} />
 
-        <footer className="content-container">
+        <footer className={`keywords-list__read-post-container border-top-item-${category}`}>
           {' '}
           <KeywordsList keywords={keywords} />{' '}
         </footer>
