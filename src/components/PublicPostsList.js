@@ -26,7 +26,7 @@ export class PublicPostsList extends Component {
       <div>
         <div className="homelist__header">
           <div className="content-container">
-            <h3 className={`homelist__header__title border-bottom-${this.props.category}`}>
+            <h3 className={`homelist__header__title border-bottom-item-${this.props.category}`}>
               {this.props.category && this.props.category.toUpperCase()}
             </h3>
           </div>

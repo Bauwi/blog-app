@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import CompleteFiltersBar from '../filters/CompleteFiltersBar';
+
 import selectPosts from '../../selectors/posts';
 
 export const PostsSummary = ({ selectedPosts, totalUserPosts }) => {
@@ -27,6 +29,7 @@ export const PostsSummary = ({ selectedPosts, totalUserPosts }) => {
             </Link>
           </div>
         </div>
+        <CompleteFiltersBar />
       </div>
     </div>
   );

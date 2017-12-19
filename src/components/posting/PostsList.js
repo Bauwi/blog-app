@@ -6,7 +6,6 @@ import { startSetPosts } from '../../actions/posts';
 import { sortByDate } from '../../actions/filters';
 import selectPosts from '../../selectors/posts';
 
-import CompleteFiltersBar from '../filters/CompleteFiltersBar';
 import PostsListItem from './PostsListItem';
 import SmallLoader from '../SmallLoader';
 
@@ -43,7 +42,6 @@ export class PostsList extends Component {
   render() {
     return (
       <div className="content-container post-list">
-        <CompleteFiltersBar />
         {this.props.posts.length === 0 && (
           <div className="list__empty">
             <p>Nothing found !</p>

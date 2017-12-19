@@ -18,7 +18,7 @@ export class HomeRead extends Component {
   renderCustomCategories() {
     return this.props.categories.map((category, i) => {
       const grid = i === 0 ? 'grid-home-second' : 'grid-home-first';
-      const range = i === 0 ? 7 : i === 1 ? 6 : i === 2 ? 3 : 0;
+      const range = i === 0 ? 11 : i === 1 ? 9 : i === 2 ? 6 : 0;
       return <PublicPostsList key={category} grid={grid} category={category} range={range} />;
     });
   }
@@ -38,7 +38,7 @@ export class HomeRead extends Component {
                 <PopularLasttFilter relative />
               </div>
             </div>
-            <PublicPostsList grid="grid-home-first" category="all" range={14} />
+            <PublicPostsList grid="grid-home-first" category="all" range={15} />
           </div>
         )}
         {!this.props.isLoading && this.renderCustomCategories()}

@@ -20,7 +20,7 @@ export const startCreateUser = () => (dispatch, getState) => {
     username: 'Anonymous',
     stars: 0,
     numberOfPosts: 0,
-    topCategories: ['music', 'litterature', 'programming']
+    topCategories: ['music', 'literature', 'cinema']
   };
   return db
     .collection('users')
@@ -60,11 +60,12 @@ export const addUserStar = nextStars => ({
   nextStars
 });
 
-export const startAddUserStar = (id, prevStars) => dispatch => db
-  .collection('users')
-  .doc(id)
-  .update({ stars: prevStars + 1 })
-  .then(() => dispatch(addUserStar(prevStars + 1)));
+export const startAddUserStar = (id, prevStars) => dispatch =>
+  db
+    .collection('users')
+    .doc(id)
+    .update({ stars: prevStars + 1 })
+    .then(() => dispatch(addUserStar(prevStars + 1)));
 
 export const usersHasErrored = bool => ({
   type: 'USERS_HAS_ERRORED',

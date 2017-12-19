@@ -27,8 +27,9 @@
   // font-family: Space Mono, Helvetica, Arial, sans-serif !important;
   font-family: Source Sans Pro, Arial, sans-serif !important;
 
-  & > p,
-  li {
-    color: $light-grey !important;
+  & > p {
+    font-size: 1.7rem !important;
+    color: darken($off-white, 30%) !important;
+    line-height: 3rem;
   }
 }

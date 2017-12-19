@@ -14,8 +14,7 @@ export default class AuthorSummaryList extends Component {
   render() {
     return (
       <div className="content-container">
-        <p>InlineList</p>
-        {this.renderList()}
+        <div className="masonry">{this.renderList()}</div>;
       </div>
     );
   }

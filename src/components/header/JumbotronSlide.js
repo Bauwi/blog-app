@@ -3,6 +3,9 @@ import moment from 'moment';
 
 export class JumbotronSlide extends Component {
   render() {
+    if (!this.props.post) {
+      return <p>nothing here</p>;
+    }
     const category = this.props.post.keywords.split(',')[0].trim();
     return (
       <div className="carousel-item">

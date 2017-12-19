@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Img from 'react-image';
+import moment from 'moment';
 
 import UserCard from '../UserCard';
 import LoadingPage from '../LoadingPage';
@@ -45,21 +46,28 @@ export class RunReadPost extends Component {
         }
       />
     );
-    const { title, body, keywords, cover, stars } = this.props.post.content;
+    const { title, body, keywords, cover, stars, createdAt, readingTime } = this.props.post.content;
     const delta = { ops: [...body] };
     return (
       <div>
         <header className="page-header page-header--read">
           <div className="content-container">
-            <UserCard post={this.props.post.content} author={this.props.author} />{' '}
-            <div className="read-header__stars">
-              <span>{stars}</span>
-              <button className="button button--star" onClick={this.onAddStar}>
-                <i className="fa fa-star-o" />
-              </button>
-              <p> {this.props.postStars}</p>{' '}
-            </div>{' '}
-          </div>{' '}
+            <UserCard post={this.props.post} author={this.props.author} />
+            <div className="read-header__datereadingtime">
+              <p>{moment(createdAt).format('MMM Do, YYYY')}</p>
+              <p>
+                <i className="fa fa-clock-o" />{' '}
+                {`${readingTime} ${readingTime >= 2 ? 'minutes' : 'minute'} read`}
+              </p>
+              <div className="read-header__stars">
+                <button className="button button--star" onClick={this.onAddStar}>
+                  {stars}
+                  <i className="fa fa-star-o" />
+                </button>
+                <p>{this.props.postStars}</p>
+              </div>
+            </div>
+          </div>
         </header>
         <h2 className="read-header__title"> {title} </h2>
         <Cover />

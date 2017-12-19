@@ -2,45 +2,49 @@
   @extend .content-container;
   font-style: italic;
 }
-
+.category-container {
+  height: 0;
+}
+.category-container-bis {
+}
 .category {
   border-width: 1px;
   border-style: solid;
   border-radius: 5px;
-  font-size: $font-size-small;
+  font-size: $font-size-small*0.8;
   padding: 0 0.5rem;
   margin-left: 1rem;
 }
 
 .border-architecture {
-  color: transparentize($architecture, 0.5);
+  color: transparentize($architecture, 0);
 }
 .border-sculpture {
-  color: transparentize($sculpture, 0.3);
+  color: transparentize($sculpture, 0);
 }
 
 .border-visuals {
-  color: transparentize($visuals, 0.7);
+  color: transparentize($visuals, 0);
 }
 
 .border-music {
-  color: transparentize($music, 0.7);
+  color: transparentize($music, 0.3);
 }
 
 .border-literature {
-  color: transparentize($literature, 0.7);
+  color: transparentize($literature, 0.5);
 }
 
 .border-performings {
-  color: transparentize($performings, 0.7);
+  color: transparentize($performings, 0);
 }
 
 .border-cinema {
-  color: transparentize($cinema, 0.4);
+  color: transparentize($cinema, 0);
 }
 
 .border-photography {
-  color: transparentize($photography, 0.5);
+  color: transparentize($photography, 0);
 }
 
 //sub nav bar colors
@@ -82,4 +86,91 @@
 .photography {
   color: $photography !important;
   transform: scale(1.4);
+}
+
+.border-bottom-item-all {
+  border-bottom: 2px solid $off-white;
+
+  // background: transparentize($sculpture, 0.95);
+}
+.border-bottom-item-sculpture {
+  border-bottom: 2px solid $sculpture;
+
+  // background: transparentize($sculpture, 0.95);
+}
+
+.border-bottom-item-architecture {
+  border-bottom: 2px solid $architecture;
+  // background: transparentize($architecture, 0.95);
+}
+
+.border-bottom-item-visuals {
+  border-bottom: 2px solid $visuals;
+  // background: transparentize($visuals, 0.95);
+}
+
+.border-bottom-item-music {
+  border-bottom: 2px solid $music;
+  // background: transparentize($music, 0.95);
+}
+
+.border-bottom-item-literature {
+  border-bottom: 2px solid $literature;
+  // background: transparentize($literature, 0.95);
+}
+
+.border-bottom-item-performings {
+  border-bottom: 2px solid $performings;
+  // background: transparentize($performings, 0.95);
+}
+
+.border-bottom-item-cinema {
+  border-bottom: 2px solid $cinema;
+  // background: transparentize($cinema, 0.95);
+}
+
+.border-bottom-item-photography {
+  border-bottom: 2px solid $photography;
+  // background: transparentize($photography, 0.95);
+}
+
+.border-top-item-sculpture {
+  border-top: 2px solid $sculpture;
+
+  // background: transparentize($sculpture, 0.95);
+}
+
+.border-top-item-architecture {
+  border-top: 2px solid $architecture;
+  // background: transparentize($architecture, 0.95);
+}
+
+.border-top-item-visuals {
+  border-top: 2px solid $visuals;
+  // background: transparentize($visuals, 0.95);
+}
+
+.border-top-item-music {
+  border-top: 2px solid $music;
+  // background: transparentize($music, 0.95);
+}
+
+.border-top-item-literature {
+  border-top: 2px solid $literature;
+  // background: transparentize($literature, 0.95);
+}
+
+.border-top-item-performings {
+  border-top: 2px solid $performings;
+  // background: transparentize($performings, 0.95);
+}
+
+.border-top-item-cinema {
+  border-top: 2px solid $cinema;
+  // background: transparentize($cinema, 0.95);
+}
+
+.border-top-item-photography {
+  border-top: 2px solid $photography;
+  // background: transparentize($photography, 0.95);
 }

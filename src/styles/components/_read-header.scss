@@ -4,15 +4,28 @@
   font-size: $font-size-large;
   padding: 0 $s-size $l-size $s-size;
   text-align: center;
+
   @media (min-width: $desktop-breakpoint) {
     font-size: $font-size-huge;
-    padding: 0 0 $l-size 0;
+    padding: $l-size 0 $l-size*2 0;
   }
 }
 
 .read-header__stars {
-  display: flex;
-  justify-content: flex-end;
+  * {
+    color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.read-header__datereadingtime {
   align-items: center;
-  margin-top: $xl-size;
+  display: flex;
+  // flex-direction: column;
+  justify-content: space-between;
+  color: $off-white;
+  margin: $l-size 0;
+  p {
+    color: rgba(255, 255, 255, 0.3);
+    margin-left: $m-size;
+  }
 }

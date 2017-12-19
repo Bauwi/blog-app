@@ -11,31 +11,27 @@ export default class AuthorSummaryListItem extends Component {
     } =
       this.props.post.content || this.props.post;
     return (
-      <Link to={`/${authorId}/read/${id}`} className="no-decoration">
-        <div className="inline-list-item">
-          <header className="inline-list-item__left">
-            <img src={miniCover} className="inline-list-item__cover" alt="post cover" />
-          </header>
-          <div className="inline-list-item__right">
-            <section className="inline-list-item__header">
+      <div>
+        <Link to={`/${authorId}/read/${id}`} className="no-decoration">
+          <img src={miniCover} alt="post cover" />
+          <div className="masonry-layer">
+            <header className="masonry-layer__header">
               <div>
                 <i className="fa fa-star" /> {stars}
               </div>
-              <p className="inline-list-item__date">{moment(createdAt).format('MMM Do, YYYY')}</p>
+              <p>{moment(createdAt).format('MMM Do, YYYY')}</p>
+            </header>
+            <section className="masonry-layer__section">
+              <h3 className="masonry-layer__title">{title}</h3>
             </section>
-            <div className="inline-list-item__infos">
-              <h3 className="inline-list-item__title">{title}</h3>
 
-              <div className="inline-list-item__subtitle">
-                <p className="inline-list-item__author">{author}</p>
-              </div>
-              <footer className="keywords-list__list-item-container">
-                <KeywordsList keywords={keywords} />
-              </footer>
-            </div>
+            <footer className="keywords-list__list-item-container">
+              <p className="masonry-layer__author">{author}</p>
+              <KeywordsList keywords={keywords} />
+            </footer>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     );
   }
 }
