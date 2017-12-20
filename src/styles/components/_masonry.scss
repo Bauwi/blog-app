@@ -1,15 +1,17 @@
 .masonry {
   display: flex;
   flex-flow: row wrap;
-  margin-left: -8px; /* Adjustment for the gutter */
   margin-top: $xl-size;
+  @media (min-width: $desktop-breakpoint) {
+    margin-left: -8px; /* Adjustment for the gutter */
+  }
 
   & > div {
     flex: auto;
     position: relative;
     height: 250px;
     min-width: 150px;
-    margin: 0 8px 8px 0; /* Some gutter */
+    margin: 4px auto; /* Some gutter */
 
     &:nth-child(4n + 1) {
       width: 250px;
@@ -25,6 +27,9 @@
     }
     &:nth-child(4n + 5) {
       width: 400px;
+    }
+    @media (min-width: $desktop-breakpoint) {
+      margin: 0 8px 8px 0;
     }
 
     .masonry-layer {

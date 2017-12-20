@@ -19,6 +19,10 @@
   justify-content: center;
   max-width: 350px;
   max-height: 450px;
+  margin-top: $xl-size;
+  @media (min-width: $desktop-breakpoint) {
+    margin-top: 0;
+  }
 
   div {
     align-items: center;
@@ -28,14 +32,26 @@
     // button {
     //   width: 30%;
     // }
+    canvas {
+      height: 250px !important;
+      width: 250px !important;
+      @media (min-width: $desktop-breakpoint) {
+        height: 350px !important;
+        width: 350px !important;
+      }
+    }
   }
 }
 .preferences__avatar {
-  height: 350px;
-  width: 350px;
+  height: 250px;
+  width: 250px;
   img {
     border: 3px solid grey;
     margin: $l-size 0;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    height: 350px;
+    width: 350px;
   }
 }
 

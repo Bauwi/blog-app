@@ -25,12 +25,12 @@
   h1 {
     margin: 0;
     font-family: "Source Sans Pro";
-    font-size: $font-size-large;
+    font-size: $font-size-medium;
     font-weight: 1000;
     letter-spacing: 8px;
-    // line-height: 2.4rem;
-    // background: black;
-    // color: white;
+    @media (min-width: $desktop-breakpoint) {
+      font-size: $font-size-large;
+    }
   }
 }
 
@@ -51,7 +51,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  padding: 0 0 $s-size 0;
+  padding: 0;
   @media (min-width: $desktop-breakpoint) {
     justify-content: flex-end;
     padding: 0;

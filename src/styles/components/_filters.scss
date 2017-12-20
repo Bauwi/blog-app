@@ -21,6 +21,9 @@
   flex-direction: column;
   justify-content: space-between;
   margin: $l-size 0 $s-size 0;
+  div {
+    padding-bottom: 1rem;
+  }
   @media (min-width: $desktop-breakpoint) {
     flex-direction: row;
   }

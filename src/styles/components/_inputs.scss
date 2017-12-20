@@ -6,11 +6,14 @@
   font-size: $font-size-medium;
   font-weight: 300;
   height: 50px;
-  width: 34rem;
+  width: 20rem;
   outline: none;
   padding: $s-size;
   &::placeholder {
     font-style: italic;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    width: 34rem;
   }
 }
 
