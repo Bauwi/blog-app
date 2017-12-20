@@ -11,7 +11,7 @@
   flex: 0 0 auto;
   display: block; /* IE fix */
   width: calc(100% * 1 / #{$number} - #{$gutter});
-  margin-left: $gutter;
+  margin: auto;
 }
 
 @mixin grid($number:$number, $gutter:$gutter) {
@@ -25,19 +25,24 @@
   @media (min-width: $desktop-breakpoint) {
     & > * {
       width: calc(100% * 1 / #{$number} - #{$gutter});
+      margin-left: $gutter;
     }
 
     & > .flexitem-double {
       width: calc(100% * 2 / #{$number} - #{$gutter});
+      margin-left: $gutter;
     }
     & > .flexitem-triple {
       width: calc(100% * 3 / #{$number} - #{$gutter});
+      margin-left: $gutter;
     }
     & > .flexitem-quadruple {
       width: calc(100% * 4 / #{$number} - #{$gutter});
+      margin-left: $gutter;
     }
     & > .flexitem-hexuple {
       width: calc(100% * 6 / #{$number} - #{$gutter});
+      margin-left: $gutter;
     }
   }
 }
