@@ -11,7 +11,7 @@
   flex: 0 0 auto;
   display: block; /* IE fix */
   width: calc(100% * 1 / #{$number} - #{$gutter});
-  margin: auto;
+  margin-left: 1rem;
 }
 
 @mixin grid($number:$number, $gutter:$gutter) {
