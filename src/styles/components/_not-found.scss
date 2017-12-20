@@ -1,0 +1,21 @@
+.not-found {
+  header {
+    height: 0;
+  }
+  p {
+    position: relative;
+    top: 2rem;
+    left: 2rem;
+    font-size: $font-size-large;
+  }
+  a {
+    color: black;
+    position: relative;
+    top: 2rem;
+    left: 2rem;
+    &:hover {
+      color: $grey;
+      text-decoration: underline;
+    }
+  }
+}
