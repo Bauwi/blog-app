@@ -1,7 +1,27 @@
-# Git Commands
+# Blog App - Build with React/Redux/Firebase
 
-git init - Create a new Git repo
-git status - View the changes to your project code
-git add - Add files to staging area
-git commit - Creates a new commit with files from the staging area
-git log - View recent commits
+Basic blog webapp build for sharing our love of Art.
+--
+
+## Getting started
+
+This app requires you to have Node installed on your machine. Then you can clone the repo and run the following:
+
+```
+yarn install
+```
+
+```
+yarn run dev-server
+```
+
+## Running the test
+
+Running the tests is easy. All you have to do is run the following command and view the reporter at localhost port 4000 :
+```
+yarn run test --watch
+```
+
+## Demo
+
+http://www.tekkne.com/
