@@ -11,7 +11,6 @@ const DashboardPage = ({ preferences, userId }) => (
     <PostsSummary />
 
     <div className="content-container">
-      <UserCard author={preferences} userId={userId} />
       <PostsList />
     </div>
   </div>

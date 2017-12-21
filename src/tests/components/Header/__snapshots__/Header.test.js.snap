@@ -15,8 +15,13 @@ exports[`should render Header correctly 1`] = `
         replace={false}
         to="/"
       >
+        <img
+          alt="logo"
+          className="loader__image"
+          src="/images/icon.png"
+        />
         <h1>
-          _TEKKNE_
+          TEKKNE
         </h1>
       </Link>
       <Connect(HeaderNavBar) />

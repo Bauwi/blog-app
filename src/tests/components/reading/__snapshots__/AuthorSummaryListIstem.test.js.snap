@@ -47,6 +47,7 @@ exports[`should render AuthorSummaryListItem component properly 1`] = `
         </p>
         <KeywordsList
           keywords="cat, dog, fish"
+          sliced={true}
         />
       </footer>
     </div>

@@ -6,6 +6,7 @@
   z-index: 3;
   background: rgba(255, 255, 255, 0.9);
   border-bottom: 2px solid $light-grey;
+  -webkit-transform: translateZ(0);
 }
 
 .header__content {
@@ -20,17 +21,28 @@
 }
 
 .header__title {
+  * {
+    text-decoration: none !important;
+  }
   color: $dark-grey;
   text-decoration: none;
+  display: flex;
+  align-items: center;
   h1 {
     margin: 0;
     font-family: "Source Sans Pro";
     font-size: $font-size-medium;
     font-weight: 1000;
     letter-spacing: 8px;
+    padding: $m-size 0;
     @media (min-width: $desktop-breakpoint) {
-      font-size: $font-size-large;
+      font-size: $font-size-medium;
     }
+  }
+  img {
+    height: 4rem;
+    width: 4rem;
+    margin: 0 $s-size;
   }
 }
 
@@ -112,7 +124,6 @@
   border-bottom: 2px solid $grey;
   display: flex;
   flex-direction: row;
-  min-height: 6rem;
   justify-content: center;
   flex-wrap: wrap;
   div {
@@ -126,8 +137,8 @@
     display: flex;
     justify-content: center;
     color: $off-white;
-    font-size: $font-size-small;
-    height: 5rem;
+    font-size: 1rem;
+    height: 4rem;
     margin: 0 $s-size;
     text-decoration: none;
     transition: all 0.7s ease;

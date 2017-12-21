@@ -4,28 +4,28 @@ import { NavLink } from 'react-router-dom';
 const HeaderSub = () => (
   <nav className="header__navbarsub">
     <NavLink to="/category/architecture" activeClassName="architecture">
-      architecture
+      ARCHITECTURE
     </NavLink>
     <NavLink to="/category/sculpture" activeClassName="sculpture">
-      scuplture
+      SCULPTURE
     </NavLink>
     <NavLink to="/category/visuals" activeClassName="visuals">
-      visuals
+      VISUALS
     </NavLink>
     <NavLink to="/category/music" activeClassName="music">
-      music
+      MUSIC
     </NavLink>
     <NavLink to="/category/literature" activeClassName="literature">
-      literature
+      LITERATURE
     </NavLink>
     <NavLink to="/category/performings" activeClassName="performings">
-      performings
+      PERFORMINGS
     </NavLink>
     <NavLink to="/category/cinema" activeClassName="cinema">
-      cinema
+      CINEMA
     </NavLink>
     <NavLink to="/category/photography" activeClassName="photography">
-      photography
+      PHOTOGRAPHY
     </NavLink>
   </nav>
 );

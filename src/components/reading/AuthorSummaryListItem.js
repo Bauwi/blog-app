@@ -27,7 +27,7 @@ export default class AuthorSummaryListItem extends Component {
 
             <footer className="keywords-list__list-item-container">
               <p className="masonry-layer__author">{author}</p>
-              <KeywordsList keywords={keywords} />
+              <KeywordsList keywords={keywords} sliced />
             </footer>
           </div>
         </Link>

@@ -9,7 +9,8 @@ const Header = () => (
     <div className="content-container">
       <div className="header__content">
         <Link className="header__title" to="/">
-          <h1>_TEKKNE_</h1>
+          <img className="loader__image" src="/images/icon.png" alt="logo" />
+          <h1>TEKKNE</h1>
         </Link>
         <HeaderNavBar />
       </div>

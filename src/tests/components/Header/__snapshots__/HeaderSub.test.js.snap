@@ -9,56 +9,56 @@ exports[`should render HeaderSub correctly 1`] = `
     ariaCurrent="true"
     to="/category/architecture"
   >
-    architecture
+    ARCHITECTURE
   </NavLink>
   <NavLink
     activeClassName="sculpture"
     ariaCurrent="true"
     to="/category/sculpture"
   >
-    scuplture
+    SCULPTURE
   </NavLink>
   <NavLink
     activeClassName="visuals"
     ariaCurrent="true"
     to="/category/visuals"
   >
-    visuals
+    VISUALS
   </NavLink>
   <NavLink
     activeClassName="music"
     ariaCurrent="true"
     to="/category/music"
   >
-    music
+    MUSIC
   </NavLink>
   <NavLink
     activeClassName="literature"
     ariaCurrent="true"
     to="/category/literature"
   >
-    literature
+    LITERATURE
   </NavLink>
   <NavLink
     activeClassName="performings"
     ariaCurrent="true"
     to="/category/performings"
   >
-    performings
+    PERFORMINGS
   </NavLink>
   <NavLink
     activeClassName="cinema"
     ariaCurrent="true"
     to="/category/cinema"
   >
-    cinema
+    CINEMA
   </NavLink>
   <NavLink
     activeClassName="photography"
     ariaCurrent="true"
     to="/category/photography"
   >
-    photography
+    PHOTOGRAPHY
   </NavLink>
 </nav>
 `;
