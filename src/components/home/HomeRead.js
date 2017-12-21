@@ -59,7 +59,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   categories: state.users.preferences
     ? state.users.preferences.topCategories
-    : ['litterature', 'music', 'life'],
+    : ['architecture', 'cinema', 'music'],
   isLoading: state.readings.isLoading
 });
 

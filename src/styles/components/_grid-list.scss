@@ -12,7 +12,8 @@
   }
 }
 
-.grid-home-first > div:nth-child(odd) > div {
+.grid-home-first > div:nth-child(odd) > div,
+.grid-home-second > div:nth-child(odd) > div {
   background: rgba(255, 255, 255, 0.05);
 }
 

@@ -17,7 +17,8 @@
 .footer__nav {
   display: flex;
   margin: $s-size;
-  a {
+  cursor: pointer;
+  div {
     color: grey;
     font-size: 1rem;
     margin-right: 1rem;
@@ -29,4 +30,9 @@
 
 .footer__license {
   font-size: 0.8rem;
+}
+
+.footer__modal {
+  padding: $xl-size 1rem;
+  text-align: center;
 }
