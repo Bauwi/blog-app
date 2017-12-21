@@ -68,14 +68,16 @@ export class PublicPostsListItem extends Component {
             <footer className="homelist-item__footer">
               <KeywordsList keywords={keywords} sliced />
               <div className="homelist-item__footer__bottom">
-                <div className="homelist-item__content__subtitle">
-                  <p className="homelist-item__content__author">{author}</p>
-                </div>
                 <div className="button--pin__container">
                   <div />
-                  <button className={buttonClassName} onClick={this.handleAddPostToRun}>
-                    <i className="fa fa-book" />
-                  </button>
+                  {this.props.isAuthenticated && (
+                    <button className={buttonClassName} onClick={this.handleAddPostToRun}>
+                      <i className="fa fa-book" />
+                    </button>
+                  )}
+                </div>
+                <div className="homelist-item__content__subtitle">
+                  <p className="homelist-item__content__author">{author}</p>
                 </div>
               </div>
             </footer>
@@ -104,7 +106,8 @@ const mapStateToProps = (state, props) => {
     run: state.run.posts || 0,
     isInRun,
     index: isInRun ? state.run.posts.findIndex(post => props.post.id === post.content.id) + 1 : '',
-    DBid
+    DBid,
+    isAuthenticated: !!state.auth.uid
   };
 };
 
