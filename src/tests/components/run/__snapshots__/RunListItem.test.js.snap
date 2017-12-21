@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render RunListItem properly if already read 1`] = `
-<div
-  onClick={[Function]}
->
+<div>
   <div
     className="inline-list-item"
   >
@@ -46,6 +44,7 @@ exports[`should render RunListItem properly if already read 1`] = `
       </section>
       <div
         className="inline-list-item__infos"
+        onClick={[Function]}
       >
         <h3
           className="inline-list-item__title"
@@ -71,9 +70,7 @@ exports[`should render RunListItem properly if already read 1`] = `
 `;
 
 exports[`should render RunListItem properly if not read yet 1`] = `
-<div
-  onClick={[Function]}
->
+<div>
   <div
     className="inline-list-item"
   >
@@ -111,6 +108,7 @@ exports[`should render RunListItem properly if not read yet 1`] = `
       </section>
       <div
         className="inline-list-item__infos"
+        onClick={[Function]}
       >
         <h3
           className="inline-list-item__title"

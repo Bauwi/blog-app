@@ -1,28 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render AuthorSummaryListItem component properly 1`] = `
-<Link
-  className="no-decoration"
-  replace={false}
-  to="/author2Id/read/2"
->
-  <div
-    className="inline-list-item"
+<div>
+  <Link
+    className="no-decoration"
+    replace={false}
+    to="/author2Id/read/2"
   >
-    <header
-      className="inline-list-item__left"
-    >
-      <img
-        alt="post cover"
-        className="inline-list-item__cover"
-        src="https://www.w3schools.com/w3css/img_fjords.jpg"
-      />
-    </header>
+    <img
+      alt="post cover"
+      src="https://www.w3schools.com/w3css/img_fjords.jpg"
+    />
     <div
-      className="inline-list-item__right"
+      className="masonry-layer"
     >
-      <section
-        className="inline-list-item__header"
+      <header
+        className="masonry-layer__header"
       >
         <div>
           <i
@@ -31,38 +24,32 @@ exports[`should render AuthorSummaryListItem component properly 1`] = `
            
           25
         </div>
-        <p
-          className="inline-list-item__date"
-        >
+        <p>
           Jan 1st, 1970
         </p>
-      </section>
-      <div
-        className="inline-list-item__infos"
+      </header>
+      <section
+        className="masonry-layer__section"
       >
         <h3
-          className="inline-list-item__title"
+          className="masonry-layer__title"
         >
           Post 2 in Run
         </h3>
-        <div
-          className="inline-list-item__subtitle"
+      </section>
+      <footer
+        className="keywords-list__list-item-container"
+      >
+        <p
+          className="masonry-layer__author"
         >
-          <p
-            className="inline-list-item__author"
-          >
-            author2
-          </p>
-        </div>
-        <footer
-          className="keywords-list__list-item-container"
-        >
-          <KeywordsList
-            keywords="cat, dog, fish"
-          />
-        </footer>
-      </div>
+          author2
+        </p>
+        <KeywordsList
+          keywords="cat, dog, fish"
+        />
+      </footer>
     </div>
-  </div>
-</Link>
+  </Link>
+</div>
 `;

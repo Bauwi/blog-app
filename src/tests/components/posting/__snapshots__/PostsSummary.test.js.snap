@@ -50,6 +50,7 @@ exports[`should render PostsSummary component properly with multiple posts provi
         </Link>
       </div>
     </div>
+    <PostListFilters />
   </div>
 </div>
 `;
@@ -102,6 +103,7 @@ exports[`should render PostsSummary component properly with no post provided 1`]
         </Link>
       </div>
     </div>
+    <PostListFilters />
   </div>
 </div>
 `;

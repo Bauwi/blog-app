@@ -21,26 +21,26 @@ exports[`should have rendered custom categories properly 1`] = `
     <Connect(PublicPostsList)
       category="all"
       grid="grid-home-first"
-      range={14}
+      range={17}
     />
   </div>
   <Connect(PublicPostsList)
     category="alpha"
     grid="grid-home-second"
     key="alpha"
-    range={7}
+    range={8}
   />
   <Connect(PublicPostsList)
     category="beta"
     grid="grid-home-first"
     key="beta"
-    range={6}
+    range={8}
   />
   <Connect(PublicPostsList)
     category="gamma"
     grid="grid-home-first"
     key="gamma"
-    range={3}
+    range={8}
   />
 </div>
 `;
@@ -66,7 +66,7 @@ exports[`should render HomeRead component properly 1`] = `
     <Connect(PublicPostsList)
       category="all"
       grid="grid-home-first"
-      range={14}
+      range={17}
     />
   </div>
 </div>

@@ -9,7 +9,7 @@ exports[`should render PublicPostsList component properly 1`] = `
       className="content-container"
     >
       <h3
-        className="homelist__header__title border-bottom-undefined"
+        className="homelist__header__title border-bottom-item-undefined"
       />
     </div>
   </div>
@@ -102,7 +102,7 @@ exports[`should render PublicPostsLists component properly when no post provided
       className="content-container"
     >
       <h3
-        className="homelist__header__title border-bottom-undefined"
+        className="homelist__header__title border-bottom-item-undefined"
       />
     </div>
   </div>

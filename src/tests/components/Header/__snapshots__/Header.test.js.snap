@@ -16,7 +16,7 @@ exports[`should render Header correctly 1`] = `
         to="/"
       >
         <h1>
-          Bloyster
+          _TEKKNE_
         </h1>
       </Link>
       <Connect(HeaderNavBar) />

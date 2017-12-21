@@ -40,18 +40,32 @@ exports[`should render ReadPost component properly 1`] = `
           }
         />
         <div
-          className="read-header__stars"
+          className="read-header__datereadingtime border-top-item-car"
         >
-          <button
-            className="button button--star"
-            onClick={[Function]}
-          >
-            2
+          <p>
+            Jan 1st, 1970
+          </p>
+          <p>
             <i
-              className="fa fa-star-o"
+              className="fa fa-clock-o"
             />
-          </button>
-          <p />
+             
+            2 minutes read
+          </p>
+          <div
+            className="read-header__stars"
+          >
+            <button
+              className="button button--star"
+              onClick={[Function]}
+            >
+              2
+              <i
+                className="fa fa-star-o"
+              />
+            </button>
+            <p />
+          </div>
         </div>
       </div>
     </header>
@@ -90,7 +104,7 @@ exports[`should render ReadPost component properly 1`] = `
       />
     </div>
     <footer
-      className="keywords-list__read-post-container "
+      className="keywords-list__read-post-container border-top-item-car"
     >
       <KeywordsList
         keywords="car, pool, cake"

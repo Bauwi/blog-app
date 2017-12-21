@@ -146,6 +146,52 @@ exports[`should render PostForm Component properly 1`] = `
     />
      
   </div>
+  <select
+    className="select"
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      value="architecture"
+    >
+      Architecture
+    </option>
+    <option
+      value="sculpture"
+    >
+      Sculpture
+    </option>
+    <option
+      value="visuals"
+    >
+      Visuals
+    </option>
+    <option
+      value="music"
+    >
+      Music
+    </option>
+    <option
+      value="literature"
+    >
+      Literature
+    </option>
+    <option
+      value="performings"
+    >
+      Performings
+    </option>
+    <option
+      value="cinema"
+    >
+      Cinema
+    </option>
+    <option
+      value="photography"
+    >
+      Photography
+    </option>
+  </select>
   <input
     className="text-input"
     onChange={[Function]}
@@ -317,6 +363,52 @@ exports[`should render PostForm with correct data in 1`] = `
     />
      
   </div>
+  <select
+    className="select"
+    onChange={[Function]}
+    value="red"
+  >
+    <option
+      value="architecture"
+    >
+      Architecture
+    </option>
+    <option
+      value="sculpture"
+    >
+      Sculpture
+    </option>
+    <option
+      value="visuals"
+    >
+      Visuals
+    </option>
+    <option
+      value="music"
+    >
+      Music
+    </option>
+    <option
+      value="literature"
+    >
+      Literature
+    </option>
+    <option
+      value="performings"
+    >
+      Performings
+    </option>
+    <option
+      value="cinema"
+    >
+      Cinema
+    </option>
+    <option
+      value="photography"
+    >
+      Photography
+    </option>
+  </select>
   <input
     className="text-input"
     onChange={[Function]}

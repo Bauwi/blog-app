@@ -19,48 +19,58 @@ exports[`should render RunReadPost component properly 1`] = `
         }
         post={
           Object {
-            "author": "author1",
-            "authorId": "author1Id",
-            "body": Array [
-              Object {
-                "attributes": "h1",
-                "text": "This is the first Post in run",
-              },
-            ],
-            "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
-            "createdAt": 0,
-            "id": "1",
-            "keywords": "red, green, blue",
-            "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
-            "readingTime": 7,
-            "stars": 5,
-            "title": "Post 1 in Run",
+            "DBid": "DBid1",
+            "content": Object {
+              "author": "author1",
+              "authorId": "author1Id",
+              "body": Array [
+                Object {
+                  "attributes": "h1",
+                  "text": "This is the first Post in run",
+                },
+              ],
+              "cover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+              "createdAt": 0,
+              "id": "1",
+              "keywords": "red, green, blue",
+              "miniCover": "https://www.w3schools.com/w3css/img_fjords.jpg",
+              "readingTime": 7,
+              "stars": 5,
+              "title": "Post 1 in Run",
+            },
+            "state": "read",
           }
         }
       />
-       
       <div
-        className="read-header__stars"
+        className="read-header__datereadingtime border-top-item-red"
       >
-        <span>
-          5
-        </span>
-        <button
-          className="button button--star"
-          onClick={[Function]}
-        >
-          <i
-            className="fa fa-star-o"
-          />
-        </button>
         <p>
-           
+          Jan 1st, 1970
         </p>
-         
+        <p>
+          <i
+            className="fa fa-clock-o"
+          />
+           
+          7 minutes read
+        </p>
+        <div
+          className="read-header__stars"
+        >
+          <button
+            className="button button--star"
+            onClick={[Function]}
+          >
+            5
+            <i
+              className="fa fa-star-o"
+            />
+          </button>
+          <p />
+        </div>
       </div>
-       
     </div>
-     
   </header>
   <h2
     className="read-header__title"
@@ -83,7 +93,7 @@ exports[`should render RunReadPost component properly 1`] = `
     }
   />
   <footer
-    className="content-container"
+    className="keywords-list__read-post-container border-top-item-red"
   >
      
     <KeywordsList

@@ -1,15 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render NotFoundPage correctly 1`] = `
-<div>
-  <p>
-    404 not found
-  </p>
-  <Link
-    replace={false}
-    to="/"
-  >
-    Home
-  </Link>
+<div
+  className="not-found"
+>
+  <header>
+    <Link
+      replace={false}
+      to="/"
+    >
+      Home
+    </Link>
+    <p>
+      Sorry, we have not found anything here !
+    </p>
+  </header>
+  <img
+    alt="404 not found"
+    className="image"
+    src="/images/404.jpg"
+  />
 </div>
 `;

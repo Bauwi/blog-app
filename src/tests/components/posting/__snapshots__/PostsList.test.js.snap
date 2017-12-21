@@ -4,7 +4,6 @@ exports[`should render PostsLists component correctly after loading 1`] = `
 <div
   className="content-container post-list"
 >
-  <PostListFilters />
   <div
     className="grid-dashboard"
   >
@@ -82,7 +81,6 @@ exports[`should render PostsLists component correctly on loading 1`] = `
 <div
   className="content-container post-list"
 >
-  <PostListFilters />
   <div
     className="grid-dashboard"
   >

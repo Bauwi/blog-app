@@ -22,6 +22,7 @@ test('should call startAddPostToRun on click', () => {
     startAddPostToRun={startAddPostToRun}
     startRemovePostToRun={() => {}}
     success={success}
+    isAuthenticated
     error={() => {}}
   />);
   wrapper
@@ -45,6 +46,7 @@ test('should call startRemovePostToRun on click', () => {
     success={() => {}}
     error={() => {}}
     isInRun
+    isAuthenticated
     DBid="DBid"
   />);
   wrapper
@@ -66,6 +68,7 @@ test('should call error if run length is higher than 20', () => {
     startAddPostToRun={() => {}}
     startRemovePostToRun={() => {}}
     success={() => {}}
+    isAuthenticated
     error={error}
   />);
   wrapper

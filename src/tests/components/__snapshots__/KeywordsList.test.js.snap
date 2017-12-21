@@ -9,21 +9,21 @@ exports[`should render KeywordsList component properly 1`] = `
     replace={false}
     to="/category/cat"
   >
-    cat
+    CAT
   </Link>
   <Link
     key=" dog"
     replace={false}
-    to="/category/ dog"
+    to="/category/dog"
   >
-    dog
+    DOG
   </Link>
   <Link
     key=" fish"
     replace={false}
-    to="/category/ fish"
+    to="/category/fish"
   >
-    fish
+    FISH
   </Link>
 </ul>
 `;

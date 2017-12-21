@@ -4,94 +4,90 @@ exports[`should render PublicPostsListItem component properly 1`] = `
 <div
   className="homelist-item"
 >
-  <div>
-    <div
-      className="homelist-item__content"
-    >
-      <header>
-        <img
-          alt="post cover"
-          className="list-item__img homelist-item__content__cover"
-          src="https://www.w3schools.com/w3css/img_fjords.jpg"
-        />
-      </header>
+  <div
+    className="homelist-item__content border-bottom-item-cat"
+  >
+    <header>
       <div
-        className="homelist-item__content__container"
+        className="category-container"
       >
-        <Link
-          className="no-decoration"
-          replace={false}
-          to="/author2Id/read/2"
+        <div
+          className="category-container-bis"
         >
-          <div
-            className="homelist-item__content__infos"
+          <p
+            className="category border-cat"
           >
-            <section
-              className="homelist-item__content__header"
-            >
-              <div>
-                <i
-                  className="fa fa-star"
-                />
-                 
-                25
-              </div>
-              <p
-                className="homelist-item__content__date"
-              >
-                Jan 1st, 1970
-              </p>
-            </section>
-            <h3
-              className="homelist-item__content__title"
-            >
-              Post 2 in Run
-            </h3>
-            <div
-              className="homelist-item__content__subtitle"
-            >
-              <p
-                className="homelist-item__content__author"
-              >
-                author2
-              </p>
-            </div>
-          </div>
-        </Link>
-        <footer
-          className="homelist-item__footer"
+            cat
+          </p>
+        </div>
+      </div>
+      <img
+        alt="post cover"
+        className="list-item__img homelist-item__content__cover"
+        src="https://www.w3schools.com/w3css/img_fjords.jpg"
+      />
+    </header>
+    <div
+      className="homelist-item__content__container"
+    >
+      <Link
+        className="no-decoration infos-link"
+        replace={false}
+        to="/author2Id/read/2"
+      >
+        <div
+          className="homelist-item__content__infos"
         >
-          <KeywordsList
-            keywords="cat, dog, fish"
-          />
-          <div
-            className="homelist-item__footer__bottom"
+          <section
+            className="homelist-item__content__header"
           >
             <div>
-              <p
-                className="category border-cat"
-              >
-                cat
-              </p>
-            </div>
-            <div
-              className="button--pin__container"
-            >
-              <p
-                className="homelist-item__footer__index"
+              <i
+                className="fa fa-star"
               />
-              <button
-                className="button--pin"
-                onClick={[Function]}
-              >
-                <i
-                  className="fa fa-book"
-                />
-              </button>
+               
+              25
             </div>
+            <p
+              className="homelist-item__content__date"
+            >
+              Jan 1st, 1970
+            </p>
+          </section>
+          <h3
+            className="homelist-item__content__title"
+          >
+            Post 2 in Run
+          </h3>
+          <div />
+        </div>
+      </Link>
+      <footer
+        className="homelist-item__footer"
+      >
+        <KeywordsList
+          keywords="cat, dog, fish"
+          sliced={true}
+        />
+        <div
+          className="homelist-item__footer__bottom"
+        >
+          <div
+            className="button--pin__container"
+          >
+            <div />
           </div>
-        </footer>
-      </div>
+          <div
+            className="homelist-item__content__subtitle"
+          >
+            <p
+              className="homelist-item__content__author"
+            >
+              author2
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
 </div>

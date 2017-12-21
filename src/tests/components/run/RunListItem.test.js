@@ -22,7 +22,7 @@ test('should call setCurrentPostRun and redirect if clicked', () => {
     history={history}
     setCurrentPostRun={setCurrentPostRun}
   />);
-  wrapper.simulate('click');
+  wrapper.find('.inline-list-item__infos').simulate('click');
   expect(history.push).toHaveBeenLastCalledWith('/run/start');
   expect(setCurrentPostRun).toHaveBeenLastCalledWith(run.posts[0].content.id);
 });

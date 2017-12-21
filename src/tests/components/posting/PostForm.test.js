@@ -53,7 +53,7 @@ test('should call onSubmit prop with valid form submission', () => {
     miniCover: 'https://www.w3schools.com/w3css/img_fjords.jpg',
     title: 'Post 1 in Run',
     body: [{ text: 'This is the first Post in run', attributes: 'h1' }],
-    keywords: 'red, green, blue',
+    keywords: 'red, red, green, blue',
     readingTime: 7,
     createdAt: 0
   });

@@ -2,60 +2,88 @@
 
 exports[`should render PostsListItem component properly 1`] = `
 <div
-  className="list-item"
+  className="homelist-item"
 >
-  <Link
-    replace={false}
-    to="/edit/2"
+  <div
+    className="homelist-item__content border-bottom-item-cat"
   >
-    <div
-      className="list-item__content"
-    >
-      <header>
-        <img
-          alt="post cover"
-          className="list-item__img list-item__content__cover"
-          src="https://www.w3schools.com/w3css/img_fjords.jpg"
-        />
-      </header>
-      <section
-        className="list-item__content__header"
-      >
-        <div>
-          <i
-            className="fa fa-star"
-          />
-           
-          25
-        </div>
-        <p
-          className="list-item__content__date"
-        >
-          Jan 1st, 1970
-        </p>
-      </section>
+    <header>
       <div
-        className="list-item__content__infos"
+        className="category-container"
       >
-        <h3
-          className="list-item__content__title"
-        >
-          Post 2 in Run
-        </h3>
         <div
-          className="list-item__content__subtitle"
+          className="category-container-bis"
         >
           <p
-            className="list-item__content__author"
+            className="category border-cat"
           >
-            author2
+            cat
           </p>
         </div>
       </div>
-      <KeywordsList
-        keywords="cat, dog, fish"
+      <img
+        alt="post cover"
+        className="list-item__img homelist-item__content__cover"
+        src="https://www.w3schools.com/w3css/img_fjords.jpg"
       />
+    </header>
+    <div
+      className="homelist-item__content__container"
+    >
+      <Link
+        className="no-decoration infos-link"
+        replace={false}
+        to="/edit/2"
+      >
+        <div
+          className="homelist-item__content__infos"
+        >
+          <section
+            className="homelist-item__content__header"
+          >
+            <div>
+              <i
+                className="fa fa-star"
+              />
+               
+              25
+            </div>
+            <p
+              className="homelist-item__content__date"
+            >
+              Jan 1st, 1970
+            </p>
+          </section>
+          <h3
+            className="homelist-item__content__title"
+          >
+            Post 2 in Run
+          </h3>
+          <div />
+        </div>
+      </Link>
+      <footer
+        className="homelist-item__footer"
+      >
+        <KeywordsList
+          keywords="cat, dog, fish"
+          sliced={true}
+        />
+        <div
+          className="homelist-item__footer__bottom"
+        >
+          <div
+            className="homelist-item__content__subtitle"
+          >
+            <p
+              className="homelist-item__content__author"
+            >
+              author2
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
-  </Link>
+  </div>
 </div>
 `;

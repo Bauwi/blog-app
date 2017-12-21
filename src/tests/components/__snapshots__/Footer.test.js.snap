@@ -13,36 +13,9 @@ exports[`should render Footer component properly 1`] = `
       <nav
         className="footer__nav"
       >
-        <NavLink
-          activeClassName="active"
-          ariaCurrent="true"
-          to="/contact"
-        >
-          <i
-            className="fa fa-address-card"
-          />
-           Contact
-        </NavLink>
-        <NavLink
-          activeClassName="active"
-          ariaCurrent="true"
-          to="/about"
-        >
-          <i
-            className="fa fa-question"
-          />
-           About
-        </NavLink>
-        <NavLink
-          activeClassName="active"
-          ariaCurrent="true"
-          to="/job"
-        >
-          <i
-            className="fa fa-handshake-o"
-          />
-           Hire me!
-        </NavLink>
+        <ContactModal />
+        <AboutModal />
+        <HireMeModal />
       </nav>
       <div
         className="footer__license"

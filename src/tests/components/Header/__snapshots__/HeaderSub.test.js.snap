@@ -5,56 +5,56 @@ exports[`should render HeaderSub correctly 1`] = `
   className="header__navbarsub"
 >
   <NavLink
-    activeClassName="header__navbarsub__tab--selected"
+    activeClassName="architecture"
     ariaCurrent="true"
     to="/category/architecture"
   >
     architecture
   </NavLink>
   <NavLink
-    activeClassName="header__navbarsub__tab--selected"
+    activeClassName="sculpture"
     ariaCurrent="true"
     to="/category/sculpture"
   >
     scuplture
   </NavLink>
   <NavLink
-    activeClassName="header__navbarsub__tab--selected"
+    activeClassName="visuals"
     ariaCurrent="true"
     to="/category/visuals"
   >
     visuals
   </NavLink>
   <NavLink
-    activeClassName="header__navbarsub__tab--selected"
+    activeClassName="music"
     ariaCurrent="true"
     to="/category/music"
   >
     music
   </NavLink>
   <NavLink
-    activeClassName="header__navbarsub__tab--selected"
+    activeClassName="literature"
     ariaCurrent="true"
     to="/category/literature"
   >
     literature
   </NavLink>
   <NavLink
-    activeClassName="header__navbarsub__tab--selected"
+    activeClassName="performings"
     ariaCurrent="true"
     to="/category/performings"
   >
     performings
   </NavLink>
   <NavLink
-    activeClassName="header__navbarsub__tab--selected"
+    activeClassName="cinema"
     ariaCurrent="true"
     to="/category/cinema"
   >
     cinema
   </NavLink>
   <NavLink
-    activeClassName="header__navbarsub__tab--selected"
+    activeClassName="photography"
     ariaCurrent="true"
     to="/category/photography"
   >
