@@ -17,7 +17,7 @@ yarn run dev-server
 
 ## Running the test
 
-Running the tests is easy. All you have to do is run the following command and view the reporter at localhost port 4000 :
+Running the tests is easy. All you have to do is run the following command and check the console :
 ```
 yarn run test --watch
 ```
