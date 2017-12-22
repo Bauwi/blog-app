@@ -28,7 +28,7 @@ export class LoginModal extends Component {
           <i className="fa fa-sign-in " />
         </button>
         <Modal
-          title="Bloyster"
+          title="Tekkne"
           visible={visible}
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
